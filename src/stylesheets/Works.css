@@ -1,0 +1,6 @@
+.works {
+  top: 0;
+  background-color: var(--primary-color);
+  position: sticky;
+  height: 100vh;
+}
