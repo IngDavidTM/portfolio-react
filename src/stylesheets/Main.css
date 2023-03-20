@@ -17,6 +17,16 @@
   transition-duration: 0.3s;
 }
 
+.main header a {
+  border: 2px solid var(--mist);
+  color: var(--mist);
+  text-decoration: none;
+  align-self: flex-start;
+  padding: 1rem;
+  border-radius: 2rem;
+  transition-duration: 0.3s;
+}
+
 .main_footer a:hover {
   text-decoration: none;
 }
@@ -30,16 +40,6 @@
 .main h1 {
   font-size: 2rem;
   font-weight: 600;
-}
-
-.main header a {
-  border: 2px solid var(--mist);
-  color: var(--mist);
-  text-decoration: none;
-  align-self: flex-start;
-  padding: 1rem;
-  border-radius: 2rem;
-  transition-duration: 0.3s;
 }
 
 .main header a:hover {
