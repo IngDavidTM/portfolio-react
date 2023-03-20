@@ -42,6 +42,10 @@
   font-weight: 600;
 }
 
+.main header p {
+  max-width: 800px;
+}
+
 .main header a:hover {
   background-color: var(--mist);
   color: var(--shadow);
