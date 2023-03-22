@@ -53,17 +53,20 @@
   color: var(--shadow);
 }
 
-.main nav {
+nav {
+  margin: 2rem;
   border-radius: 50%;
   color: var(--primary-color);
   background-color: var(--mist);
   width: 50px;
   height: 50px;
-  position: relative;
+  position: fixed;
+  z-index: 100;
+  top: 0;
   cursor: pointer;
 }
 
-.main nav svg {
+nav svg {
   position: absolute;
   top: 50%;
   left: 50%;
