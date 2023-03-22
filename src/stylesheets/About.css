@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
   height: 100vh;
-  background-color: var(--secondary-color);
+  background-color: var(--mist);
   display: flex;
   flex-direction: column;
   justify-content: center;
