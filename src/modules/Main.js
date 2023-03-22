@@ -43,6 +43,7 @@ const Main = () => (
         {' '}
         <a href="https://docs.google.com/document/d/1GLGsbYhyyOqI1kPLedp_tqjvOReM2xoXauD5eBXVEoI/edit?usp=sharing">Resume</a>
       </p>
+      <p />
     </section>
 
   </>

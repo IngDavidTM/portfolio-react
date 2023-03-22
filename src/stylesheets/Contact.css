@@ -62,6 +62,7 @@
   border-radius: 2rem;
   transition-duration: 0.3s;
   cursor: pointer;
+  background: none;
 }
 
 .contact-form button[type="submit"]:hover {
