@@ -1,0 +1,77 @@
+.contact {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  color: var(--shadow);
+}
+
+.contact h2,
+.contact h3,
+.contact p {
+  max-width: 500px;
+  width: 100%;
+}
+
+.contact p {
+  line-height: 1.5;
+  color: var(--secondary-color);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  width: 100%;
+  font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.contact-form button[type="submit"] {
+  border: 2px solid var(--mist);
+  color: var(--mist);
+  text-decoration: none;
+  align-self: flex-start;
+  padding: 1rem;
+  border-radius: 2rem;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  background: none;
+}
+
+.contact-form button[type="submit"]:hover {
+  background-color: var(--mist);
+  color: var(--primary-color);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--stone);
+}
