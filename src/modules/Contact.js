@@ -1,7 +1,7 @@
 import '../stylesheets/Contact.css';
 
 const Contact = () => (
-  <section className="contact">
+  <section className="contact" id="contact">
     <h2>Contact me</h2>
     <h3>Don&apos;t be shy!</h3>
     <p>If you have any questions or want to work with me, please contact me.</p>

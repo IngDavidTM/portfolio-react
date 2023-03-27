@@ -7,10 +7,12 @@ import Contact from './modules/Contact';
 const App = () => (
   <div className="App">
     <Main />
-    <Photo />
-    <Works />
-    <About />
-    <Contact />
+    <div className="container_info">
+      <Photo />
+      <Works />
+      <About />
+      <Contact />
+    </div>
   </div>
 );
 
