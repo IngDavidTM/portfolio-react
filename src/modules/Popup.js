@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import '../stylesheets/Popup.css';
 
 const Popup = (work) => {
@@ -21,10 +22,10 @@ const Popup = (work) => {
         </div>
         <div className="popup_content_links">
           <a href={github} target="_blank" rel="noreferrer">
-            <FontAwesomeIcon icon={FaGithub} />
+            <FontAwesomeIcon icon={faGithub} />
           </a>
           <a href={live} target="_blank" rel="noreferrer">
-            <FontAwesomeIcon icon={FaExternalLinkAlt} />
+            <FontAwesomeIcon icon={faExternalLinkAlt} />
           </a>
         </div>
       </div>
