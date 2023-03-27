@@ -114,18 +114,16 @@ nav svg {
     display: flex;
   }
 
-  nav li {
+  nav li button {
     width: 100px;
-    text-decoration: none;
-  }
-
-  nav li a {
     color: var(--mist);
     text-decoration: none;
     font-size: 1.3rem;
+    background: none;
+    border: none;
   }
 
-  nav li a:hover {
+  nav li button:hover {
     color: var(--primary-color);
   }
 }
