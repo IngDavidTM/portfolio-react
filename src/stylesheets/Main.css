@@ -74,6 +74,10 @@ nav svg {
   transform: translate(-50%, -50%);
 }
 
+.nav_list {
+  display: none;
+}
+
 @media only screen and (min-width: 1124px) {
   .main {
     max-width: 50%;
@@ -82,5 +86,46 @@ nav svg {
 
   .main header {
     gap: 5rem;
+  }
+
+  .nav_list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    max-width: 90%;
+    padding: 1rem 2rem;
+  }
+
+  .nav_icon {
+    display: none;
+  }
+
+  nav {
+    margin: 0;
+    border: none;
+    color: var(--primary-color);
+    background: none;
+    width: 50%;
+    height: auto;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    box-shadow: none;
+    display: flex;
+  }
+
+  nav li {
+    width: 100px;
+    text-decoration: none;
+  }
+
+  nav li a {
+    color: var(--mist);
+    text-decoration: none;
+    font-size: 1.3rem;
+  }
+
+  nav li a:hover {
+    color: var(--primary-color);
   }
 }

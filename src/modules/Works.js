@@ -14,7 +14,7 @@ import Project5 from '../images/Project5.png';
 import Project6 from '../images/Project6.png';
 
 const Works = () => (
-  <section className="works">
+  <section className="works" id="works">
     <h2>Projects</h2>
     <p>Swipe or drag to see some of the projects I&apos;ve worked on.</p>
     <div className="swiper_container">

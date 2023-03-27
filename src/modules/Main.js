@@ -5,7 +5,12 @@ import '../stylesheets/Main.css';
 const Main = () => (
   <>
     <nav>
-      <FontAwesomeIcon icon={faBurger} />
+      <FontAwesomeIcon icon={faBurger} className="nav_icon" />
+      <ul className="nav_list">
+        <li><a href="#works">Works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
     <section className="main">
       <p />

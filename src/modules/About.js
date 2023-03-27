@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import Skills from './Skills';
 
 const About = () => (
-  <section className="about">
+  <section className="about" id="about">
     <h2>About me</h2>
     <h3>
       I&apos;m a front-end and back-end developer who enjoys collaborating with

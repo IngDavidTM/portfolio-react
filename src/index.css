@@ -17,6 +17,10 @@
   --autumn-foliage: #763626;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 h2 {
   font-weight: 500;
   font-size: 1.7rem;
