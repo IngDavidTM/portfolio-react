@@ -16,11 +16,9 @@
 
 .works h2 {
   color: var(--autumn-foliage);
-  margin-top: 20%;
 }
 
 .work_card {
-  margin-top: 20px;
   position: relative;
   max-width: 400px;
   height: 50vh;

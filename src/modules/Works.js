@@ -30,7 +30,7 @@ const Works = () => (
           650: {
             slidesPerView: 2.1,
           },
-          1024: {
+          2048: {
             slidesPerView: 3.1,
           },
         }}
