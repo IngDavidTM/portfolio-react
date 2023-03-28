@@ -69,21 +69,21 @@ const Main = () => {
         <p className="main_footer">
           Find me at
           {' '}
-          <a href="https://github.com/IngDavidTM">GitHub</a>
+          <a href="https://github.com/IngDavidTM" target="_blank" rel="noreferrer">GitHub</a>
           ,
           {' '}
-          <a href="https://www.linkedin.com/in/ing-david-tamayo/">Linkedin</a>
+          <a href="https://www.linkedin.com/in/ing-david-tamayo/" target="_blank" rel="noreferrer">Linkedin</a>
           {' '}
           and
           {' '}
-          <a href="https://twitter.com/David5TM">Twitter</a>
+          <a href="https://twitter.com/David5TM" target="_blank" rel="noreferrer">Twitter</a>
           .
           {' '}
           <br />
           {' '}
           Download my
           {' '}
-          <a href="https://docs.google.com/document/d/1GLGsbYhyyOqI1kPLedp_tqjvOReM2xoXauD5eBXVEoI/edit?usp=sharing">Resume</a>
+          <a href="https://docs.google.com/document/d/1GLGsbYhyyOqI1kPLedp_tqjvOReM2xoXauD5eBXVEoI/edit?usp=sharing" target="_blank" rel="noreferrer">Resume</a>
         </p>
         <p />
       </section>
