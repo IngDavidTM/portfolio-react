@@ -1,8 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBurger } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 import '../stylesheets/Main.css';
+import Menu from './Menu';
 
 const Main = () => {
+  const [menu, setMenu] = useState(false);
+
   const scrollToSection = (element, number) => {
     const section = document.getElementById(element);
     const documentHeight = document.documentElement.scrollHeight;
@@ -16,16 +20,35 @@ const Main = () => {
     }
   };
 
+  const scrollToSectionMobile = (element, number) => {
+    const section = document.getElementById(element);
+    const documentHeight = document.documentElement.scrollHeight;
+    const targetScrollPos = parseInt((documentHeight * number) / 5, 10);
+
+    if (section) {
+      window.scrollTo({
+        top: targetScrollPos,
+        behavior: 'smooth',
+      });
+      setMenu(false);
+    } else {
+      setMenu(true);
+    }
+  };
+
   return (
     <>
       <nav>
-        <FontAwesomeIcon icon={faBurger} className="nav_icon" />
+        <button type="button" className="button nav_icon" onClick={() => { setMenu(!menu); }}>
+          <FontAwesomeIcon icon={faBurger} className="nav_icon" />
+        </button>
         <ul className="nav_list">
           <li><button type="button" onClick={() => scrollToSection('works', 1)}>Works</button></li>
           <li><button type="button" onClick={() => scrollToSection('about', 2)}>About</button></li>
           <li><button type="button" onClick={() => scrollToSection('contact', 3)}>Contact</button></li>
         </ul>
       </nav>
+      {menu && <Menu scrollToSectionMobile={scrollToSectionMobile} setMenu={setMenu} />}
       <section className="main">
         <p />
         <header>

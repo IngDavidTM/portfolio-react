@@ -1,0 +1,128 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 300;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.671);
+  backdrop-filter: blur(2px);
+  justify-content: center;
+}
+
+.popup_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  padding: 1rem;
+  height: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.popup_content img {
+  width: 100%;
+  min-height: 35%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.popup_description {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: var(--shadow);
+  gap: 2rem;
+}
+
+.popup_description h3 {
+  font-size: 2rem;
+}
+
+.popup_description div {
+  gap: 1rem;
+}
+
+.popup_description span {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  margin-right: 1rem;
+  border-radius: 0.6rem;
+  background-color: #90afc59d;
+}
+
+.popup_description p {
+  line-height: 1.5rem;
+  color: var(--secondary-color);
+}
+
+.popup_content_links {
+  display: flex;
+  gap: 3rem;
+  width: 100%;
+  margin-bottom: 30%;
+}
+
+.popup_content_links a > * {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: var(--shadow);
+  text-decoration: none;
+}
+
+.popup_close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: var(--shadow);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.desktop {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .popup_content {
+    width: 70%;
+    height: 70%;
+    padding: 2rem;
+  }
+
+  .popup_content_links {
+    margin-bottom: 0;
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .popup_content img {
+    min-height: 50%;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: flex;
+  }
+
+  .desktop h3 {
+    width: 75%;
+  }
+}
