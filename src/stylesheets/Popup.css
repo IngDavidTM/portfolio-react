@@ -24,6 +24,19 @@
   height: 90%;
   margin: 0 auto;
   position: relative;
+  animation: appear_from_center 0.6s ease-in-out;
+}
+
+@keyframes appear_from_center {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .popup_content img {
