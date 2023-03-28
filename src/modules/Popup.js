@@ -12,7 +12,18 @@ const Popup = (work) => {
       <div className="popup_content">
         <img src={image} alt={title} />
         <div className="popup_description">
-          <h3>{title}</h3>
+          <div className="desktop_links desktop">
+            <h3>{title}</h3>
+            <div className="popup_content_links">
+              <a href={github} target="_blank" rel="noreferrer">
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
+              <a href={live} target="_blank" rel="noreferrer">
+                <FontAwesomeIcon icon={faExternalLinkAlt} />
+              </a>
+            </div>
+          </div>
+          <h3 className="mobile">{title}</h3>
           <div>
             {tags.map((tag) => (
               <span key={tag}>{tag}</span>
@@ -20,7 +31,7 @@ const Popup = (work) => {
           </div>
           <p>{description}</p>
         </div>
-        <div className="popup_content_links">
+        <div className="popup_content_links mobile">
           <a href={github} target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={faGithub} />
           </a>
