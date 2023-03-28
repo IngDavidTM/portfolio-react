@@ -10,6 +10,20 @@
   padding: 2rem;
 }
 
+.main > * {
+  animation: initial_fade 0.5s;
+}
+
+@keyframes initial_fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .main a {
   color: var(--primary-color);
 }
