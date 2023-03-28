@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt, faClose } from '@fortawesome/free-solid-svg-icons';
 import '../stylesheets/Popup.css';
 
 const Popup = (work) => {
   const {
-    image, title, tags, description, github, live,
+    image, title, tags, description, github, live, setPopup,
   } = work;
   return (
     <article className="popup">
@@ -28,6 +28,10 @@ const Popup = (work) => {
             <FontAwesomeIcon icon={faExternalLinkAlt} />
           </a>
         </div>
+        <button type="button" className="popup_close" onClick={() => { setPopup(false); }}>
+          <FontAwesomeIcon icon={faClose} />
+          {' '}
+        </button>
       </div>
     </article>
   );
