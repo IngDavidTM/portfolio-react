@@ -51,6 +51,10 @@
   gap: 1rem;
 }
 
+.work_card_info h3 {
+  color: var(--primary-color);
+}
+
 .work_card_info_tags {
   display: flex;
   gap: 10px;

@@ -41,7 +41,7 @@ h3 {
   position: sticky;
   width: 100%;
   height: 100vh;
-  background: url(./images/me.jpg) no-repeat left center/cover;
+  background: url(./images/me.avif) no-repeat left center/cover;
 }
 
 .color_photo {

@@ -75,7 +75,7 @@
 
 .popup_description p {
   line-height: 1.5rem;
-  color: rgb(var(--mist));
+  color: var(--shadow);
 }
 
 .popup_content_links {

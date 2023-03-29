@@ -1,9 +1,9 @@
-import Project1 from '../images/Project1.png';
-import Project2 from '../images/Project2.png';
-import Project3 from '../images/Project3.png';
-import Project4 from '../images/Project4.png';
-import Project5 from '../images/Project5.png';
-import Project6 from '../images/Project6.png';
+import Project1 from '../images/Project1.avif';
+import Project2 from '../images/Project2.avif';
+import Project3 from '../images/Project3.avif';
+import Project4 from '../images/Project4.avif';
+import Project5 from '../images/Project5.avif';
+import Project6 from '../images/Project6.avif';
 
 const data = [
   {
