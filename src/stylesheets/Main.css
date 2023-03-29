@@ -137,6 +137,7 @@ nav .button svg {
     font-size: 1.3rem;
     background: none;
     border: none;
+    cursor: pointer;
   }
 
   nav li button:hover {
