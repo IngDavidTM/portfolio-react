@@ -22,7 +22,7 @@
 
 .contact p {
   line-height: 1.5;
-  color: var(--secondary-color);
+  color: rgb(var(--mist));
 }
 
 .contact-form {
@@ -54,8 +54,8 @@
 }
 
 .contact-form button[type="submit"] {
-  border: 2px solid var(--mist);
-  color: var(--mist);
+  border: 2px solid rgb(var(--mist));
+  color: rgb(var(--mist));
   text-decoration: none;
   align-self: flex-start;
   padding: 1rem;
@@ -66,14 +66,14 @@
 }
 
 .contact-form button[type="submit"]:hover {
-  background-color: var(--mist);
+  background-color: rgb(var(--mist));
   color: var(--primary-color);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  box-shadow: 0 0 0 1px var(--stone);
+  box-shadow: 0 0 0 1px var(--shadow);
 }
 
 @media only screen and (min-width: 1124px) {
