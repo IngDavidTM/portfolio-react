@@ -27,6 +27,10 @@ h2 {
   font-size: 1.7rem;
 }
 
+h3 {
+  color: var(--shadow);
+}
+
 *::selection {
   background-color: var(--shadow);
   color: var(--primary-color);

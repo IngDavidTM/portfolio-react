@@ -29,7 +29,7 @@
 }
 
 .main_footer {
-  color: rgb(var(--mist));
+  color: var(--primary-color);
   transition-duration: 0.3s;
 }
 
