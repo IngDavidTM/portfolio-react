@@ -1,0 +1,146 @@
+.main {
+  top: 0;
+  position: sticky;
+  background-color: var(--shadow);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: rgb(var(--mist));
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.main > * {
+  animation: initial_fade 0.5s;
+}
+
+@keyframes initial_fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.main a {
+  color: var(--primary-color);
+}
+
+.main_footer {
+  color: var(--primary-color);
+  transition-duration: 0.3s;
+}
+
+.main header a {
+  border: 2px solid rgb(var(--mist));
+  color: rgb(var(--mist));
+  text-decoration: none;
+  align-self: flex-start;
+  padding: 1rem;
+  border-radius: 2rem;
+  transition-duration: 0.3s;
+}
+
+.main_footer a:hover {
+  text-decoration: none;
+}
+
+.main header {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.main h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.main header p {
+  max-width: 800px;
+}
+
+.main header a:hover {
+  background-color: rgb(var(--mist));
+  color: var(--shadow);
+}
+
+nav .button {
+  margin: 2rem;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: var(--primary-color);
+  background-color: rgb(var(--mist));
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.205);
+}
+
+nav .button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav_list {
+  display: none;
+}
+
+@media only screen and (min-width: 1124px) {
+  .main {
+    max-width: 50%;
+    justify-content: space-around;
+  }
+
+  .main header {
+    gap: 5rem;
+  }
+
+  .nav_list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    max-width: 90%;
+    padding: 1rem 2rem;
+  }
+
+  .nav_icon {
+    display: none;
+  }
+
+  nav {
+    margin: 0;
+    border: none;
+    color: var(--primary-color);
+    background: none;
+    width: 50%;
+    height: auto;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    box-shadow: none;
+    display: flex;
+  }
+
+  nav li button {
+    width: 100px;
+    color: rgb(var(--mist));
+    text-decoration: none;
+    font-size: 1.3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  nav li button:hover {
+    color: var(--primary-color);
+  }
+}
