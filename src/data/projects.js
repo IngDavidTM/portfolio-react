@@ -4,6 +4,8 @@ import Project3 from '../images/Project3.avif';
 import Project4 from '../images/Project4.avif';
 import Project5 from '../images/Project5.avif';
 import Project6 from '../images/Project6.avif';
+import Project7 from '../images/Project7.avif';
+import Project8 from '../images/Project8.avif';
 
 const data = [
   {
@@ -59,6 +61,24 @@ const data = [
     description: 'This is a webpage to create, remove and edit tasks from a list using ES6 and Webpack. It also has been tested using Jest. It used JavaScript, CSS, HTML, Webpack and Jest',
     github: 'https://github.com/IngDavidTM/to-do-list',
     live: 'https://ingdavidtm.github.io/to-do-list/dist/',
+  },
+  {
+    id: 7,
+    title: 'Projects at Torre ai',
+    image: Project7,
+    tags: ['Scala', 'Vue', 'Sass'],
+    description: 'This webpage offers users the ability to utilize AI tools for either job searching or candidate searching. Within this context, my responsibilities centered on developing processes for communicating with candidates and addressing any technical issues that arose.',
+    github: 'https://github.com/torre-labs/',
+    live: 'https://torre.ai/',
+  },
+  {
+    id: 8,
+    title: 'Web Minds Studio',
+    image: Project8,
+    tags: ['Next', 'Tailwind', 'React'],
+    description: 'On this platform, various subscription options are presented, each tailored to assist in the creation of a website. These plans cater to diverse needs and preferences, offering users flexibility and customization in building their online presence.',
+    github: 'https://github.com/WebMindsStudio',
+    live: 'https://www.webmindsstudio.com/',
   },
 ];
 
