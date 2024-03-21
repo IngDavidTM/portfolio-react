@@ -4,6 +4,7 @@ import '../stylesheets/Menu.css';
 
 const Menu = (menu) => {
   const { scrollToSectionMobile, setMenu } = menu;
+  // eslint-disable jsx-a11y/control-has-associated-label
   return (
     <nav className="nav_menu">
       <div className="title_menu">

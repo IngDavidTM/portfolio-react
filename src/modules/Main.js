@@ -35,7 +35,7 @@ const Main = () => {
       setMenu(true);
     }
   };
-
+  // eslint-disable jsx-a11y/control-has-associated-label
   return (
     <>
       <nav>

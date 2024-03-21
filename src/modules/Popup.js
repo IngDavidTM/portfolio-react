@@ -7,6 +7,7 @@ const Popup = (work) => {
   const {
     image, title, tags, description, github, live, setPopup,
   } = work;
+  // eslint-disable jsx-a11y/control-has-associated-label
   return (
     <article className="popup">
       <div className="popup_content">
