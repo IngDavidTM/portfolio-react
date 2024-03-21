@@ -15,10 +15,10 @@ const Popup = (work) => {
           <div className="desktop_links desktop">
             <h3>{title}</h3>
             <div className="popup_content_links">
-              <a href={github} target="_blank" rel="noreferrer">
+              <a href={github} aria-label="github" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faGithub} />
               </a>
-              <a href={live} target="_blank" rel="noreferrer">
+              <a href={live} aria-label="live" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faExternalLinkAlt} />
               </a>
             </div>
@@ -32,10 +32,10 @@ const Popup = (work) => {
           <p>{description}</p>
         </div>
         <div className="popup_content_links mobile">
-          <a href={github} target="_blank" rel="noreferrer">
+          <a href={github} aria-label="githubMobile" target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={faGithub} />
           </a>
-          <a href={live} target="_blank" rel="noreferrer">
+          <a href={live} aria-label="liveMobile" target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={faExternalLinkAlt} />
           </a>
         </div>

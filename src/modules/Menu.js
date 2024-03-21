@@ -7,7 +7,7 @@ const Menu = (menu) => {
   return (
     <nav className="nav_menu">
       <div className="title_menu">
-        <button type="button" className="button" onClick={() => { setMenu(!menu); }}>
+        <button type="button" aria-label="close" className="button" onClick={() => { setMenu(!menu); }}>
           <FontAwesomeIcon icon={faBurger} className="nav_icon" />
         </button>
         <h3>Burger Menu</h3>

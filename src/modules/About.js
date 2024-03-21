@@ -24,8 +24,8 @@ const About = () => (
         pagination={{ clickable: true }}
       >
         <SwiperSlide><Skills title="Languages" items={['JavaScript', 'Ruby', 'HTML', 'CSS']} /></SwiperSlide>
-        <SwiperSlide><Skills title="Frameworks" items={['React', 'Redux', 'Ruby on Rails', 'Jest', 'Capybara', 'Rspec', 'Bootstrap', 'Tailwind']} /></SwiperSlide>
-        <SwiperSlide><Skills title="Skills" items={['Github', 'Terminal', 'Gitlab']} /></SwiperSlide>
+        <SwiperSlide><Skills title="Frameworks" items={['React', 'Next', 'Vue', 'Vuex', 'Redux', 'Ruby on Rails', 'Scala', 'Jest', 'Mocha', 'Capybara', 'Rspec', 'Bootstrap', 'Tailwind', 'Sass']} /></SwiperSlide>
+        <SwiperSlide><Skills title="Skills" items={['Github', 'Linux', 'Gitlab', 'Docker', 'PostgreSQL', 'MySQL', 'Twilio', 'Postman']} /></SwiperSlide>
       </Swiper>
     </div>
   </section>

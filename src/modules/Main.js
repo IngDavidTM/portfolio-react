@@ -35,11 +35,10 @@ const Main = () => {
       setMenu(true);
     }
   };
-
   return (
     <>
       <nav>
-        <button type="button" className="button nav_icon" onClick={() => { setMenu(!menu); }}>
+        <button type="button" aria-label="menu" className="button nav_icon" onClick={() => { setMenu(!menu); }}>
           <FontAwesomeIcon icon={faBurger} className="nav_icon" />
         </button>
         <ul className="nav_list">
