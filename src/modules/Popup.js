@@ -15,9 +15,16 @@ const Popup = (work) => {
           <div className="desktop_links desktop">
             <h3>{title}</h3>
             <div className="popup_content_links">
-              <a href={github} aria-label="github" target="_blank" rel="noreferrer">
-                <FontAwesomeIcon icon={faGithub} />
-              </a>
+              {github ? (
+                <a
+                  href={github}
+                  aria-label="github"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FontAwesomeIcon icon={faGithub} />
+                </a>
+              ) : null}
               <a href={live} aria-label="live" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faExternalLinkAlt} />
               </a>
@@ -30,16 +37,34 @@ const Popup = (work) => {
             ))}
           </div>
           <p>{description}</p>
+          <div className="popup_content_links mobile">
+            {github ? (
+              <a
+                href={github}
+                aria-label="github"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
+            ) : null}
+            <a
+              href={live}
+              aria-label="liveMobile"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faExternalLinkAlt} />
+            </a>
+          </div>
         </div>
-        <div className="popup_content_links mobile">
-          <a href={github} aria-label="githubMobile" target="_blank" rel="noreferrer">
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
-          <a href={live} aria-label="liveMobile" target="_blank" rel="noreferrer">
-            <FontAwesomeIcon icon={faExternalLinkAlt} />
-          </a>
-        </div>
-        <button type="button" className="popup_close" onClick={() => { setPopup(false); }}>
+        <button
+          type="button"
+          className="popup_close"
+          onClick={() => {
+            setPopup(false);
+          }}
+        >
           <FontAwesomeIcon icon={faClose} />
           {' '}
         </button>
