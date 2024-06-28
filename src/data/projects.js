@@ -10,12 +10,11 @@ import Project8 from '../images/Project8.avif';
 const data = [
   {
     id: 1,
-    title: 'World Biotech Congress 2022',
+    title: 'CafExporto',
     image: Project1,
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    description: 'This is a capstone project for Microverse. The project is a website for a fictional conference. The website is built using HTML, CSS, and JavaScript.',
-    github: 'https://github.com/IngDavidTM/capstone-biotechnology',
-    live: 'https://ingdavidtm.github.io/capstone-biotechnology/',
+    tags: ['Wordpress', 'CSS', 'Plugins'],
+    description: 'This is a project created with WordPress for the company CafExporto. It consists of six pages.',
+    live: 'https://cafexporto.com/',
   },
   {
     id: 2,
