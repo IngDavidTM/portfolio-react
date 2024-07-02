@@ -56,7 +56,7 @@ const data = [
     id: 6,
     title: 'Task Management',
     image: Project6,
-    tags: ['Vue, Vuex, Typescript'],
+    tags: ['Vue', 'Vuex', 'Typescript'],
     description: 'This is a webpage to create, remove and edit tasks from a list using Vue and Vuex. Al it is written in Typescript.',
     github: 'https://github.com/IngDavidTM/task-manager',
     live: 'https://task-manager-nu-nine.vercel.app/',
