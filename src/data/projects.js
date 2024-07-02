@@ -54,12 +54,12 @@ const data = [
   },
   {
     id: 6,
-    title: 'To do list',
+    title: 'Task Management',
     image: Project6,
-    tags: ['JavaScript'],
-    description: 'This is a webpage to create, remove and edit tasks from a list using ES6 and Webpack. It also has been tested using Jest. It used JavaScript, CSS, HTML, Webpack and Jest',
-    github: 'https://github.com/IngDavidTM/to-do-list',
-    live: 'https://ingdavidtm.github.io/to-do-list/dist/',
+    tags: ['Vue, Vuex, Typescript'],
+    description: 'This is a webpage to create, remove and edit tasks from a list using Vue and Vuex. Al it is written in Typescript.',
+    github: 'https://github.com/IngDavidTM/task-manager',
+    live: 'https://task-manager-nu-nine.vercel.app/',
   },
   {
     id: 7,
