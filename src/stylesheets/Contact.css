@@ -70,10 +70,36 @@
   color: var(--primary-color);
 }
 
+.contact-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.contact-form button[type="submit"]:disabled:hover {
+  border: 2px solid var(--shadow);
+  color: var(--shadow);
+  background: none !important;
+}
+
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
   box-shadow: 0 0 0 1px var(--shadow);
+}
+
+.error-message,
+.success-message {
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+}
+
+.error-message {
+  color: rgb(204, 0, 0) !important;
+}
+
+.success-message {
+  color: rgb(0, 128, 0) !important;
 }
 
 @media only screen and (min-width: 1124px) {
