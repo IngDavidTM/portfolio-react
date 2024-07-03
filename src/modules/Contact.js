@@ -23,7 +23,7 @@ const Contact = () => {
     e.preventDefault();
     setIsSending(true);
     try {
-      const response = await fetch('/send_email', {
+      const response = await fetch('https://mail-api-73ss.onrender.com/send_email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
