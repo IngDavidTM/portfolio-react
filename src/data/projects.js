@@ -3,6 +3,7 @@ import Project2 from '../images/Project2.avif';
 import Project3 from '../images/Project3.avif';
 import Project4 from '../images/Project4.avif';
 import Project5 from '../images/Project5.avif';
+import Project6 from '../images/Project6.avif';
 import Project7 from '../images/Project7.avif';
 import Project8 from '../images/Project8.avif';
 
@@ -65,6 +66,17 @@ const data = [
     },
     github: 'https://github.com/IngDavidTM/wheels-and-deals-react',
     live: 'https://wheels-and-deals.netlify.app/',
+  },
+  {
+    id: 6,
+    title: 'Pelom',
+    image: Project6,
+    tags: ['Next', 'Typescript', 'Tailwind', 'React'],
+    description: {
+      en: 'A website for Pelom, offering an app to manage restaurant menus (dishes, prices, and availability).',
+      es: 'Sitio web para Pelom, que ofrece una app para gestionar menús de restaurantes (platos, precios y disponibilidad).',
+    },
+    live: 'https://www.pelom.co/',
   },
   {
     id: 7,
