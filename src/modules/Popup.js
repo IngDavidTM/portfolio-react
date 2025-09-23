@@ -8,66 +8,76 @@ const Popup = (work) => {
     image, title, tags, description, github, live, setPopup,
   } = work;
   return (
-    <article className="popup">
+    <article className="popup" role="dialog" aria-modal="true" aria-label={`${title} project details`}>
       <div className="popup_content">
-        <img src={image} alt={title} />
-        <div className="popup_description">
-          <div className="desktop_links desktop">
+        <div className="popup_media">
+          <img src={image} alt={title} />
+          <button
+            type="button"
+            className="popup_close"
+            aria-label="Close project details"
+            onClick={() => {
+              setPopup(false);
+            }}
+          >
+            <FontAwesomeIcon icon={faClose} />
+          </button>
+        </div>
+        <div className="popup_body">
+          <div className="popup_header">
             <h3>{title}</h3>
-            <div className="popup_content_links">
+            <div className="popup_links">
               {github ? (
                 <a
                   href={github}
-                  aria-label="github"
+                  aria-label="GitHub repository"
                   target="_blank"
                   rel="noreferrer"
+                  className="icon_button"
                 >
                   <FontAwesomeIcon icon={faGithub} />
                 </a>
               ) : null}
-              <a href={live} aria-label="live" target="_blank" rel="noreferrer">
+              <a
+                href={live}
+                aria-label="Open live project"
+                target="_blank"
+                rel="noreferrer"
+                className="icon_button"
+              >
                 <FontAwesomeIcon icon={faExternalLinkAlt} />
               </a>
             </div>
           </div>
-          <h3 className="mobile">{title}</h3>
-          <div>
+          <div className="popup_tags">
             {tags.map((tag) => (
               <span key={tag}>{tag}</span>
             ))}
           </div>
           <p>{description}</p>
-          <div className="popup_content_links mobile">
-            {github ? (
-              <a
-                href={github}
-                aria-label="github"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faGithub} />
-              </a>
-            ) : null}
+          <div className="popup_actions">
             <a
               href={live}
-              aria-label="liveMobile"
+              className="popup_action primary"
               target="_blank"
               rel="noreferrer"
             >
               <FontAwesomeIcon icon={faExternalLinkAlt} />
+              <span>Visit project</span>
             </a>
+            {github ? (
+              <a
+                href={github}
+                className="popup_action ghost"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+                <span>View code</span>
+              </a>
+            ) : null}
           </div>
         </div>
-        <button
-          type="button"
-          className="popup_close"
-          onClick={() => {
-            setPopup(false);
-          }}
-        >
-          <FontAwesomeIcon icon={faClose} />
-          {' '}
-        </button>
       </div>
     </article>
   );
