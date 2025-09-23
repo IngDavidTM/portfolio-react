@@ -46,11 +46,13 @@
 .contact-form textarea {
   font-size: 14px;
   padding: 10px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 5px;
   background-color: #fff;
   width: 100%;
   margin-top: 5px;
+  box-shadow: inset 0 0 0 1px rgba(42, 49, 50, 0.05);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 .contact-form button[type="submit"] {
@@ -84,7 +86,44 @@
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  box-shadow: 0 0 0 1px var(--shadow);
+  border-color: rgba(var(--mist), 0.7);
+  box-shadow: 0 0 0 3px rgba(var(--mist), 0.25);
+}
+
+.contact-form input[aria-invalid="true"],
+.contact-form textarea[aria-invalid="true"] {
+  border-color: rgba(211, 89, 97, 0.85);
+  background-color: rgba(211, 89, 97, 0.08);
+  box-shadow: 0 0 0 3px rgba(211, 89, 97, 0.18);
+}
+
+.field_message {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(211, 89, 97, 0.95);
+  background: rgba(211, 89, 97, 0.08);
+  border-left: 3px solid rgba(211, 89, 97, 0.55);
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+}
+
+.field_message::before {
+  content: '!';
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(211, 89, 97, 0.2);
+  color: rgba(131, 30, 37, 0.95);
+  font-size: 0.8rem;
+  margin-top: 2px;
 }
 
 .error-message,

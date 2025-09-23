@@ -82,7 +82,7 @@ const Main = () => {
           {' '}
           Download my
           {' '}
-          <a href="https://docs.google.com/document/d/1GLGsbYhyyOqI1kPLedp_tqjvOReM2xoXauD5eBXVEoI/edit?usp=sharing" target="_blank" rel="noreferrer">Resume</a>
+          <a href="https://docs.google.com/document/d/1jNK2rITeP2TEhDsLCzs6wJRNnnId4pD7/edit?usp=sharing&ouid=115820516505556240890&rtpof=true&sd=true" target="_blank" rel="noreferrer">Resume</a>
         </p>
         <p />
       </section>
