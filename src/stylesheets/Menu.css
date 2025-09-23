@@ -25,7 +25,8 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: min(85vw, 360px);
+  width: 85vw;
+  max-width: 360px;
   height: 100vh;
   padding: 2rem;
   background: #1f292b;
@@ -239,7 +240,8 @@
 /* Responsive */
 @media only screen and (max-width: 480px) {
   .nav_menu {
-    width: min(90vw, 300px);
+    width: 90vw;
+    max-width: 300px;
     padding: 1.8rem;
   }
 

@@ -23,9 +23,9 @@ const About = () => (
         centeredSlides
         pagination={{ clickable: true }}
       >
-        <SwiperSlide><Skills title="Languages" items={['JavaScript', 'Ruby', 'HTML', 'CSS']} /></SwiperSlide>
-        <SwiperSlide><Skills title="Frameworks" items={['React', 'Next', 'Vue', 'Vuex', 'Redux', 'Ruby on Rails', 'Scala', 'Jest', 'Mocha', 'Capybara', 'Rspec', 'Bootstrap', 'Tailwind', 'Sass']} /></SwiperSlide>
-        <SwiperSlide><Skills title="Skills" items={['Github', 'Linux', 'Gitlab', 'Docker', 'PostgreSQL', 'MySQL', 'Twilio', 'Postman']} /></SwiperSlide>
+        <SwiperSlide><Skills title="Languages" items={['JavaScript', 'Python', 'Ruby', 'Typescript', 'SQL', 'Shell', 'R', 'HTML', 'CSS']} /></SwiperSlide>
+        <SwiperSlide><Skills title="Frameworks" items={['React', 'Next', 'Vue', 'Nuxt', 'Vuex', 'Redux', 'Ruby on Rails', 'Scala', 'Jest', 'Mocha', 'Capybara', 'Rspec', 'Bootstrap', 'Tailwind', 'Sass', 'Express']} /></SwiperSlide>
+        <SwiperSlide><Skills title="Skills" items={['Github', 'Linux', 'Gitlab', 'Docker', 'PostgreSQL', 'MySQL', 'MongoDB', 'SQLite', 'Twilio', 'Postman']} /></SwiperSlide>
       </Swiper>
     </div>
   </section>

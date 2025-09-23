@@ -3,7 +3,6 @@ import Project2 from '../images/Project2.avif';
 import Project3 from '../images/Project3.avif';
 import Project4 from '../images/Project4.avif';
 import Project5 from '../images/Project5.avif';
-import Project6 from '../images/Project6.avif';
 import Project7 from '../images/Project7.avif';
 import Project8 from '../images/Project8.avif';
 
@@ -18,21 +17,21 @@ const data = [
   },
   {
     id: 2,
-    title: 'Air Pollution',
+    title: 'AliceTrader',
     image: Project2,
-    tags: ['React', 'Redux'],
-    description: 'I built a mobile webpage with React & Redux where you can see the pollution information in each country. It was made using the Original design idea by Nelson Sakwa on Behance.',
-    github: 'https://github.com/IngDavidTM/air-pollution-capstone',
-    live: 'https://stupendous-tarsier-fe9166.netlify.app/',
+    tags: ['Vue', 'Tailwind', 'Vuex', 'Typescript'],
+    description: 'An intuitive app for analyzing, trading, and managing options with real-time data and customizable tools',
+    github: 'https://github.com/tastyware',
+    live: 'https://alicetrader.com/',
   },
   {
     id: 3,
-    title: 'Budget App',
+    title: 'Stupendastic',
     image: Project3,
-    tags: ['Ruby', 'Ruby on Rails'],
-    description: 'The Budget App keeps track of all your categories and transactions. It will allow you to save categories, keep track of what you have, create transactions, and generate a total budget based on what you add.',
-    github: 'https://github.com/IngDavidTM/budget-app',
-    live: 'https://recipe-80ah.onrender.com/',
+    tags: ['Python', 'Express', 'Next', 'Typescript'],
+    description: 'Two dashboards for managing Monday tasks and automations via Python scripts, using on-premise and cloud-hosted servers to handle employee task management and improve task visualization',
+    github: 'https://github.com/Stupendastic-Connect',
+    live: 'https://www.stupendastic.com/',
   },
   {
     id: 4,
@@ -51,15 +50,6 @@ const data = [
     description: 'Wheels and Deals is a car rental website. It was built using React, Redux, and Ruby on Rails. It has a user authentication system, where you can create an account and log in. You can also create a car rental and see all the cars available.',
     github: 'https://github.com/IngDavidTM/wheels-and-deals-react',
     live: 'https://wheels-and-deals.netlify.app/',
-  },
-  {
-    id: 6,
-    title: 'Task Management',
-    image: Project6,
-    tags: ['Vue', 'Vuex', 'Typescript'],
-    description: 'This is a webpage to create, remove and edit tasks from a list using Vue and Vuex. Al it is written in Typescript.',
-    github: 'https://github.com/IngDavidTM/task-manager',
-    live: 'https://task-manager-nu-nine.vercel.app/',
   },
   {
     id: 7,
