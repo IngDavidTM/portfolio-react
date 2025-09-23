@@ -89,7 +89,7 @@ const Contact = () => {
 
     setIsSending(true);
     try {
-      const response = await fetch('https://mail-api-73ss.onrender.com/send_email', {
+      const response = await fetch('https://mail-api-sk5ywohwrq-uc.a.run.app/send_email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
