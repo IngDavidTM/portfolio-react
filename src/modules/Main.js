@@ -1,11 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBurger } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { useLanguage, useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Main.css';
 import Menu from './Menu';
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
+  const { toggleLanguage } = useLanguage();
+  const { t } = useTranslation();
+  const navCopy = t('nav');
+  const mainCopy = t('main');
+  const toggleShort = t('language.toggleShort');
+  const toggleLabel = t('language.toggleLabel');
 
   const scrollToSection = (element, number) => {
     const section = document.getElementById(element);
@@ -38,13 +45,28 @@ const Main = () => {
   return (
     <>
       <nav>
-        <button type="button" aria-label="menu" className="button nav_icon" onClick={() => { setMenu(!menu); }}>
-          <FontAwesomeIcon icon={faBurger} className="nav_icon" />
-        </button>
+        <div className="nav_controls">
+          <button
+            type="button"
+            aria-label={navCopy.openMenu}
+            className="button nav_icon"
+            onClick={() => { setMenu(!menu); }}
+          >
+            <FontAwesomeIcon icon={faBurger} className="nav_icon" />
+          </button>
+          <button
+            type="button"
+            className="language_chip"
+            onClick={toggleLanguage}
+            aria-label={toggleLabel}
+          >
+            {toggleShort}
+          </button>
+        </div>
         <ul className="nav_list">
-          <li><button type="button" onClick={() => scrollToSection('works', 1)}>Works</button></li>
-          <li><button type="button" onClick={() => scrollToSection('about', 2)}>About</button></li>
-          <li><button type="button" onClick={() => scrollToSection('contact', 3)}>Contact</button></li>
+          <li><button type="button" onClick={() => scrollToSection('works', 1)}>{navCopy.works}</button></li>
+          <li><button type="button" onClick={() => scrollToSection('about', 2)}>{navCopy.about}</button></li>
+          <li><button type="button" onClick={() => scrollToSection('contact', 3)}>{navCopy.contact}</button></li>
         </ul>
       </nav>
       {menu && <Menu scrollToSectionMobile={scrollToSectionMobile} setMenu={setMenu} />}
@@ -52,37 +74,35 @@ const Main = () => {
         <p />
         <header>
           <h1>
-            Hey there. I am David
+            {mainCopy.headline.line1}
             {' '}
             <br />
             {' '}
-            I am a software Developer
+            {mainCopy.headline.line2}
           </h1>
           <p>
-            Hello! My name is David, and I am a Full-Stack software
-            web developer with a passion for leveraging software
-            engineering to enhance web-based tools.
+            {mainCopy.description}
           </p>
-          <a href="#contact">Let&apos;s collaborate</a>
+          <a href="#contact">{mainCopy.cta}</a>
         </header>
         <p className="main_footer">
-          Find me at
+          {mainCopy.social.intro}
           {' '}
           <a href="https://github.com/IngDavidTM" target="_blank" rel="noreferrer">GitHub</a>
           ,
           {' '}
           <a href="https://www.linkedin.com/in/ing-david-tamayo/" target="_blank" rel="noreferrer">Linkedin</a>
           {' '}
-          and
+          {mainCopy.social.and}
           {' '}
           <a href="https://twitter.com/David5TM" target="_blank" rel="noreferrer">Twitter</a>
           .
           {' '}
           <br />
           {' '}
-          Download my
+          {mainCopy.social.resumePrefix}
           {' '}
-          <a href="https://docs.google.com/document/d/1jNK2rITeP2TEhDsLCzs6wJRNnnId4pD7/edit?usp=sharing&ouid=115820516505556240890&rtpof=true&sd=true" target="_blank" rel="noreferrer">Resume</a>
+          <a href="https://docs.google.com/document/d/1jNK2rITeP2TEhDsLCzs6wJRNnnId4pD7/edit?usp=sharing&ouid=115820516505556240890&rtpof=true&sd=true" target="_blank" rel="noreferrer">{mainCopy.social.resumeLink}</a>
         </p>
         <p />
       </section>

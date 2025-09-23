@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Contact.css';
 
 const Contact = () => {
@@ -16,18 +17,21 @@ const Contact = () => {
     email: '',
     message: '',
   });
+  const { t } = useTranslation();
+  const contactCopy = t('contact');
+  const validationMessages = contactCopy.validation;
 
   const validateField = (fieldName, value) => {
     if (!value.trim()) {
-      if (fieldName === 'name') return 'Let me know who I am talking to.';
-      if (fieldName === 'email') return 'I need your email address to get back to you.';
-      if (fieldName === 'message') return 'Share a few details about your idea or question.';
+      if (fieldName === 'name') return validationMessages.nameRequired;
+      if (fieldName === 'email') return validationMessages.emailRequired;
+      if (fieldName === 'message') return validationMessages.messageRequired;
     }
 
     if (fieldName === 'email') {
       const emailPattern = /^(?:[a-zA-Z0-9_'^&/+-])+(?:\.(?:[a-zA-Z0-9_'^&/+-])+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
       if (!emailPattern.test(value.trim())) {
-        return 'Double-check the email format (e.g. name@domain.com).';
+        return validationMessages.emailInvalid;
       }
     }
 
@@ -116,20 +120,18 @@ const Contact = () => {
 
   return (
     <section className="contact" id="contact">
-      <h2>Contact me</h2>
-      <h3>Don&apos;t be shy!</h3>
-      <p>
-        If you have any questions or want to work with me, please contact me.
-      </p>
+      <h2>{contactCopy.title}</h2>
+      <h3>{contactCopy.subtitle}</h3>
+      <p>{contactCopy.description}</p>
       <form className="contact-form" onSubmit={handleSubmit} noValidate>
         <label htmlFor="name">
-          Name
+          {contactCopy.labels.name}
           <input
             type="text"
             id="name"
             name="name"
             required
-            placeholder="Your name"
+            placeholder={contactCopy.placeholders.name}
             value={formData.name}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -141,13 +143,13 @@ const Contact = () => {
           )}
         </label>
         <label htmlFor="email">
-          Email
+          {contactCopy.labels.email}
           <input
             type="email"
             id="email"
             name="email"
             required
-            placeholder="Your email"
+            placeholder={contactCopy.placeholders.email}
             value={formData.email}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -159,12 +161,12 @@ const Contact = () => {
           )}
         </label>
         <label htmlFor="message">
-          Message
+          {contactCopy.labels.message}
           <textarea
             id="message"
             name="message"
             required
-            placeholder="Your message"
+            placeholder={contactCopy.placeholders.message}
             value={formData.message}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -177,17 +179,17 @@ const Contact = () => {
         </label>
         {isSending ? (
           <button type="submit" disabled>
-            Sending...
+            {contactCopy.sending}
           </button>
         ) : (
-          <button type="submit">Send message</button>
+          <button type="submit">{contactCopy.submit}</button>
         )}
       </form>
       {showSuccessMessage && (
-        <p className="success-message">Message sent successfully!</p>
+        <p className="success-message">{contactCopy.success}</p>
       )}
       {showErrorMessage && (
-        <p className="error-message">Failed to send message. Please try again later.</p>
+        <p className="error-message">{contactCopy.error}</p>
       )}
     </section>
   );

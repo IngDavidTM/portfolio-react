@@ -3,17 +3,20 @@ import Works from './modules/Works';
 import Photo from './modules/Photo';
 import About from './modules/About';
 import Contact from './modules/Contact';
+import { LanguageProvider } from './context/LanguageContext';
 
 const App = () => (
-  <div className="App">
-    <Main />
-    <div className="container_info">
-      <Photo />
-      <Works />
-      <About />
-      <Contact />
+  <LanguageProvider>
+    <div className="App">
+      <Main />
+      <div className="container_info">
+        <Photo />
+        <Works />
+        <About />
+        <Contact />
+      </div>
     </div>
-  </div>
+  </LanguageProvider>
 );
 
 export default App;

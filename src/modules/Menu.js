@@ -1,9 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import { useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Menu.css';
 
 const Menu = ({ scrollToSectionMobile, setMenu }) => {
+  const { t } = useTranslation();
+  const navCopy = t('nav');
+  const menuCopy = t('menu');
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       setMenu(false);
@@ -19,19 +24,19 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
         onKeyDown={handleKeyDown}
         role="button"
         tabIndex={0}
-        aria-label="Close menu"
+        aria-label={menuCopy.closeAria}
       />
 
       {/* Menú con diseño elegante */}
       <nav className="nav_menu">
         <div className="menu_header">
           <div className="menu_brand">
-            <h2>Navigation</h2>
-            <p>Explore my portfolio</p>
+            <h2>{menuCopy.title}</h2>
+            <p>{menuCopy.subtitle}</p>
           </div>
           <button
             type="button"
-            aria-label="close menu"
+            aria-label={menuCopy.closeAria}
             className="close_btn"
             onClick={() => setMenu(false)}
           >
@@ -50,7 +55,7 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
               }}
             >
               <span className="nav_number">01</span>
-              <span className="nav_text">Works</span>
+              <span className="nav_text">{navCopy.works}</span>
             </button>
           </li>
           <li className="nav_item">
@@ -63,7 +68,7 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
               }}
             >
               <span className="nav_number">02</span>
-              <span className="nav_text">About</span>
+              <span className="nav_text">{navCopy.about}</span>
             </button>
           </li>
           <li className="nav_item">
@@ -76,13 +81,13 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
               }}
             >
               <span className="nav_number">03</span>
-              <span className="nav_text">Contact</span>
+              <span className="nav_text">{navCopy.contact}</span>
             </button>
           </li>
         </ul>
 
         <div className="menu_footer">
-          <p>Ready to collaborate?</p>
+          <p>{menuCopy.ready}</p>
           <button
             type="button"
             className="menu_cta"
@@ -91,7 +96,7 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
               setMenu(false);
             }}
           >
-            Let&apos;s build something
+            {menuCopy.ctaLabel}
           </button>
         </div>
       </nav>

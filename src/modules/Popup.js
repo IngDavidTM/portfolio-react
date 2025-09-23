@@ -1,21 +1,29 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt, faClose } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Popup.css';
 
 const Popup = (work) => {
   const {
     image, title, tags, description, github, live, setPopup,
   } = work;
+  const { t } = useTranslation();
+  const popupCopy = t('popup');
   return (
-    <article className="popup" role="dialog" aria-modal="true" aria-label={`${title} project details`}>
+    <article
+      className="popup"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${popupCopy.dialogLabel} ${title}`}
+    >
       <div className="popup_content">
         <div className="popup_media">
           <img src={image} alt={title} />
           <button
             type="button"
             className="popup_close"
-            aria-label="Close project details"
+            aria-label={popupCopy.closeAria}
             onClick={() => {
               setPopup(false);
             }}
@@ -63,7 +71,7 @@ const Popup = (work) => {
               rel="noreferrer"
             >
               <FontAwesomeIcon icon={faExternalLinkAlt} />
-              <span>Visit project</span>
+              <span>{popupCopy.visit}</span>
             </a>
             {github ? (
               <a
@@ -73,7 +81,7 @@ const Popup = (work) => {
                 rel="noreferrer"
               >
                 <FontAwesomeIcon icon={faGithub} />
-                <span>View code</span>
+                <span>{popupCopy.code}</span>
               </a>
             ) : null}
           </div>
