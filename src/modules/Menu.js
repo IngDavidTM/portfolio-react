@@ -83,6 +83,16 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
 
         <div className="menu_footer">
           <p>Ready to collaborate?</p>
+          <button
+            type="button"
+            className="menu_cta"
+            onClick={() => {
+              scrollToSectionMobile('contact', 4);
+              setMenu(false);
+            }}
+          >
+            Let&apos;s build something
+          </button>
         </div>
       </nav>
     </>
