@@ -6,21 +6,11 @@ import Project5 from '../images/Project5.avif';
 import Project6 from '../images/Project6.avif';
 import Project7 from '../images/Project7.avif';
 import Project8 from '../images/Project8.avif';
+import Project9 from '../images/Project9.avif';
 
 const data = [
   {
     id: 1,
-    title: 'CafExporto',
-    image: Project1,
-    tags: ['Wordpress', 'CSS', 'Plugins'],
-    description: {
-      en: 'This is a project created with WordPress for the company CafExporto. It consists of six pages.',
-      es: 'Proyecto creado con WordPress para la empresa CafExporto. Consta de seis páginas.',
-    },
-    live: 'https://cafexporto.com/',
-  },
-  {
-    id: 2,
     title: 'AliceTrader',
     image: Project2,
     tags: ['Vue', 'Tailwind', 'Vuex', 'Typescript'],
@@ -30,6 +20,17 @@ const data = [
     },
     github: 'https://github.com/tastyware',
     live: 'https://alicetrader.com/',
+  },
+  {
+    id: 2,
+    title: 'CafExporto',
+    image: Project1,
+    tags: ['Wordpress', 'CSS', 'Plugins'],
+    description: {
+      en: 'This is a project created with WordPress for the company CafExporto. It consists of six pages.',
+      es: 'Proyecto creado con WordPress para la empresa CafExporto. Consta de seis páginas.',
+    },
+    live: 'https://cafexporto.com/',
   },
   {
     id: 3,
@@ -101,6 +102,17 @@ const data = [
     },
     github: 'https://github.com/WebMindsStudio',
     live: 'https://www.webmindsstudio.com/',
+  },
+  {
+    id: 9,
+    title: 'SIGUE Network',
+    image: Project9,
+    tags: ['Wordpress', 'CSS', 'Elementor', 'Plugins'],
+    description: {
+      en: 'This site connects and empowers ONG, social projects and companies, showing their mission, programs and ways to participate/donate to scale sustainable impact',
+      es: 'Sitio que conecta y empodera ONG, proyectos sociales y empresas, mostrando su misión, programas y vías de participación/donación para escalar impacto sostenible',
+    },
+    live: 'https://siguenetwork.org/',
   },
 ];
 
