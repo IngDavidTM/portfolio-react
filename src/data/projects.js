@@ -71,7 +71,7 @@ const data = [
   },
   {
     id: 6,
-    title: 'Pelom',
+    title: 'Projects at Pelom',
     image: Project6,
     tags: ['Next', 'Typescript', 'Tailwind', 'React'],
     description: {
