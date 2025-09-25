@@ -7,6 +7,7 @@ import Project6 from '../images/Project6.avif';
 import Project7 from '../images/Project7.avif';
 import Project8 from '../images/Project8.avif';
 import Project9 from '../images/Project9.avif';
+import Project10 from '../images/Project10.avif';
 
 const data = [
   {
@@ -105,8 +106,20 @@ const data = [
   },
   {
     id: 9,
-    title: 'SIGUE Network',
+    title: 'Portfolio Yanua',
     image: Project9,
+    tags: ['React', 'CSS', 'Webpack'],
+    description: {
+      en: 'Biotechnology research portfolio: projects, publications, and collaborations. Includes direct email contact.',
+      es: 'Portafolio de investigación en biotecnología: proyectos, publicaciones y colaboraciones. Incluye contacto directo por correo.',
+    },
+    github: 'https://github.com/IngDavidTM/portfolio-yanua',
+    live: 'https://yanua.netlify.app/',
+  },
+  {
+    id: 10,
+    title: 'SIGUE Network',
+    image: Project10,
     tags: ['Wordpress', 'CSS', 'Elementor', 'Plugins'],
     description: {
       en: 'This site connects and empowers ONG, social projects and companies, showing their mission, programs and ways to participate/donate to scale sustainable impact',
