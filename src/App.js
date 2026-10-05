@@ -1,21 +1,36 @@
-import Main from './modules/Main';
-import Works from './modules/Works';
-import Photo from './modules/Photo';
+import { MotionConfig } from 'framer-motion';
+import { LanguageProvider, useTranslation } from './context/LanguageContext';
 import About from './modules/About';
 import Contact from './modules/Contact';
-import { LanguageProvider } from './context/LanguageContext';
+import Footer from './modules/Footer';
+import Hero from './modules/Hero';
+import Nav from './modules/Nav';
+import Works from './modules/Works';
 
-const App = () => (
-  <LanguageProvider>
-    <div className="App">
-      <Main />
-      <div className="container_info">
-        <Photo />
+const Page = () => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <a href="#work" className="skip_link">{t('meta.skip')}</a>
+      <Nav />
+      <main>
+        <Hero />
         <Works />
         <About />
         <Contact />
-      </div>
-    </div>
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+// reducedMotion="user": with the OS setting on, Motion drops transforms and keeps fades
+const App = () => (
+  <LanguageProvider>
+    <MotionConfig reducedMotion="user">
+      <Page />
+    </MotionConfig>
   </LanguageProvider>
 );
 

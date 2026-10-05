@@ -1,121 +1,295 @@
-.works {
-  top: 0;
-  background-color: var(--primary-color);
-  position: sticky;
-  height: 100vh;
+/* stylelint-disable csstree/validator */
+
+/* Filters: one scrolling row on phones, faded at the edges instead of hard-clipped */
+.works_filters {
+  margin: 0 calc(var(--gutter) * -1) 2.5rem;
+}
+
+.works_filters_track {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.25rem var(--gutter);
+  scrollbar-width: none;
+  mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
 }
 
-.works h2,
-.works p {
-  padding: 0 2rem 1rem 2rem;
-  color: #181818bd;
-}
-
-.works h2 {
-  color: var(--shadow);
-}
-
-.work_card {
-  position: relative;
-  max-width: 400px;
-  height: 50vh;
-  cursor: pointer;
-  border-radius: 20px;
-  box-shadow: 5px -2px 6px rgba(0, 0, 0, 0.096);
-}
-
-.work_card img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-}
-
-.work_card_info {
-  position: absolute;
-  border-radius: 20px;
-  background: linear-gradient(0deg, #181818e0 0%, #2b2b2b6e 35%, #f5f5f500 100%);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  color: var(--primary-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 10px;
-  gap: 1rem;
-}
-
-.work_card_info h3 {
-  color: var(--primary-color);
-}
-
-.work_card_info_tags {
-  display: flex;
-  gap: 10px;
-}
-
-.work_card_info_tags span {
-  font-size: 0.8rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 0.6rem;
-  background-color: rgba(var(--mist), 0.7);
-  color: var(--shadow);
-}
-
-.swiper_container {
-  padding-top: 3rem;
-  position: relative;
-}
-
-.works_nav {
+.works_filters_track::-webkit-scrollbar {
   display: none;
 }
 
-@media only screen and (min-width: 1124px) {
-  .swiper_container {
-    padding-top: 4rem;
+.works_filter {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--fg-muted);
+  transition: color var(--duration-base) ease, border-color var(--duration-base) ease, transform 200ms var(--ease-out);
+}
+
+.works_filter:active {
+  transform: scale(0.96);
+  transition-duration: 100ms;
+}
+
+.works_filter[aria-pressed='true'] {
+  color: var(--ink-950);
+  border-color: transparent;
+}
+
+.works_filter_active {
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-pill);
+  background: var(--mist-300);
+}
+
+.works_filter_label,
+.works_filter_count {
+  position: relative;
+}
+
+.works_filter_count {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+/* Grid */
+.works_grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.5rem, 2rem + 2vw, 3.5rem) 1.5rem;
+}
+
+.project_card_inner {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.project_media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--surface-raised);
+  box-shadow: 0 0 0 1px var(--border), var(--shadow-md);
+}
+
+.project_media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 700ms var(--ease-out);
+}
+
+/* A faint inner highlight so screenshots sit in the slate rather than on it */
+.project_media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  pointer-events: none;
+}
+
+.project_info {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'number title arrow'
+    'tags tags tags';
+  align-items: baseline;
+  gap: 0.75rem 1rem;
+}
+
+.project_number {
+  grid-area: number;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent);
+}
+
+.project_title {
+  grid-area: title;
+  font-size: var(--text-xl);
+  letter-spacing: -0.025em;
+}
+
+.project_tags {
+  grid-area: tags;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.project_arrow {
+  grid-area: arrow;
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  transition:
+    background-color var(--duration-base) ease,
+    color var(--duration-base) ease,
+    border-color var(--duration-base) ease,
+    transform 400ms var(--ease-out);
+}
+
+.project_arrow svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* The whole card is the hit target; the button sits on top of it */
+.project_trigger {
+  position: absolute;
+  inset: -0.5rem;
+  z-index: 1;
+  border-radius: calc(20px + 0.5rem);
+  cursor: pointer;
+}
+
+.project_trigger:focus-visible {
+  outline-offset: 0;
+}
+
+/* Press feedback lands on the image, the part that will travel into the dialog */
+.project_card .project_media {
+  transition: transform 200ms var(--ease-out);
+}
+
+.project_card:active .project_media {
+  transform: scale(0.985);
+}
+
+@media (hover: hover) {
+  .project_card:hover .project_media img {
+    transform: scale(1.035);
   }
 
-  .works_nav {
-    display: flex;
-    position: absolute;
-    top: 0.5rem;
-    right: 2rem;
-    gap: 0.75rem;
+  .project_card:hover .project_arrow {
+    background: var(--mist-300);
+    border-color: transparent;
+    color: var(--ink-950);
+    transform: rotate(45deg);
   }
 
-  .works_nav_btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid rgba(var(--mist), 0.35);
-    background: rgba(var(--mist), 0.15);
-    color: var(--shadow);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-    position: relative;
-  }
-
-  .works_nav_btn:hover,
-  .works_nav_btn:focus-visible {
-    background: rgba(var(--mist), 0.25);
-    border-color: rgba(var(--mist), 0.5);
-    transform: translateY(-2px);
-    outline: none;
+  .works_filter[aria-pressed='false']:hover {
+    color: var(--fg);
+    border-color: var(--border-strong);
   }
 }
 
-@media only screen and (min-width: 1124px) {
-  .works {
-    animation: appear_from_right 0.5s;
+@media (min-width: 768px) {
+  .works_filters {
+    margin-inline: 0;
+  }
+
+  .works_filters_track {
+    flex-wrap: wrap;
+    padding-inline: 0;
+    mask-image: none;
+  }
+
+  .works_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project_card_wide {
+    grid-column: 1 / -1;
+  }
+
+  .project_card_wide .project_media {
+    aspect-ratio: 21 / 9;
+  }
+
+  .project_card_wide .project_title {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* Project dialog (sheet content) */
+.project_dialog_media {
+  position: relative;
+  margin: 0.5rem 0.5rem 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--surface-raised);
+}
+
+.project_dialog_media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.project_dialog_body {
+  display: grid;
+  gap: 1.75rem;
+  padding: 1.75rem clamp(1.25rem, 3vw, 2.5rem) clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.project_dialog_header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.project_dialog_header h2 {
+  font-size: var(--text-2xl);
+  letter-spacing: -0.035em;
+}
+
+.project_dialog_grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.project_dialog_label {
+  margin-bottom: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.project_dialog_text {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+.project_dialog_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .project_dialog_grid {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .project_dialog_actions .button {
+    flex: 1;
   }
 }

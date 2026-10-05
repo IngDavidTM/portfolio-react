@@ -1,0 +1,73 @@
+/* stylelint-disable csstree/validator */
+
+.footer {
+  padding: 2rem 0 2.5rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* Oversized signature: the page ends on the name, set like a masthead */
+.footer_signature {
+  font-size: clamp(3.5rem, 1rem + 13vw, 13rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+  color: rgba(var(--mist-rgb), 0.12);
+  margin: 1rem 0 2rem;
+  user-select: none;
+}
+
+.footer_signature em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: rgba(var(--mist-rgb), 0.22);
+}
+
+.footer_bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+.footer_meta {
+  font-size: var(--text-sm);
+  color: var(--fg-subtle);
+}
+
+.footer_links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+}
+
+.footer_links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--fg-muted);
+  transition: color var(--duration-base) ease;
+}
+
+.footer_top svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .footer_links a:hover {
+    color: var(--fg);
+  }
+
+  .footer_top:hover svg {
+    transform: translateY(-2px);
+  }
+}

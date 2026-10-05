@@ -5,10 +5,17 @@
     <link rel="icon" type="image/png" href="%PUBLIC_URL%/website.png?v=2" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/website.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0e1213" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+    />
     <meta
       name="description"
-      content="Portfolio of a Full Stack Developer"
+      content="David Tamayo — full-stack developer crafting fast, accessible, well-designed web products."
     />
     <!-- Social previews: Open Graph + Twitter -->
     <link rel="canonical" href="https://david-tamayo.netlify.app/" />
@@ -16,18 +23,16 @@
     <meta property="og:url" content="https://david-tamayo.netlify.app/" />
     <meta property="og:site_name" content="David Tamayo" />
     <meta property="og:title" content="David Tamayo — Full Stack Developer" />
-    <meta property="og:description" content="Portfolio of a Full Stack Developer" />
+    <meta property="og:description" content="Full-stack developer crafting fast, accessible, well-designed web products." />
     <!-- Use an absolute URL for the preview image -->
     <meta property="og:image" content="https://david-tamayo.netlify.app/website.png?v=2" />
     <meta property="og:image:secure_url" content="https://david-tamayo.netlify.app/website.png?v=2" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="website" />
-    <meta property="og:image:height" content="website" />
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="David Tamayo — Full Stack Developer" />
-    <meta name="twitter:description" content="Portfolio of a Full Stack Developer" />
+    <meta name="twitter:description" content="Full-stack developer crafting fast, accessible, well-designed web products." />
     <meta name="twitter:image" content="https://david-tamayo.netlify.app/website.png?v=2" />
     <meta name="twitter:image:alt" content="David Tamayo portfolio preview" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/website.png?v=2" />
@@ -45,16 +50,32 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>David Tamayo</title>
+    <title>David Tamayo — Full-Stack Developer</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "David Tamayo",
+        "jobTitle": "Full-Stack Developer",
+        "url": "https://david-tamayo.netlify.app/",
+        "sameAs": [
+          "https://github.com/IngDavidTM",
+          "https://www.linkedin.com/in/ing-david-tamayo/",
+          "https://twitter.com/David5TM"
+        ]
+      }
+    </script>
   </head>
   <body>
+    <noscript>David Tamayo — Full-Stack Developer. Enable JavaScript to view this portfolio.</noscript>
     <div id="root"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
       You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+      The build step will place the bundled scripts into the <body>
+    <noscript>David Tamayo — Full-Stack Developer. Enable JavaScript to view this portfolio.</noscript> tag.
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.

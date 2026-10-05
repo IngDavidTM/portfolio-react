@@ -1,114 +1,63 @@
-import { useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  Pagination, A11y,
-} from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
 import { useTranslation } from '../context/LanguageContext';
+import skills from '../data/skills';
+import me from '../images/me.avif';
+import Reveal from './Reveal';
+import SectionHeader from './SectionHeader';
 import '../stylesheets/About.css';
-import Skills from './Skills';
 
-const skillSets = {
-  languages: [
-    'JavaScript',
-    'Python',
-    'Ruby',
-    'TypeScript',
-    'SQL',
-    'Shell',
-    'R',
-    'HTML',
-    'CSS',
-  ],
-  frameworks: [
-    'React',
-    'Next',
-    'Vue',
-    'Nuxt',
-    'Vuex',
-    'Redux',
-    'Ruby on Rails',
-    'Scala',
-    'Jest',
-    'Mocha',
-    'Capybara',
-    'Rspec',
-    'Bootstrap',
-    'Tailwind',
-    'Sass',
-    'Express',
-  ],
-  skills: [
-    'GitHub',
-    'Linux',
-    'GitLab',
-    'Docker',
-    'PostgreSQL',
-    'MySQL',
-    'MongoDB',
-    'SQLite',
-    'Twilio',
-    'Postman',
-  ],
-};
+const GROUPS = ['languages', 'frameworks', 'tools'];
 
 const About = () => {
   const { t } = useTranslation();
-  const aboutCopy = t('about');
-  const [direction, setDirection] = useState('right');
-  const previousIndexRef = useRef(0);
-
-  const handleSlideChange = (swiper) => {
-    const current = swiper.activeIndex;
-    const previous = previousIndexRef.current;
-
-    if (current === previous) {
-      return;
-    }
-
-    const wrappedToStart = previous === swiper.slides.length - 1 && current === 0;
-    const isForward = current > previous || wrappedToStart;
-    setDirection(isForward ? 'right' : 'left');
-    previousIndexRef.current = current;
-  };
+  const principles = t('about.principles');
 
   return (
-    <section className="about" id="about">
-      <h2>{aboutCopy.title}</h2>
-      <h3>{aboutCopy.paragraph}</h3>
-      <div className="swiper_skills" data-direction={direction}>
-        <Swiper
-          modules={[Pagination, A11y]}
-          spaceBetween={20}
-          slidesPerView={1}
-          centeredSlides
-          pagination={{ clickable: true }}
-          speed={450}
-          onSlideChange={handleSlideChange}
-        >
-          <SwiperSlide>
-            <Skills
-              direction={direction}
-              title={aboutCopy.skills.languages}
-              items={skillSets.languages}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Skills
-              direction={direction}
-              title={aboutCopy.skills.frameworks}
-              items={skillSets.frameworks}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Skills
-              direction={direction}
-              title={aboutCopy.skills.skills}
-              items={skillSets.skills}
-            />
-          </SwiperSlide>
-        </Swiper>
+    <section id="about" className="section about" aria-labelledby="about-title">
+      <div className="container">
+        <SectionHeader
+          titleId="about-title"
+          index="02"
+          eyebrow={t('about.eyebrow')}
+          title={t('about.title')}
+          accent={t('about.accent')}
+        />
+
+        <div className="about_grid">
+          <Reveal as="figure" className="about_photo">
+            <img src={me} alt={t('about.photoAlt')} loading="lazy" decoding="async" />
+          </Reveal>
+
+          <div className="about_text">
+            <Reveal as="p" className="about_lead" delay={0.05}>
+              {t('about.paragraph')}
+            </Reveal>
+            <ol className="about_principles">
+              {principles.map((item, index) => (
+                <Reveal as="li" key={item.title} delay={0.08 * (index + 1)} className="about_principle">
+                  <span className="about_principle_index">{`0${index + 1}`}</span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <div className="toolbox">
+          <Reveal as="h3" className="toolbox_title">{t('about.toolbox')}</Reveal>
+          <div className="toolbox_grid">
+            {GROUPS.map((group, index) => (
+              <Reveal key={group} className="toolbox_group" delay={0.06 * index}>
+                <h4>{t(`about.groups.${group}`)}</h4>
+                <ul>
+                  {skills[group].map((skill) => <li key={skill}>{skill}</li>)}
+                </ul>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

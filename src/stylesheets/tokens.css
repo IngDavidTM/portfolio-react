@@ -1,0 +1,91 @@
+/* stylelint-disable csstree/validator */
+
+/*
+  Slate & Mist — design tokens.
+  Built from the original palette: slate #2a3132 (ink-700) and mist rgb(144 175 197) (mist-400),
+  expanded into full scales so every surface, border and text color is a deliberate step.
+*/
+:root {
+  color-scheme: dark;
+
+  /* Ink: the slate, from near-black to muted */
+  --ink-950: #0e1213;
+  --ink-900: #141a1b;
+  --ink-850: #192021;
+  --ink-800: #1f2728;
+  --ink-700: #2a3132;
+  --ink-600: #3a4445;
+  --ink-500: #56616a;
+  --ink-400: #7c8a93;
+
+  /* Mist: the signature blue-grey */
+  --mist-50: #f2f6f9;
+  --mist-100: #e3ecf2;
+  --mist-200: #c8d8e4;
+  --mist-300: #adc4d5;
+  --mist-400: #90afc5;
+  --mist-500: #7398b2;
+  --mist-600: #557a94;
+  --mist-700: #3f5d72;
+  --mist-rgb: 144, 175, 197;
+
+  /* Paper: the light surface */
+  --paper: #f4f5f5;
+  --paper-2: #e9ecee;
+  --paper-ink: #182022;
+
+  /* Semantic: dark surfaces */
+  --bg: var(--ink-950);
+  --surface: var(--ink-900);
+  --surface-raised: var(--ink-850);
+  --border: rgba(var(--mist-rgb), 0.12);
+  --border-strong: rgba(var(--mist-rgb), 0.24);
+  --fg: #eef3f6;
+  --fg-muted: rgba(238, 243, 246, 0.64);
+  --fg-subtle: rgba(238, 243, 246, 0.42);
+  --accent: var(--mist-400);
+  --accent-strong: var(--mist-300);
+  --danger: #e6848b;
+  --success: #8fd1b0;
+
+  /* Typography */
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Instrument Serif', ui-serif, 'Georgia', serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', 'Menlo', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --text-2xl: clamp(1.6rem, 1.25rem + 1.4vw, 2.25rem);
+  --text-3xl: clamp(2.25rem, 1.5rem + 3.2vw, 4.25rem);
+  --text-display: clamp(2.75rem, 1.4rem + 5.6vw, 6.75rem);
+
+  /* Space & layout */
+  --container: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-y: clamp(5rem, 3rem + 8vw, 10rem);
+  --nav-height: 4.5rem;
+
+  /* Shape */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+  --radius-pill: 999px;
+
+  /* Depth */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+  --glass: rgba(16, 21, 22, 0.78);
+  --glass-border: rgba(var(--mist-rgb), 0.14);
+
+  /* Motion: critically damped feel; same curve in and out */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --press-scale: 0.97;
+}

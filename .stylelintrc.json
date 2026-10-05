@@ -14,7 +14,10 @@
         "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
       }
     ],
-    "csstree/validator": true
+    "csstree/validator": true,
+    "no-descending-specificity": null,
+    "custom-property-empty-line-before": null,
+    "unit-no-unknown": [true, { "ignoreUnits": ["svh", "dvh", "lvh"] }]
   },
   "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css", "**/*.js", "**/*.jsx"]
 }
