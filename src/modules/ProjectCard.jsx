@@ -29,7 +29,14 @@ const ProjectCard = forwardRef(({
           style={{ borderRadius: 20 }}
           transition={spring}
         >
-          <img src={project.image} alt="" loading="lazy" decoding="async" />
+          <img
+            src={project.image.src}
+            srcSet={project.image.srcSet}
+            sizes={wide ? '(min-width: 1240px) 1180px, 100vw' : '(min-width: 768px) 50vw, 100vw'}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </motion.div>
         <div className="project_info">
           <span className="project_number">{label}</span>
@@ -59,7 +66,10 @@ ProjectCard.propTypes = {
   project: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.shape({
+      src: PropTypes.string.isRequired,
+      srcSet: PropTypes.string.isRequired,
+    }).isRequired,
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   number: PropTypes.number.isRequired,

@@ -48,6 +48,9 @@ const translations = {
       visit: 'Visit live site',
       code: 'Source code',
       close: 'Close project details',
+      navLabel: 'Browse projects',
+      prev: 'Previous',
+      next: 'Next',
     },
     about: {
       eyebrow: 'About',
@@ -149,6 +152,9 @@ const translations = {
       visit: 'Ver sitio',
       code: 'Código fuente',
       close: 'Cerrar detalles del proyecto',
+      navLabel: 'Explorar proyectos',
+      prev: 'Anterior',
+      next: 'Siguiente',
     },
     about: {
       eyebrow: 'Sobre mí',

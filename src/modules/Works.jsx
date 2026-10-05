@@ -15,7 +15,8 @@ const FILTER_TAGS = ['React', 'Next', 'Vue', 'Typescript', 'Tailwind', 'Wordpres
 const Works = () => {
   const { t } = useTranslation();
   const [filter, setFilter] = useState('all');
-  const [selectedId, setSelectedId] = useState(null);
+  // `openedId` is the card the dialog grew out of; only that project morphs back on close
+  const [selection, setSelection] = useState({ id: null, openedId: null, direction: 0 });
 
   const filters = useMemo(() => [
     { value: 'all', count: projects.length },
@@ -25,11 +26,22 @@ const Works = () => {
     })),
   ], []);
 
-  const visible = filter === 'all'
+  const visible = useMemo(() => (filter === 'all'
     ? projects
-    : projects.filter((item) => item.tags.includes(filter));
-  const selected = projects.find((item) => item.id === selectedId) || null;
-  const closeDialog = useCallback(() => setSelectedId(null), []);
+    : projects.filter((item) => item.tags.includes(filter))), [filter]);
+  const selected = projects.find((item) => item.id === selection.id) || null;
+  const position = selected ? visible.indexOf(selected) + 1 : 0;
+
+  const openProject = (id) => setSelection({ id, openedId: id, direction: 0 });
+  const closeDialog = useCallback(() => setSelection((prev) => ({ ...prev, id: null })), []);
+  const navigate = useCallback((step) => {
+    setSelection((prev) => {
+      const index = visible.findIndex((item) => item.id === prev.id);
+      if (index === -1) return prev;
+      const next = visible[(index + step + visible.length) % visible.length];
+      return { ...prev, id: next.id, direction: step };
+    });
+  }, [visible]);
 
   return (
     <section id="work" className="section works" aria-labelledby="work-title">
@@ -72,12 +84,20 @@ const Works = () => {
                   project={item}
                   number={projects.indexOf(item) + 1}
                   wide={index % 3 === 0}
-                  onOpen={() => setSelectedId(item.id)}
+                  onOpen={() => openProject(item.id)}
                 />
               ))}
             </AnimatePresence>
           </motion.ul>
-          <ProjectDialog project={selected} onClose={closeDialog} />
+          <ProjectDialog
+            project={selected}
+            morph={selected ? selected.id === selection.openedId : true}
+            direction={selection.direction}
+            position={position}
+            total={visible.length}
+            onNavigate={navigate}
+            onClose={closeDialog}
+          />
         </LayoutGroup>
       </div>
     </section>

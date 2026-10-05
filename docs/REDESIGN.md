@@ -51,29 +51,31 @@ Plan por fases para llevar el portafolio de un sitio de secciones fijas a una ex
 - [x] `prefers-reduced-transparency`: superficies sólidas.
 - [x] Hover solo en dispositivos con hover real; feedback `:active` en todo lo pulsable.
 
-### Fase 5 — Rendimiento y SEO ⏳
-- [ ] Imágenes responsivas: generar 640/1280/1920 en AVIF + WebP y servir con `srcset`/`sizes`.
-- [ ] Imagen Open Graph propia de 1200×630 (`website.png` pesa 1,4 MB y no tiene esa proporción).
-- [ ] Cargar `ProjectDialog` en diferido (`React.lazy`) y medir el bundle (hoy ~106 kB gzip).
-- [ ] Alojar las fuentes en el propio sitio con `preload` del peso del titular.
-- [ ] Objetivo Lighthouse ≥ 95 en las cuatro categorías; `sitemap.xml`.
+### Fase 5 — Rendimiento y SEO ✅
+- [x] Imágenes responsivas: `vite-imagetools` genera variantes AVIF de 640/1024/1600 px en el build (`src/data/images.js`) y se sirven con `srcset`/`sizes`. En desarrollo y tests se usan los originales para que el arranque sea instantáneo.
+- [x] Imagen Open Graph propia de 1200×630 (`public/og.png`, 45 kB) e iconos `favicon.svg`, 32, 180, 192 y 512 px. Eliminado `website.png` (1,4 MB).
+- [x] Fuentes alojadas en el propio sitio (`@fontsource`): cero peticiones a Google Fonts.
+- [x] `sitemap.xml`, `robots.txt` con sitemap, `og:locale:alternate`.
+- [ ] Carga diferida de `ProjectDialog`: descartada por ahora, porque retrasaría la primera transformación tarjeta → diálogo.
+- [ ] Auditoría Lighthouse en el sitio desplegado (objetivo ≥ 95).
 
-### Fase 6 — Contenido ⏳
+### Fase 6 — Contenido ⏳ (necesita tu información)
 - [ ] Revisar los textos nuevos (titular, "Abierto a nuevas colaboraciones", principios) y ajustarlos a tu voz y situación real.
 - [ ] Ampliar `src/data/projects.js` con año, rol y resultado de cada proyecto.
 - [ ] Casos de estudio de 2–3 proyectos clave (problema → proceso → resultado) en páginas propias.
 - [ ] Enlazar el currículum como PDF descargable en lugar de un Google Doc editable.
 - [ ] Testimonios de clientes o compañeros, si los hay.
 
-### Fase 7 — Pulido de interacción ⏳
-- [ ] Navegar entre proyectos dentro del diálogo (← / → y gesto horizontal con proyección).
+### Fase 7 — Pulido de interacción 🟡
+- [x] Navegar entre proyectos dentro del diálogo: botones Anterior/Siguiente, teclas ← / →, y deslizamiento horizontal en táctil que decide por velocidad proyectada. Respeta el filtro activo.
+- [x] Tests con Vitest + Testing Library: formulario (validación, éxito, error), cuadrícula y filtros, diálogo y navegación, `Sheet` (Escape, scrim, foco, scroll), idioma y la función de proyección (17 tests).
 - [ ] Tema claro opcional con transición suave entre temas.
-- [ ] Tests con Testing Library: validación del formulario, apertura y cierre de `Sheet`, filtros.
-- [ ] Revisión frame a frame de las animaciones en un iPhone real (arrastre del sheet incluido).
+- [ ] Revisión frame a frame de las animaciones en un iPhone real (arrastre del sheet y swipe entre proyectos).
 
-### Fase 8 — Infraestructura ⏳
-- [ ] Migrar de Create React App (sin mantenimiento) a Vite.
-- [ ] Actualizar ESLint 9 / Stylelint 16 y el workflow `linters.yml` (Node 20, `actions/*@v4`), con un paso de build en CI.
+### Fase 8 — Infraestructura 🟡
+- [x] Migrado de Create React App a Vite 8 (build en `build/` para no tocar el hosting).
+- [x] CI: `npm ci` en Node 20 con lint, tests y build.
+- [ ] Actualizar a ESLint 9 / Stylelint 16 (configuración flat; airbnb aún no la soporta oficialmente).
 
 ## Decisiones tomadas
 

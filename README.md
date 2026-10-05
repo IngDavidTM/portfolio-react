@@ -43,7 +43,10 @@
 <details>
   <summary>Client</summary>
   <ul>
-    <li><a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/></a></li>
+    <li><a href="https://react.dev/"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/></a></li>
+    <li><a href="https://vite.dev/"><img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"/></a></li>
+    <li><a href="https://motion.dev/"><img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white"/></a></li>
+    <li><a href="https://vitest.dev/"><img src="https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white"/></a></li>
   </ul>
 </details>
 
@@ -53,9 +56,12 @@
 
 ### Key Features <a name="key-features"></a>
 
-- The visitor can send a message using the form.
-- A  navigation panel where the visitor can see the links to 'Works', 'About Me', and 'Contact Me'
-- The portfolio is responsive, both mobile and desktop versions have been created.
+- Filterable project grid; each card morphs into a detail view you can browse with arrows, keys or swipes.
+- Floating navigation with active-section tracking; draggable bottom-sheet menu on mobile.
+- Contact form with inline validation and send states.
+- English / Spanish, detected from the browser and remembered.
+- Spring-based, interruptible motion that respects reduced-motion and reduced-transparency settings.
+- Responsive AVIF images generated at build time, self-hosted fonts.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -87,7 +93,7 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-- Node.js
+- Node.js 20.19 or newer (see `.nvmrc`)
 - Visual Studio Code or similar source-code editor
 
 
@@ -111,11 +117,15 @@ Install this project with:
 
 ### Usage
 
-To run the project, execute the following command:
+| Command | What it does |
+| --- | --- |
+| `npm start` | Dev server at http://localhost:5173 |
+| `npm run build` | Production build into `build/` (resizes images, ~25s) |
+| `npm run preview` | Serve the production build locally |
+| `npm test` | Run the Vitest suite |
+| `npm run lint` | ESLint + Stylelint |
 
-```sh
-  npm start
-```
+The redesign roadmap lives in [`docs/REDESIGN.md`](docs/REDESIGN.md).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

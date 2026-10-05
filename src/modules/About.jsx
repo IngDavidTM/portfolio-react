@@ -1,6 +1,6 @@
 import { useTranslation } from '../context/LanguageContext';
 import skills from '../data/skills';
-import me from '../images/me.avif';
+import images from '../data/images';
 import Reveal from './Reveal';
 import SectionHeader from './SectionHeader';
 import '../stylesheets/About.css';
@@ -24,7 +24,14 @@ const About = () => {
 
         <div className="about_grid">
           <Reveal as="figure" className="about_photo">
-            <img src={me} alt={t('about.photoAlt')} loading="lazy" decoding="async" />
+            <img
+              src={images.me.src}
+              srcSet={images.me.srcSet}
+              sizes="(min-width: 900px) 560px, 100vw"
+              alt={t('about.photoAlt')}
+              loading="lazy"
+              decoding="async"
+            />
           </Reveal>
 
           <div className="about_text">

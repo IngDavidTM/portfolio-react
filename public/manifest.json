@@ -1,22 +1,10 @@
 {
   "short_name": "David Tamayo",
-  "name": "Portfolio of a Full Stack Developer",
+  "name": "David Tamayo — Full-Stack Developer",
   "icons": [
-    {
-      "src": "website.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "website.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "website.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
+    { "src": "favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
   ],
   "start_url": ".",
   "display": "standalone",

@@ -1,19 +1,10 @@
-import Project1 from '../images/Project1.avif';
-import Project2 from '../images/Project2.avif';
-import Project3 from '../images/Project3.avif';
-import Project4 from '../images/Project4.avif';
-import Project5 from '../images/Project5.avif';
-import Project6 from '../images/Project6.avif';
-import Project7 from '../images/Project7.avif';
-import Project8 from '../images/Project8.avif';
-import Project9 from '../images/Project9.avif';
-import Project10 from '../images/Project10.avif';
+import images from './images';
 
 const data = [
   {
     id: 1,
     title: 'AliceTrader',
-    image: Project2,
+    image: images.Project2,
     tags: ['Vue', 'Tailwind', 'Vuex', 'Typescript'],
     description: {
       en: 'An intuitive app for analyzing, trading, and managing options with real-time data and customizable tools.',
@@ -25,7 +16,7 @@ const data = [
   {
     id: 2,
     title: 'CafExporto',
-    image: Project1,
+    image: images.Project1,
     tags: ['Wordpress', 'CSS', 'Plugins'],
     description: {
       en: 'This is a project created with WordPress for the company CafExporto. It consists of six pages.',
@@ -36,7 +27,7 @@ const data = [
   {
     id: 3,
     title: 'Stupendastic',
-    image: Project3,
+    image: images.Project3,
     tags: ['Python', 'Express', 'Next', 'Typescript'],
     description: {
       en: 'Two dashboards for managing Monday tasks and automations via Python scripts, using on-premise and cloud-hosted servers to handle employee task management and improve task visualization.',
@@ -48,7 +39,7 @@ const data = [
   {
     id: 4,
     title: 'Recipe App',
-    image: Project4,
+    image: images.Project4,
     tags: ['JavaScript', 'Webpack'],
     description: {
       en: 'A web app that lists meal recipes from an API. Users can leave comments and likes on each dish.',
@@ -60,7 +51,7 @@ const data = [
   {
     id: 5,
     title: 'Wheels and Deals',
-    image: Project5,
+    image: images.Project5,
     tags: ['React', 'Redux', 'Ruby on Rails'],
     description: {
       en: 'Wheels and Deals is a car rental website built with React, Redux, and Ruby on Rails. It includes user authentication, booking creation, and a catalog of available cars.',
@@ -72,7 +63,7 @@ const data = [
   {
     id: 6,
     title: 'Projects at Pelom',
-    image: Project6,
+    image: images.Project6,
     tags: ['Next', 'Typescript', 'Tailwind', 'React'],
     description: {
       en: 'A website for Pelom, offering an app to manage restaurant menus (dishes, prices, and availability).',
@@ -83,7 +74,7 @@ const data = [
   {
     id: 7,
     title: 'Projects at Torre ai',
-    image: Project7,
+    image: images.Project7,
     tags: ['Scala', 'Vue', 'Sass'],
     description: {
       en: 'This platform lets users leverage AI tools for job or talent searches. I worked on building candidate communication flows and solving technical issues as they appeared.',
@@ -95,7 +86,7 @@ const data = [
   {
     id: 8,
     title: 'Web Minds Studio',
-    image: Project8,
+    image: images.Project8,
     tags: ['Next', 'Tailwind', 'React'],
     description: {
       en: 'This site presents several subscription tiers to help teams build their website with flexible, customizable plans.',
@@ -107,7 +98,7 @@ const data = [
   {
     id: 9,
     title: 'Portfolio Yanua',
-    image: Project9,
+    image: images.Project9,
     tags: ['React', 'CSS', 'Webpack'],
     description: {
       en: 'Biotechnology research portfolio: projects, publications, and collaborations. Includes direct email contact.',
@@ -119,7 +110,7 @@ const data = [
   {
     id: 10,
     title: 'SIGUE Network',
-    image: Project10,
+    image: images.Project10,
     tags: ['Wordpress', 'CSS', 'Elementor', 'Plugins'],
     description: {
       en: 'This site connects and empowers ONG, social projects and companies, showing their mission, programs and ways to participate/donate to scale sustainable impact',
