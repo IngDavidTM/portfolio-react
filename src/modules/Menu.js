@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Menu.css';
 
-const Menu = ({ scrollToSectionMobile, setMenu }) => {
+const Menu = ({ goTo, setMenu }) => {
   const { t } = useTranslation();
   const navCopy = t('nav');
   const menuCopy = t('menu');
@@ -50,8 +50,7 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
               type="button"
               className="nav_link"
               onClick={() => {
-                scrollToSectionMobile('works', 2);
-                setMenu(false);
+                goTo('works');
               }}
             >
               <span className="nav_number">01</span>
@@ -63,8 +62,7 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
               type="button"
               className="nav_link"
               onClick={() => {
-                scrollToSectionMobile('about', 3);
-                setMenu(false);
+                goTo('about');
               }}
             >
               <span className="nav_number">02</span>
@@ -76,8 +74,7 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
               type="button"
               className="nav_link"
               onClick={() => {
-                scrollToSectionMobile('contact', 4);
-                setMenu(false);
+                goTo('contact');
               }}
             >
               <span className="nav_number">03</span>
@@ -92,8 +89,7 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
             type="button"
             className="menu_cta"
             onClick={() => {
-              scrollToSectionMobile('contact', 4);
-              setMenu(false);
+              goTo('contact');
             }}
           >
             {menuCopy.ctaLabel}
@@ -105,7 +101,7 @@ const Menu = ({ scrollToSectionMobile, setMenu }) => {
 };
 
 Menu.propTypes = {
-  scrollToSectionMobile: PropTypes.func.isRequired,
+  goTo: PropTypes.func.isRequired,
   setMenu: PropTypes.func.isRequired,
 };
 

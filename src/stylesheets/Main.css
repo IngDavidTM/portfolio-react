@@ -83,9 +83,11 @@
   }
 }
 
-/* CTA: fill wipes in from the left, arrow nudges forward */
+/* CTA: liquid fill (see .btn_liquid), arrow nudges forward */
 .main_cta {
-  position: relative;
+  --fill: rgb(var(--mist));
+  --fill-ink: var(--shadow);
+
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
@@ -96,43 +98,16 @@
   color: rgb(var(--mist));
   text-decoration: none;
   font-weight: 600;
-  overflow: hidden;
-  isolation: isolate;
-  transition: color 0.35s var(--ease-out);
   animation: soft_in 0.8s var(--ease-out) 0.45s both;
 }
 
-.main_cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: rgb(var(--mist));
-  clip-path: inset(0 100% 0 0 round 999px);
-  transition: clip-path 0.45s var(--ease-out);
-}
-
 .main_cta svg {
-  transition: transform 0.35s var(--ease-out);
-}
-
-.main_cta:hover,
-.main_cta:focus-visible {
-  color: var(--shadow);
-}
-
-.main_cta:hover::before,
-.main_cta:focus-visible::before {
-  clip-path: inset(0 0 0 0 round 999px);
+  transition: transform 0.5s var(--ease-out) 0.1s;
 }
 
 .main_cta:hover svg,
 .main_cta:focus-visible svg {
   transform: translateX(4px);
-}
-
-.main_cta:active {
-  transform: scale(0.97);
 }
 
 /* Social links: underline draws from the left */

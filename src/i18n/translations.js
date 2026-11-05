@@ -33,7 +33,7 @@ const translations = {
     },
     works: {
       title: 'Projects',
-      subtitle: 'Drag to explore, tap for details.',
+      subtitle: 'Keep scrolling to browse. Open one for details.',
       prev: 'Show previous project',
       next: 'Show next project',
     },
@@ -75,6 +75,8 @@ const translations = {
       visit: 'Visit project',
       code: 'View code',
       closeAria: 'Close project details',
+      prev: 'Previous project',
+      next: 'Next project',
     },
   },
   es: {
@@ -111,7 +113,7 @@ const translations = {
     },
     works: {
       title: 'Proyectos',
-      subtitle: 'Desliza para explorar, toca para ver detalles.',
+      subtitle: 'Sigue bajando para recorrerlos. Abre uno para ver detalles.',
       prev: 'Ver proyecto anterior',
       next: 'Ver siguiente proyecto',
     },
@@ -153,6 +155,8 @@ const translations = {
       visit: 'Ver proyecto',
       code: 'Ver código',
       closeAria: 'Cerrar detalles del proyecto',
+      prev: 'Proyecto anterior',
+      next: 'Proyecto siguiente',
     },
   },
 };

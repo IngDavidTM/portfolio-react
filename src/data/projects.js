@@ -1,8 +1,6 @@
 import Project1 from '../images/Project1.avif';
 import Project2 from '../images/Project2.avif';
 import Project3 from '../images/Project3.avif';
-import Project4 from '../images/Project4.avif';
-import Project5 from '../images/Project5.avif';
 import Project6 from '../images/Project6.avif';
 import Project7 from '../images/Project7.avif';
 import Project8 from '../images/Project8.avif';
@@ -80,30 +78,6 @@ const data = [
     },
     github: 'https://github.com/Stupendastic-Connect',
     live: 'https://www.stupendastic.com/',
-  },
-  {
-    id: 4,
-    title: 'Recipe App',
-    image: Project4,
-    tags: ['JavaScript', 'Webpack'],
-    description: {
-      en: 'A web app that lists meal recipes from an API. Users can leave comments and likes on each dish.',
-      es: 'Aplicación web que muestra recetas de comidas desde una API. Los usuarios pueden comentar y dar “likes” a cada plato.',
-    },
-    github: 'https://github.com/IngDavidTM/capstone-javascript-API',
-    live: 'https://ingdavidtm.github.io/capstone-javascript-API/dist/',
-  },
-  {
-    id: 5,
-    title: 'Wheels and Deals',
-    image: Project5,
-    tags: ['React', 'Redux', 'Ruby on Rails'],
-    description: {
-      en: 'Wheels and Deals is a car rental website built with React, Redux, and Ruby on Rails. It includes user authentication, booking creation, and a catalog of available cars.',
-      es: 'Wheels and Deals es un sitio de alquiler de autos creado con React, Redux y Ruby on Rails. Permite autenticación de usuarios, creación de reservas y un catálogo de vehículos disponibles.',
-    },
-    github: 'https://github.com/IngDavidTM/wheels-and-deals-react',
-    live: 'https://wheels-and-deals.netlify.app/',
   },
   {
     id: 6,

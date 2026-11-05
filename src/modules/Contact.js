@@ -177,11 +177,11 @@ const Contact = () => {
           )}
         </label>
         {isSending ? (
-          <button type="submit" disabled>
+          <button type="submit" className="btn_liquid" disabled>
             {contactCopy.sending}
           </button>
         ) : (
-          <button type="submit">{contactCopy.submit}</button>
+          <button type="submit" className="btn_liquid">{contactCopy.submit}</button>
         )}
       </form>
       {showSuccessMessage && (

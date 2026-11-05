@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useLanguage, useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Main.css';
 import Menu from './Menu';
+import { scrollToSection } from '../utils/scroll';
 
 const links = [
   { label: 'GitHub', href: 'https://github.com/IngDavidTM' },
@@ -22,33 +23,9 @@ const Main = () => {
   const toggleShort = t('language.toggleShort');
   const toggleLabel = t('language.toggleLabel');
 
-  const scrollToSection = (element, number) => {
-    const section = document.getElementById(element);
-    const documentHeight = document.documentElement.scrollHeight;
-    const targetScrollPos = parseInt((documentHeight * number) / 4, 10);
-
-    if (section) {
-      window.scrollTo({
-        top: targetScrollPos,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const scrollToSectionMobile = (element, number) => {
-    const section = document.getElementById(element);
-    const documentHeight = document.documentElement.scrollHeight;
-    const targetScrollPos = parseInt((documentHeight * number) / 5, 10);
-
-    if (section) {
-      window.scrollTo({
-        top: targetScrollPos,
-        behavior: 'smooth',
-      });
-      setMenu(false);
-    } else {
-      setMenu(true);
-    }
+  const goTo = (id) => {
+    scrollToSection(id);
+    setMenu(false);
   };
   return (
     <>
@@ -72,12 +49,12 @@ const Main = () => {
           </button>
         </div>
         <ul className="nav_list">
-          <li><button type="button" className="nav_works" onClick={() => scrollToSection('works', 1)}>{navCopy.works}</button></li>
-          <li><button type="button" className="nav_about" onClick={() => scrollToSection('about', 2)}>{navCopy.about}</button></li>
-          <li><button type="button" className="nav_contact" onClick={() => scrollToSection('contact', 3)}>{navCopy.contact}</button></li>
+          <li><button type="button" className="nav_works" onClick={() => goTo('works')}>{navCopy.works}</button></li>
+          <li><button type="button" className="nav_about" onClick={() => goTo('about')}>{navCopy.about}</button></li>
+          <li><button type="button" className="nav_contact" onClick={() => goTo('contact')}>{navCopy.contact}</button></li>
         </ul>
       </nav>
-      {menu && <Menu scrollToSectionMobile={scrollToSectionMobile} setMenu={setMenu} />}
+      {menu && <Menu goTo={goTo} setMenu={setMenu} />}
       <section className="main">
         <p />
         <header>
@@ -86,7 +63,11 @@ const Main = () => {
             <span className="line line_soft"><span>{mainCopy.headline.line2}</span></span>
           </h1>
           <p className="main_lede">{mainCopy.description}</p>
-          <a href="#contact" className="main_cta">
+          <a
+            href="#contact"
+            className="main_cta btn_liquid"
+            onClick={(event) => { event.preventDefault(); goTo('contact'); }}
+          >
             <span>{mainCopy.cta}</span>
             <FontAwesomeIcon icon={faArrowRight} />
           </a>

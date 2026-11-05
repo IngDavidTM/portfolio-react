@@ -1,109 +1,67 @@
 import '../stylesheets/Works.css';
 import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  Scrollbar, Navigation, A11y,
-} from 'swiper';
-import 'swiper/css';
-import 'swiper/css/scrollbar';
-import 'swiper/css/navigation';
 import WorkCard from './WorkCard';
 import data from '../data/projects';
 import Popup from './Popup';
 import { useTranslation } from '../context/LanguageContext';
+import { scrollToProject } from '../utils/scroll';
+
+// Vertical scroll spent travelling the rail, in viewport heights per project
+const RAIL_PER_PROJECT = 0.32;
 
 const Works = () => {
-  const [popup, setPopup] = useState(false);
-  const [workPop, setWork] = useState({});
+  const [openIndex, setOpenIndex] = useState(null);
   const { t, language } = useTranslation();
   const worksCopy = t('works');
-  const displayPopup = (work) => {
-    setPopup(true);
-    setWork({
-      ...work,
-      description: work.description[language],
-    });
-  };
+  const count = data.length;
+  const open = openIndex === null ? null : data[openIndex];
 
+  // Every sheet after Projects is timed off how long the rail stays pinned
   useEffect(() => {
-    if (!popup || !workPop.id) {
-      return;
-    }
+    document.documentElement.style.setProperty('--k', (count * RAIL_PER_PROJECT).toFixed(2));
+  }, [count]);
 
-    const updatedWork = data.find((item) => item.id === workPop.id);
-    if (updatedWork) {
-      setWork({
-        ...updatedWork,
-        description: updatedWork.description[language],
-      });
-    }
-  }, [language, popup, workPop.id]);
+  const step = (delta) => {
+    setOpenIndex((current) => (current + delta + count) % count);
+  };
 
   return (
     <>
       <section className="works" id="works">
-        <div className="works_header">
-          <h2>{worksCopy.title}</h2>
-          <span className="works_count">{String(data.length).padStart(2, '0')}</span>
-        </div>
-        <p>{worksCopy.subtitle}</p>
-        <div className="swiper_container">
-          <Swiper
-            modules={[Scrollbar, Navigation, A11y]}
-            spaceBetween={20}
-            slidesPerView={1.1}
-            centeredSlides
-            breakpoints={{
-              480: {
-                slidesPerView: 1.4,
-              },
-              650: {
-                slidesPerView: 2.1,
-              },
-              2048: {
-                slidesPerView: 3.1,
-              },
-            }}
-            scrollbar={{ draggable: true }}
-            navigation={{
-              nextEl: '.works_nav_next',
-              prevEl: '.works_nav_prev',
-            }}
-            loop
-          >
-            {data.map((work) => (
-              <SwiperSlide key={work.id}>
-                <WorkCard
-                  title={work.title}
-                  image={work.image}
-                  tags={work.tags}
-                  onOpen={() => { displayPopup(work); }}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="works_nav">
-            <button type="button" className="works_nav_btn works_nav_prev" aria-label={worksCopy.prev}>
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </button>
-            <button type="button" className="works_nav_btn works_nav_next" aria-label={worksCopy.next}>
-              <FontAwesomeIcon icon={faChevronRight} />
-            </button>
+        <div className="works_stage">
+          <div className="works_header">
+            <h2>{worksCopy.title}</h2>
+            <span className="works_count">{String(count).padStart(2, '0')}</span>
+            <p className="works_hint">{worksCopy.subtitle}</p>
           </div>
+          <div className="works_viewport">
+            <ol className="works_track">
+              {data.map((work, index) => (
+                <li key={work.id}>
+                  <WorkCard
+                    title={work.title}
+                    image={work.image}
+                    tags={work.tags}
+                    onOpen={() => setOpenIndex(index)}
+                    onFocus={() => scrollToProject(index, count)}
+                  />
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="works_progress" aria-hidden="true"><span /></div>
         </div>
       </section>
-      {popup && (
-      <Popup
-        title={workPop.title}
-        image={workPop.image}
-        tags={workPop.tags}
-        description={workPop.description}
-        github={workPop.github}
-        live={workPop.live}
-        setPopup={setPopup}
-      />
+      {open && (
+        <Popup
+          key="project-sheet"
+          work={{ ...open, description: open.description[language] }}
+          index={openIndex}
+          count={count}
+          onPrev={() => step(-1)}
+          onNext={() => step(1)}
+          onClose={() => setOpenIndex(null)}
+        />
       )}
     </>
   );

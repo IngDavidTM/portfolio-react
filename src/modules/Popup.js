@@ -1,17 +1,23 @@
 import {
   useCallback, useEffect, useRef, useState,
 } from 'react';
+import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faExternalLinkAlt, faClose } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowLeft, faArrowRight, faArrowUpRightFromSquare, faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Popup.css';
 
-const EXIT_MS = 220;
+const EXIT_MS = 260;
 
-const Popup = (work) => {
+const Popup = ({
+  work, index, count, onPrev, onNext, onClose,
+}) => {
   const {
-    image, title, tags, description, github, live, setPopup,
+    image, title, tags, description, github, live,
   } = work;
   const { t } = useTranslation();
   const popupCopy = t('popup');
@@ -19,118 +25,130 @@ const Popup = (work) => {
   const closeRef = useRef(null);
 
   const close = useCallback(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      setPopup(false);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      onClose();
       return;
     }
     setClosing(true);
-    setTimeout(() => setPopup(false), EXIT_MS);
-  }, [setPopup]);
+    setTimeout(onClose, EXIT_MS);
+  }, [onClose]);
 
+  // Page recedes behind the sheet, scroll locks, focus moves in and returns on close
   useEffect(() => {
     const opener = document.activeElement;
     const root = document.documentElement;
-    const previousOverflow = root.style.overflow;
-    root.style.overflow = 'hidden';
+    root.classList.add('has-sheet');
     closeRef.current?.focus({ preventScroll: true });
 
-    const onKey = (event) => {
-      if (event.key === 'Escape') close();
-    };
-    window.addEventListener('keydown', onKey);
-
     return () => {
-      window.removeEventListener('keydown', onKey);
-      root.style.overflow = previousOverflow;
+      root.classList.remove('has-sheet');
       if (opener && opener.focus) opener.focus({ preventScroll: true });
     };
-  }, [close]);
+  }, []);
 
-  return (
-    // Escape is handled on window; clicking the backdrop is a pointer-only shortcut.
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-    <article
-      className={`popup${closing ? ' is-closing' : ''}`}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`${popupCopy.dialogLabel} ${title}`}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) close();
-      }}
-    >
-      <div className="popup_content">
-        <div className="popup_media">
-          <img src={image} alt={title} />
+  useEffect(() => {
+    const onKey = (event) => {
+      if (event.key === 'Escape') close();
+      if (event.key === 'ArrowRight') onNext();
+      if (event.key === 'ArrowLeft') onPrev();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [close, onNext, onPrev]);
+
+  return createPortal(
+    <div className={`sheet_layer${closing ? ' is-closing' : ''}`}>
+      <button
+        type="button"
+        className="sheet_backdrop"
+        aria-label={popupCopy.closeAria}
+        tabIndex={-1}
+        onClick={close}
+      />
+      <article
+        className="sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${popupCopy.dialogLabel} ${title}`}
+      >
+        <header className="sheet_bar">
+          <div className="sheet_pager">
+            <button type="button" className="sheet_icon" onClick={onPrev} aria-label={popupCopy.prev}>
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+            <span className="sheet_counter">
+              {String(index + 1).padStart(2, '0')}
+              <span>{` / ${String(count).padStart(2, '0')}`}</span>
+            </span>
+            <button type="button" className="sheet_icon" onClick={onNext} aria-label={popupCopy.next}>
+              <FontAwesomeIcon icon={faArrowRight} />
+            </button>
+          </div>
+          <span className="sheet_grip" aria-hidden="true" />
           <button
             ref={closeRef}
             type="button"
-            className="popup_close"
+            className="sheet_icon"
             aria-label={popupCopy.closeAria}
             onClick={close}
           >
-            <FontAwesomeIcon icon={faClose} />
+            <FontAwesomeIcon icon={faXmark} />
           </button>
-        </div>
-        <div className="popup_body">
-          <div className="popup_header">
+        </header>
+
+        <div className="sheet_body" key={title}>
+          <figure className="sheet_shot">
+            <span className="sheet_shot_bar" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+              <span>{live.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
+            </span>
+            <img src={image} alt={title} />
+          </figure>
+
+          <div className="sheet_info">
             <h3>{title}</h3>
-            <div className="popup_links">
+            <p>{description}</p>
+            <ul className="sheet_tags">
+              {tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+            <div className="sheet_actions">
+              <a href={live} className="sheet_action btn_liquid" target="_blank" rel="noreferrer">
+                <span>{popupCopy.visit}</span>
+                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+              </a>
               {github ? (
-                <a
-                  href={github}
-                  aria-label="GitHub repository"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="icon_button"
-                >
+                <a href={github} className="sheet_action is-ghost btn_liquid" target="_blank" rel="noreferrer">
                   <FontAwesomeIcon icon={faGithub} />
+                  <span>{popupCopy.code}</span>
                 </a>
               ) : null}
-              <a
-                href={live}
-                aria-label="Open live project"
-                target="_blank"
-                rel="noreferrer"
-                className="icon_button"
-              >
-                <FontAwesomeIcon icon={faExternalLinkAlt} />
-              </a>
             </div>
           </div>
-          <div className="popup_tags">
-            {tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-          <p>{description}</p>
-          <div className="popup_actions">
-            <a
-              href={live}
-              className="popup_action primary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faExternalLinkAlt} />
-              <span>{popupCopy.visit}</span>
-            </a>
-            {github ? (
-              <a
-                href={github}
-                className="popup_action ghost"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faGithub} />
-                <span>{popupCopy.code}</span>
-              </a>
-            ) : null}
-          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </div>,
+    document.body,
   );
+};
+
+Popup.propTypes = {
+  work: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    description: PropTypes.string.isRequired,
+    github: PropTypes.string,
+    live: PropTypes.string.isRequired,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  count: PropTypes.number.isRequired,
+  onPrev: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default Popup;
