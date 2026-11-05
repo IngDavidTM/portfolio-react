@@ -44,7 +44,10 @@ const Works = () => {
   return (
     <>
       <section className="works" id="works">
-        <h2>{worksCopy.title}</h2>
+        <div className="works_header">
+          <h2>{worksCopy.title}</h2>
+          <span className="works_count">{String(data.length).padStart(2, '0')}</span>
+        </div>
         <p>{worksCopy.subtitle}</p>
         <div className="swiper_container">
           <Swiper
@@ -71,11 +74,12 @@ const Works = () => {
             loop
           >
             {data.map((work) => (
-              <SwiperSlide key={work.id} onClick={() => { displayPopup(work); }}>
+              <SwiperSlide key={work.id}>
                 <WorkCard
                   title={work.title}
                   image={work.image}
                   tags={work.tags}
+                  onOpen={() => { displayPopup(work); }}
                 />
               </SwiperSlide>
             ))}

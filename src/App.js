@@ -4,6 +4,7 @@ import Photo from './modules/Photo';
 import About from './modules/About';
 import Contact from './modules/Contact';
 import { LanguageProvider } from './context/LanguageContext';
+import './stylesheets/Motion.css';
 
 const App = () => (
   <LanguageProvider>

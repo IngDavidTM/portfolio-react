@@ -1,3 +1,4 @@
+/* stylelint-disable csstree/validator, no-descending-specificity */
 .contact {
   position: sticky;
   top: 0;
@@ -9,20 +10,20 @@
   padding: 0 2rem;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   color: var(--shadow);
 }
 
 .contact h2,
-.contact h3,
 .contact p {
   max-width: 500px;
   width: 100%;
 }
 
-.contact p {
+.contact .contact_lede {
   line-height: 1.5;
-  color: #181818bd;
+  color: rgba(42, 49, 50, 0.7);
+  margin-bottom: 1.5rem;
 }
 
 .contact-form {
@@ -40,47 +41,75 @@
   margin-bottom: 25px;
   width: 100%;
   font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .contact-form input,
 .contact-form textarea {
-  font-size: 14px;
-  padding: 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.8rem 0.9rem;
   border: 1px solid transparent;
   border-radius: 5px;
   background-color: #fff;
   width: 100%;
-  margin-top: 5px;
+  margin-top: 0.4rem;
+  color: var(--ink);
   box-shadow: inset 0 0 0 1px rgba(42, 49, 50, 0.05);
   transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
-.contact-form button[type="submit"] {
-  border: 2px solid var(--shadow);
-  color: var(--shadow);
-  text-decoration: none;
-  align-self: flex-start;
-  padding: 1rem;
-  border-radius: 2rem;
-  transition-duration: 0.3s;
-  cursor: pointer;
-  background: none;
+.contact-form textarea {
+  min-height: 7.5rem;
+  resize: vertical;
 }
 
-.contact-form button[type="submit"]:hover {
-  background-color: var(--shadow);
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(42, 49, 50, 0.6);
+}
+
+.contact-form button[type="submit"] {
+  position: relative;
+  border: 1.5px solid var(--shadow);
+  color: var(--shadow);
+  font: inherit;
+  font-weight: 600;
+  align-self: flex-start;
+  padding: 0.95rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  background: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.35s var(--ease-out), transform 0.15s ease;
+}
+
+.contact-form button[type="submit"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--shadow);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.45s var(--ease-out);
+}
+
+.contact-form button[type="submit"]:not(:disabled):hover {
   color: var(--primary-color);
+}
+
+.contact-form button[type="submit"]:not(:disabled):hover::before {
+  clip-path: inset(0);
+}
+
+.contact-form button[type="submit"]:active {
+  transform: scale(0.97);
 }
 
 .contact-form button[type="submit"]:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-.contact-form button[type="submit"]:disabled:hover {
-  border: 2px solid var(--shadow);
-  color: var(--shadow);
-  background: none !important;
 }
 
 .contact-form input:focus,
@@ -128,9 +157,10 @@
 
 .error-message,
 .success-message {
-  max-width: 300px;
+  max-width: 500px;
   width: 100%;
-  text-align: center;
+  font-weight: 600;
+  animation: soft_fade 0.3s ease both;
 }
 
 .error-message {
@@ -143,6 +173,6 @@
 
 @media only screen and (min-width: 1124px) {
   .contact {
-    animation: appear_from_right 0.5s;
+    padding: 0 clamp(2rem, 4vw, 4.5rem);
   }
 }

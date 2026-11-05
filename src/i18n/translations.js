@@ -12,10 +12,10 @@ const translations = {
     },
     main: {
       headline: {
-        line1: 'Hey there. I am David',
-        line2: 'I am a software Developer',
+        line1: "Hi, I'm David.",
+        line2: 'I build web products, dashboards and AI engines.',
       },
-      description: 'Hello! My name is David, and I am a Full-Stack software developer with a passion for leveraging software engineering to enhance web-based tools.',
+      description: 'Full-stack developer. From the interface to the engine behind it.',
       cta: "Let's collaborate",
       social: {
         intro: 'Find me on',
@@ -33,13 +33,13 @@ const translations = {
     },
     works: {
       title: 'Projects',
-      subtitle: "Swipe or drag to see some of the projects I've worked on.",
+      subtitle: 'Drag to explore, tap for details.',
       prev: 'Show previous project',
       next: 'Show next project',
     },
     about: {
       title: 'About me',
-      paragraph: "I'm a front-end and back-end developer who enjoys collaborating with design teams to accurately translate their ideas. Using modern technologies to bring creativity to life is my passion.",
+      paragraph: 'I work across front-end and back-end, and I enjoy turning a design team\'s ideas into products that feel right.',
       skills: {
         languages: 'Languages',
         frameworks: 'Frameworks',
@@ -48,8 +48,7 @@ const translations = {
     },
     contact: {
       title: 'Contact me',
-      subtitle: "Don't be shy!",
-      description: 'If you have any questions or want to work with me, please contact me.',
+      subtitle: 'Have a project in mind? Tell me about it.',
       labels: {
         name: 'Name',
         email: 'Email',
@@ -91,10 +90,10 @@ const translations = {
     },
     main: {
       headline: {
-        line1: 'Hola. Soy David',
-        line2: 'Soy desarrollador de software',
+        line1: 'Hola, soy David.',
+        line2: 'Construyo productos web, dashboards y motores de IA.',
       },
-      description: '¡Hola! Mi nombre es David y soy desarrollador Full-Stack con pasión por aprovechar la ingeniería de software para potenciar herramientas web.',
+      description: 'Desarrollador full-stack. De la interfaz al motor que la hace funcionar.',
       cta: 'Colaboremos',
       social: {
         intro: 'Encuéntrame en',
@@ -112,13 +111,13 @@ const translations = {
     },
     works: {
       title: 'Proyectos',
-      subtitle: 'Desliza para descubrir algunos de los proyectos en los que he trabajado.',
+      subtitle: 'Desliza para explorar, toca para ver detalles.',
       prev: 'Ver proyecto anterior',
       next: 'Ver siguiente proyecto',
     },
     about: {
       title: 'Sobre mí',
-      paragraph: 'Soy un desarrollador full-stack al que le encanta colaborar con equipos de diseño para llevar sus ideas a productos funcionales. Usar tecnología moderna para convertir la creatividad en realidad es mi pasión.',
+      paragraph: 'Trabajo en front-end y back-end, y disfruto convertir las ideas de un equipo de diseño en productos que se sienten bien.',
       skills: {
         languages: 'Lenguajes',
         frameworks: 'Frameworks',
@@ -127,8 +126,7 @@ const translations = {
     },
     contact: {
       title: 'Contáctame',
-      subtitle: '¡No seas tímido!',
-      description: 'Si tienes alguna pregunta o quieres trabajar conmigo, no dudes en escribirme.',
+      subtitle: '¿Tienes un proyecto en mente? Cuéntamelo.',
       labels: {
         name: 'Nombre',
         email: 'Correo',

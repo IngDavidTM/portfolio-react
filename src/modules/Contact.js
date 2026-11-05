@@ -121,8 +121,7 @@ const Contact = () => {
   return (
     <section className="contact" id="contact">
       <h2>{contactCopy.title}</h2>
-      <h3>{contactCopy.subtitle}</h3>
-      <p>{contactCopy.description}</p>
+      <p className="contact_lede">{contactCopy.subtitle}</p>
       <form className="contact-form" onSubmit={handleSubmit} noValidate>
         <label htmlFor="name">
           {contactCopy.labels.name}

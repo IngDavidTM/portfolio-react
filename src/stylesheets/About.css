@@ -1,3 +1,4 @@
+/* stylelint-disable csstree/validator */
 .about {
   position: sticky;
   top: 0;
@@ -12,9 +13,12 @@
   gap: 2rem;
 }
 
-.about h3 {
-  max-width: 800px;
+.about > h3 {
+  max-width: 36ch;
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  font-weight: 500;
   line-height: 1.5;
+  letter-spacing: -0.01em;
 }
 
 .skills {
@@ -22,8 +26,12 @@
 }
 
 .skills h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: rgba(27, 33, 34, 0.7);
 }
 
 .skills ul {
@@ -32,17 +40,44 @@
   margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
-  max-height: 100px;
-  gap: 5px;
+  gap: 0.5rem;
   align-items: center;
+  max-width: 640px;
 }
 
 .skills li {
-  font-size: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
   text-align: center;
-  border-radius: 5px;
-  padding: 5px 10px;
-  background-color: rgba(255, 255, 255, 0.363);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  transition: background-color 0.25s ease, transform 0.25s var(--ease-out);
+}
+
+.skills li:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+/* Chips arrive as a list each time their group becomes active */
+.swiper-slide-active .skills li {
+  animation: chip_in 0.5s var(--ease-out) both;
+  animation-delay: calc(min(var(--i), 12) * 30ms);
+}
+
+@keyframes chip_in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swiper-slide-active .skills li {
+    animation: soft_fade 0.3s ease both;
+  }
 }
 
 .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
@@ -50,13 +85,9 @@
   background-color: var(--primary-color);
 }
 
-.swiper-slide {
-  transition: transform 0.5s ease-in-out;
-}
-
 @media only screen and (min-width: 1124px) {
   .about {
-    gap: 4rem;
-    animation: appear_from_right 0.5s;
+    gap: 3rem;
+    padding: 0 clamp(2rem, 4vw, 4.5rem);
   }
 }

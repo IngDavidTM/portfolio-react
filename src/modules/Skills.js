@@ -4,8 +4,8 @@ const Skills = (skills) => {
     <div className="skills">
       <h3>{title}</h3>
       <ul>
-        {items.map((item) => (
-          <li key={item}>{item}</li>
+        {items.map((item, index) => (
+          <li key={item} style={{ '--i': index }}>{item}</li>
         ))}
       </ul>
     </div>

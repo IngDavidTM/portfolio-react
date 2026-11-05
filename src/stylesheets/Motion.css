@@ -1,0 +1,278 @@
+/* stylelint-disable csstree/validator, property-no-unknown */
+
+/*
+ * Scroll-driven stack.
+ * Every section is a sticky, full-height sheet. As the next sheet slides up,
+ * the one underneath sinks back and dims, the incoming sheet's top corners
+ * flatten as it lands, and its content trails slightly behind it.
+ * Everything runs on the compositor through CSS scroll timelines; no JS.
+ *
+ * --i = position of the sheet in the stack, --n = number of scroll "steps".
+ * Step k of the page scroll covers the range [k/n, (k+1)/n] of the root timeline.
+ */
+
+.main,
+.photo,
+.works,
+.about,
+.contact {
+  --i: 0;
+  --n: 4;
+}
+
+.photo {
+  --i: 1;
+}
+
+.works {
+  --i: 2;
+}
+
+.about {
+  --i: 3;
+}
+
+.contact {
+  --i: 4;
+}
+
+@media only screen and (min-width: 1124px) {
+  .main,
+  .photo,
+  .works,
+  .about,
+  .contact {
+    --n: 3;
+  }
+
+  .photo {
+    --i: 0;
+  }
+
+  .works {
+    --i: 1;
+  }
+
+  .about {
+    --i: 2;
+  }
+
+  .contact {
+    --i: 3;
+  }
+}
+
+.photo::after,
+.works::after,
+.about::after,
+.contact::after,
+.main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@supports (animation-timeline: scroll()) {
+  /* The sheet being covered: sinks back */
+  .photo,
+  .works,
+  .about,
+  .main {
+    transform-origin: 50% 35%;
+    animation: sheet_recede linear both;
+    animation-timeline: scroll(root block);
+    animation-range:
+      calc(var(--i) / var(--n) * 100%)
+      calc((var(--i) + 1) / var(--n) * 100%);
+  }
+
+  .photo::after,
+  .works::after,
+  .about::after,
+  .main::after {
+    animation: sheet_dim linear both;
+    animation-timeline: scroll(root block);
+    animation-range:
+      calc(var(--i) / var(--n) * 100%)
+      calc((var(--i) + 1) / var(--n) * 100%);
+  }
+
+  /* The incoming sheet: rounded leading edge that lands flat */
+  .photo,
+  .works,
+  .about,
+  .contact {
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+  }
+
+  .contact {
+    animation: sheet_land linear both;
+    animation-timeline: scroll(root block);
+    animation-range:
+      calc((var(--i) - 1) / var(--n) * 100%)
+      calc(var(--i) / var(--n) * 100%);
+  }
+
+  .photo,
+  .works,
+  .about {
+    animation-name: sheet_recede, sheet_land;
+    animation-timeline: scroll(root block), scroll(root block);
+    animation-range:
+      calc(var(--i) / var(--n) * 100%) calc((var(--i) + 1) / var(--n) * 100%),
+      calc((var(--i) - 1) / var(--n) * 100%) calc(var(--i) / var(--n) * 100%);
+  }
+
+  /* Content trails the sheet so it reads as a layer, not a flat page */
+  .works > *,
+  .about > *,
+  .contact > * {
+    animation: content_trail linear both;
+    animation-timeline: scroll(root block);
+    animation-range:
+      calc((var(--i) - 1) / var(--n) * 100%)
+      calc(var(--i) / var(--n) * 100%);
+  }
+
+  /* Desktop nav: each underline fills as its sheet arrives, empties as it leaves */
+  @media only screen and (min-width: 1124px) {
+    .main,
+    .main::after {
+      animation: none;
+    }
+
+    .photo {
+      border-radius: 0;
+      animation-name: sheet_recede;
+      animation-range: 0% 33.333%;
+    }
+
+    .nav_list button::after {
+      animation: linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0% 100%;
+    }
+
+    .nav_list .nav_works::after {
+      animation-name: nav_works;
+    }
+
+    .nav_list .nav_about::after {
+      animation-name: nav_about;
+    }
+
+    .nav_list .nav_contact::after {
+      animation-name: nav_contact;
+    }
+  }
+}
+
+@keyframes sheet_recede {
+  to {
+    transform: scale(0.9) translateY(-2%);
+  }
+}
+
+@keyframes sheet_dim {
+  to {
+    opacity: 0.6;
+  }
+}
+
+@keyframes sheet_land {
+  from {
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+  }
+
+  to {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+@keyframes content_trail {
+  from {
+    transform: translateY(14vh);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes nav_works {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  33.333% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  50% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+
+  66.666%,
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+@keyframes nav_about {
+  0%,
+  33.333% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  66.666% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  83% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+@keyframes nav_contact {
+  0%,
+  66.666% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo,
+  .works,
+  .about,
+  .contact,
+  .main,
+  .works > *,
+  .about > *,
+  .contact > * {
+    animation: none;
+    border-radius: 0;
+  }
+}

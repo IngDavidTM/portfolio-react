@@ -1,3 +1,4 @@
+/* stylelint-disable csstree/validator, no-descending-specificity */
 .main {
   top: 0;
   position: sticky;
@@ -10,61 +11,165 @@
   padding: 2rem;
 }
 
-.main > * {
-  animation: initial_fade 0.5s;
-}
-
-@keyframes initial_fade {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.main a {
-  color: var(--primary-color);
-}
-
-.main_footer {
-  color: var(--primary-color);
-  transition-duration: 0.3s;
-}
-
-.main header a {
-  border: 2px solid rgb(var(--mist));
-  color: rgb(var(--mist));
-  text-decoration: none;
-  align-self: flex-start;
-  padding: 1rem;
-  border-radius: 2rem;
-  transition-duration: 0.3s;
-}
-
-.main_footer a:hover {
-  text-decoration: none;
-}
-
 .main header {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .main h1 {
-  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(2.6rem, 5.4vw, 5rem);
+  font-weight: 750;
+  font-stretch: 82%;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--primary-color);
+  text-wrap: balance;
+}
+
+.main h1 .line {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.08em;
+}
+
+.main h1 .line > span {
+  display: inline-block;
+  animation: line_rise 0.9s var(--ease-out) both;
+}
+
+.main h1 .line_soft {
+  font-size: 0.48em;
+  font-weight: 500;
+  font-stretch: 95%;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: rgb(var(--mist));
+  margin-top: 0.6em;
+}
+
+.main h1 .line_soft > span {
+  animation-delay: 0.12s;
+}
+
+@keyframes line_rise {
+  from {
+    transform: translateY(110%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.main_lede {
+  max-width: 38ch;
+  line-height: 1.6;
+  color: rgba(var(--mist), 0.85);
+  animation: soft_in 0.8s var(--ease-out) 0.35s both;
+}
+
+@keyframes soft_in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CTA: fill wipes in from the left, arrow nudges forward */
+.main_cta {
+  position: relative;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1.4rem;
+  border: 1.5px solid rgb(var(--mist));
+  border-radius: 999px;
+  color: rgb(var(--mist));
+  text-decoration: none;
   font-weight: 600;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.35s var(--ease-out);
+  animation: soft_in 0.8s var(--ease-out) 0.45s both;
 }
 
-.main header p {
-  max-width: 800px;
+.main_cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(var(--mist));
+  clip-path: inset(0 100% 0 0 round 999px);
+  transition: clip-path 0.45s var(--ease-out);
 }
 
-.main header a:hover {
-  background-color: rgb(var(--mist));
+.main_cta svg {
+  transition: transform 0.35s var(--ease-out);
+}
+
+.main_cta:hover,
+.main_cta:focus-visible {
   color: var(--shadow);
+}
+
+.main_cta:hover::before,
+.main_cta:focus-visible::before {
+  clip-path: inset(0 0 0 0 round 999px);
+}
+
+.main_cta:hover svg,
+.main_cta:focus-visible svg {
+  transform: translateX(4px);
+}
+
+.main_cta:active {
+  transform: scale(0.97);
+}
+
+/* Social links: underline draws from the left */
+.main_footer {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  animation: soft_in 0.8s var(--ease-out) 0.55s both;
+}
+
+.main_footer a {
+  position: relative;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding-block: 0.3rem;
+}
+
+.main_footer a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.1rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0.25);
+  transform-origin: left;
+  opacity: 0.5;
+  transition: transform 0.4s var(--ease-out), opacity 0.4s var(--ease-out);
+}
+
+.main_footer a:hover::after,
+.main_footer a:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
 }
 
 nav {
@@ -96,8 +201,8 @@ nav .button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.25s ease;
-  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s var(--ease-out);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 nav .button svg {
@@ -107,28 +212,34 @@ nav .button svg {
 nav .button:hover,
 nav .button:focus-visible {
   transform: translateY(-2px);
-  outline: none;
+}
+
+nav .button:active {
+  transform: scale(0.94);
 }
 
 .language_chip {
-  border: 1px solid rgba(var(--mist), 0.4);
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: rgba(var(--mist), 0.15);
+  background: rgb(var(--mist));
   color: var(--shadow);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   padding: 0.4rem 0.9rem;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  transition: background 0.25s ease, transform 0.25s var(--ease-out), border-color 0.25s ease;
 }
 
 .language_chip:hover,
 .language_chip:focus-visible {
-  background: rgba(var(--mist), 0.3);
-  border-color: rgba(var(--mist), 0.55);
+  background: var(--primary-color);
   transform: translateY(-2px);
-  outline: none;
+}
+
+.language_chip:active {
+  transform: scale(0.94);
 }
 
 .nav_list {
@@ -140,28 +251,44 @@ nav .button:focus-visible {
 }
 
 .nav_list button {
+  position: relative;
   background: none;
   border: none;
   color: rgb(var(--mist));
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  padding-block: 0.4rem;
   transition: color 0.25s ease;
+}
+
+.nav_list button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: left;
 }
 
 .nav_list button:hover,
 .nav_list button:focus-visible {
   color: var(--primary-color);
-  outline: none;
 }
 
 @media only screen and (min-width: 1124px) {
   .main {
     max-width: 50%;
     justify-content: space-around;
+    padding: 2rem clamp(2rem, 4vw, 4.5rem);
   }
 
   .main header {
-    gap: 5rem;
+    gap: 2.75rem;
   }
 
   .nav_list {
@@ -175,5 +302,15 @@ nav .button:focus-visible {
 
   nav {
     width: 50%;
+    padding-inline: clamp(2rem, 4vw, 4.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main h1 .line > span,
+  .main_lede,
+  .main_cta,
+  .main_footer {
+    animation: soft_fade 0.4s ease both;
   }
 }

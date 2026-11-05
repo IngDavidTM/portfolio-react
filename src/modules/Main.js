@@ -1,9 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBurger } from '@fortawesome/free-solid-svg-icons';
+import { faBurger, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { useLanguage, useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Main.css';
 import Menu from './Menu';
+
+const links = [
+  { label: 'GitHub', href: 'https://github.com/IngDavidTM' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ing-david-tamayo/' },
+  { label: 'Twitter', href: 'https://twitter.com/David5TM' },
+];
+
+const resumeHref = 'https://docs.google.com/document/d/1jNK2rITeP2TEhDsLCzs6wJRNnnId4pD7/edit?usp=sharing&ouid=115820516505556240890&rtpof=true&sd=true';
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
@@ -64,9 +72,9 @@ const Main = () => {
           </button>
         </div>
         <ul className="nav_list">
-          <li><button type="button" onClick={() => scrollToSection('works', 1)}>{navCopy.works}</button></li>
-          <li><button type="button" onClick={() => scrollToSection('about', 2)}>{navCopy.about}</button></li>
-          <li><button type="button" onClick={() => scrollToSection('contact', 3)}>{navCopy.contact}</button></li>
+          <li><button type="button" className="nav_works" onClick={() => scrollToSection('works', 1)}>{navCopy.works}</button></li>
+          <li><button type="button" className="nav_about" onClick={() => scrollToSection('about', 2)}>{navCopy.about}</button></li>
+          <li><button type="button" className="nav_contact" onClick={() => scrollToSection('contact', 3)}>{navCopy.contact}</button></li>
         </ul>
       </nav>
       {menu && <Menu scrollToSectionMobile={scrollToSectionMobile} setMenu={setMenu} />}
@@ -74,36 +82,25 @@ const Main = () => {
         <p />
         <header>
           <h1>
-            {mainCopy.headline.line1}
-            {' '}
-            <br />
-            {' '}
-            {mainCopy.headline.line2}
+            <span className="line"><span>{mainCopy.headline.line1}</span></span>
+            <span className="line line_soft"><span>{mainCopy.headline.line2}</span></span>
           </h1>
-          <p>
-            {mainCopy.description}
-          </p>
-          <a href="#contact">{mainCopy.cta}</a>
+          <p className="main_lede">{mainCopy.description}</p>
+          <a href="#contact" className="main_cta">
+            <span>{mainCopy.cta}</span>
+            <FontAwesomeIcon icon={faArrowRight} />
+          </a>
         </header>
-        <p className="main_footer">
-          {mainCopy.social.intro}
-          {' '}
-          <a href="https://github.com/IngDavidTM" target="_blank" rel="noreferrer">GitHub</a>
-          ,
-          {' '}
-          <a href="https://www.linkedin.com/in/ing-david-tamayo/" target="_blank" rel="noreferrer">Linkedin</a>
-          {' '}
-          {mainCopy.social.and}
-          {' '}
-          <a href="https://twitter.com/David5TM" target="_blank" rel="noreferrer">Twitter</a>
-          .
-          {' '}
-          <br />
-          {' '}
-          {mainCopy.social.resumePrefix}
-          {' '}
-          <a href="https://docs.google.com/document/d/1jNK2rITeP2TEhDsLCzs6wJRNnnId4pD7/edit?usp=sharing&ouid=115820516505556240890&rtpof=true&sd=true" target="_blank" rel="noreferrer">{mainCopy.social.resumeLink}</a>
-        </p>
+        <ul className="main_footer">
+          {links.map((link) => (
+            <li key={link.label}>
+              <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+            </li>
+          ))}
+          <li>
+            <a href={resumeHref} target="_blank" rel="noreferrer">{mainCopy.social.resumeLink}</a>
+          </li>
+        </ul>
         <p />
       </section>
 

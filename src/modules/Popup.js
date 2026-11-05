@@ -1,8 +1,13 @@
+import {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt, faClose } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Popup.css';
+
+const EXIT_MS = 220;
 
 const Popup = (work) => {
   const {
@@ -10,23 +15,60 @@ const Popup = (work) => {
   } = work;
   const { t } = useTranslation();
   const popupCopy = t('popup');
+  const [closing, setClosing] = useState(false);
+  const closeRef = useRef(null);
+
+  const close = useCallback(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      setPopup(false);
+      return;
+    }
+    setClosing(true);
+    setTimeout(() => setPopup(false), EXIT_MS);
+  }, [setPopup]);
+
+  useEffect(() => {
+    const opener = document.activeElement;
+    const root = document.documentElement;
+    const previousOverflow = root.style.overflow;
+    root.style.overflow = 'hidden';
+    closeRef.current?.focus({ preventScroll: true });
+
+    const onKey = (event) => {
+      if (event.key === 'Escape') close();
+    };
+    window.addEventListener('keydown', onKey);
+
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      root.style.overflow = previousOverflow;
+      if (opener && opener.focus) opener.focus({ preventScroll: true });
+    };
+  }, [close]);
+
   return (
+    // Escape is handled on window; clicking the backdrop is a pointer-only shortcut.
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
     <article
-      className="popup"
+      className={`popup${closing ? ' is-closing' : ''}`}
       role="dialog"
       aria-modal="true"
       aria-label={`${popupCopy.dialogLabel} ${title}`}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) close();
+      }}
     >
       <div className="popup_content">
         <div className="popup_media">
           <img src={image} alt={title} />
           <button
+            ref={closeRef}
             type="button"
             className="popup_close"
             aria-label={popupCopy.closeAria}
-            onClick={() => {
-              setPopup(false);
-            }}
+            onClick={close}
           >
             <FontAwesomeIcon icon={faClose} />
           </button>

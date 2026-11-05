@@ -5,6 +5,7 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { flushSync } from 'react-dom';
 import translations from '../i18n/translations';
 
 const LanguageContext = createContext();
@@ -17,7 +18,15 @@ export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('en');
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === 'en' ? 'es' : 'en'));
+    const swap = () => setLanguage((prev) => (prev === 'en' ? 'es' : 'en'));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Cross-fade the whole page between languages where View Transitions exist
+    if (!document.startViewTransition || reduce) {
+      swap();
+      return;
+    }
+    document.startViewTransition(() => flushSync(swap));
   };
 
   const value = useMemo(() => ({ language, setLanguage, toggleLanguage }), [language]);
