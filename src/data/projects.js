@@ -8,8 +8,44 @@ import Project7 from '../images/Project7.avif';
 import Project8 from '../images/Project8.avif';
 import Project9 from '../images/Project9.avif';
 import Project10 from '../images/Project10.avif';
+import Project11 from '../images/Project11.avif';
+import Project12 from '../images/Project12.avif';
+import Project13 from '../images/Project13.avif';
 
 const data = [
+  {
+    id: 13,
+    title: 'Asoma',
+    image: Project13,
+    tags: ['Next', 'React', 'AI', 'LLMs'],
+    description: {
+      en: 'SaaS that measures how AI assistants (ChatGPT, Gemini, Claude, Grok, Meta AI) talk about a brand versus its competitors. I built the entire AI engine and the internal analysis: automated measurements, share of mentions, source intelligence and recommendations.',
+      es: 'SaaS que mide cómo los asistentes de IA (ChatGPT, Gemini, Claude, Grok, Meta AI) hablan de una marca frente a su competencia. Construí todo el motor de IA y el análisis interno: mediciones automáticas, cuota de menciones, inteligencia de fuentes y recomendaciones.',
+    },
+    live: 'https://asoma.lat/',
+  },
+  {
+    id: 11,
+    title: 'CASA Ecuador',
+    image: Project11,
+    tags: ['React', 'Vite', 'Admin panel'],
+    description: {
+      en: 'Official platform for the CASA sustainable-housing certification, backed by the CEES and the MIT. We built the evaluation engine, the admin panel and internal modules that take projects from registration through evaluation to certification.',
+      es: 'Plataforma oficial de la certificación CASA de vivienda sostenible, respaldada por el CEES y el MIT. Creamos el motor de evaluación, el administrador y módulos internos que llevan cada proyecto del registro a la evaluación y la certificación.',
+    },
+    live: 'https://casaecuador.ec/',
+  },
+  {
+    id: 12,
+    title: 'Concreto',
+    image: Project12,
+    tags: ['Angular', 'Typescript', 'KPIs'],
+    description: {
+      en: 'Construction purchasing network in Ecuador: catalog, quote builder, clearance sales and supplier stores. I support the design and the sales features, along with statistics and KPI dashboards.',
+      es: 'Red de compras para la construcción en Ecuador: catálogo, cotizador, liquidaciones y tiendas de proveedores. Doy soporte en el diseño y en las funciones de venta, además de estadísticas y paneles de KPIs.',
+    },
+    live: 'https://concreto.com.ec/',
+  },
   {
     id: 1,
     title: 'AliceTrader',
