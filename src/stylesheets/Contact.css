@@ -83,6 +83,17 @@
   background: none;
 }
 
+/* Match the liquid fill's ink; this selector outranks .btn_liquid:hover */
+.contact-form button[type="submit"]:focus-visible {
+  color: var(--fill-ink);
+}
+
+@media (hover: hover) {
+  .contact-form button[type="submit"]:hover:not(:disabled) {
+    color: var(--fill-ink);
+  }
+}
+
 .contact-form button[type="submit"]:disabled {
   opacity: 0.6;
   cursor: not-allowed;
