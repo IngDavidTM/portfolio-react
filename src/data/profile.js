@@ -6,7 +6,11 @@ const profile = {
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ing-david-tamayo/' },
     { label: 'Twitter', href: 'https://twitter.com/David5TM' },
   ],
-  resume: 'https://docs.google.com/document/d/1jNK2rITeP2TEhDsLCzs6wJRNnnId4pD7/edit?usp=sharing&ouid=115820516505556240890&rtpof=true&sd=true',
+  // Built from resume/*.html by `npm run resume`
+  resume: {
+    en: '/cv/david-tamayo-cv-en.pdf',
+    es: '/cv/david-tamayo-cv-es.pdf',
+  },
 };
 
 export default profile;

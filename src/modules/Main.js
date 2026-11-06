@@ -1,21 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBurger, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
-import { LANGUAGES, useLanguage, useTranslation } from '../context/LanguageContext';
+import { useTranslation } from '../context/LanguageContext';
+import LanguageSwitch from './LanguageSwitch';
 import '../stylesheets/Main.css';
 import Menu from './Menu';
 import { scrollToSection } from '../utils/scroll';
 import profile from '../data/profile';
 
-const { links, resume: resumeHref } = profile;
-
-// Each language is named in itself, so a visitor finds theirs whatever the page is in
-const languageNames = { en: 'English', es: 'Español', fr: 'Français' };
+const { links, resume } = profile;
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
-  const { language, chooseLanguage } = useLanguage();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const resumeHref = resume[language] || resume.en;
   const navCopy = t('nav');
   const mainCopy = t('main');
 
@@ -57,20 +55,7 @@ const Main = () => {
           >
             <FontAwesomeIcon icon={faBurger} className="nav_icon" />
           </button>
-          <div className="language_switch" role="group" aria-label={t('language.label')}>
-            {LANGUAGES.map((code) => (
-              <button
-                key={code}
-                type="button"
-                lang={code}
-                aria-label={languageNames[code]}
-                aria-pressed={language === code}
-                onClick={() => chooseLanguage(code)}
-              >
-                {code.toUpperCase()}
-              </button>
-            ))}
-          </div>
+          <LanguageSwitch />
         </div>
         <ul className="nav_list">
           <li><button type="button" className="nav_works" onClick={() => goTo('works')}>{navCopy.works}</button></li>

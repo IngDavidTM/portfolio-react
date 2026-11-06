@@ -14,7 +14,7 @@ import '../stylesheets/Popup.css';
 const EXIT_MS = 260;
 
 const Popup = ({
-  work, index, count, onPrev, onNext, onClose,
+  work, index, count, onPrev, onNext, onClose, caseHref,
 }) => {
   const {
     image, title, tags, description, github, live,
@@ -145,7 +145,13 @@ const Popup = ({
               ))}
             </ul>
             <div className="sheet_actions">
-              <a href={live} className="sheet_action btn_liquid" target="_blank" rel="noreferrer">
+              {caseHref ? (
+                <a href={caseHref} className="sheet_action btn_liquid">
+                  <span>{t('case.read')}</span>
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </a>
+              ) : null}
+              <a href={live} className={`sheet_action btn_liquid${caseHref ? ' is-ghost' : ''}`} target="_blank" rel="noreferrer">
                 <span>{popupCopy.visit}</span>
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </a>
@@ -178,6 +184,11 @@ Popup.propTypes = {
   onPrev: PropTypes.func.isRequired,
   onNext: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
+  caseHref: PropTypes.string,
+};
+
+Popup.defaultProps = {
+  caseHref: null,
 };
 
 export default Popup;

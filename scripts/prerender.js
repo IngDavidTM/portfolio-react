@@ -85,6 +85,10 @@ const translations = fromSrc('i18n/translations.js');
 const projects = fromSrc('data/projects.js');
 const skillGroups = fromSrc('data/skills.js');
 const profile = fromSrc('data/profile.js');
+const caseModule = load(path.join(SRC, 'data/caseStudies.js'));
+const caseStudies = caseModule.default;
+const { caseOrder } = caseModule;
+const { casePath } = load(path.join(SRC, 'utils/route.js'));
 const { LANGUAGES, pathForLanguage } = load(path.join(SRC, 'context/LanguageContext.js'));
 
 // ---- Helpers ----
@@ -100,103 +104,171 @@ const jsonScript = (data) => JSON.stringify(data).replace(/</g, '\\u003c');
 const allSkills = skillGroups.flatMap((group) => group.items);
 const photo = absolute(manifest['static/media/me.avif']);
 const ogImage = absolute('/og.jpg');
+const resumeFor = (lang) => absolute(profile.resume[lang] || profile.resume.en);
+
+// Every page that gets its own HTML: the portfolio and one per case study
+const pages = [
+  { subpath: '', kind: 'home' },
+  ...caseOrder.map((slug) => ({ subpath: casePath(slug), kind: 'case', slug })),
+];
+
+const projectFor = (slug) => projects.find((item) => item.id === caseStudies[slug].projectId);
 
 // ---- Structured data ----
-const structuredData = (lang) => {
+const personFor = (lang) => ({
+  '@type': 'Person',
+  '@id': `${SITE}/#person`,
+  name: profile.name,
+  jobTitle: translations[lang].seo.role,
+  description: translations[lang].seo.description,
+  url: `${SITE}/`,
+  image: photo,
+  sameAs: profile.links.map((link) => link.href),
+  knowsAbout: allSkills,
+  subjectOf: { '@type': 'DigitalDocument', name: 'Resume', url: resumeFor(lang) },
+});
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${SITE}/#website`,
+  url: `${SITE}/`,
+  name: profile.name,
+  inLanguage: LANGUAGES,
+  publisher: { '@id': `${SITE}/#person` },
+};
+
+const homeData = (lang) => {
   const copy = translations[lang];
   const pageUrl = absolute(pathForLanguage(lang));
-  const person = {
-    '@type': 'Person',
-    '@id': `${SITE}/#person`,
-    name: profile.name,
-    jobTitle: copy.seo.role,
-    description: copy.seo.description,
-    url: `${SITE}/`,
-    image: photo,
-    sameAs: profile.links.map((link) => link.href),
-    knowsAbout: allSkills,
-  };
-  const works = projects.map((project) => ({
-    '@type': 'CreativeWork',
-    name: project.title,
-    url: project.live,
-    image: absolute(project.image),
-    description: project.description[lang],
-    keywords: project.tags.join(', '),
-    creator: { '@id': `${SITE}/#person` },
-  }));
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      person,
-      {
-        '@type': 'WebSite',
-        '@id': `${SITE}/#website`,
-        url: `${SITE}/`,
-        name: profile.name,
-        inLanguage: LANGUAGES,
-        publisher: { '@id': `${SITE}/#person` },
+  const works = projects.map((project) => {
+    const slug = Object.keys(caseStudies).find((key) => caseStudies[key].projectId === project.id);
+    return {
+      '@type': 'CreativeWork',
+      name: project.title,
+      url: slug ? absolute(pathForLanguage(lang, casePath(slug))) : project.live,
+      image: absolute(project.image),
+      description: project.description[lang],
+      keywords: project.tags.join(', '),
+      creator: { '@id': `${SITE}/#person` },
+    };
+  });
+  return [
+    personFor(lang),
+    website,
+    {
+      '@type': 'ProfilePage',
+      '@id': `${pageUrl}#page`,
+      url: pageUrl,
+      name: copy.seo.title,
+      description: copy.seo.description,
+      inLanguage: lang,
+      isPartOf: { '@id': `${SITE}/#website` },
+      mainEntity: { '@id': `${SITE}/#person` },
+      hasPart: {
+        '@type': 'ItemList',
+        name: copy.works.title,
+        itemListElement: works.map((item, index) => ({ '@type': 'ListItem', position: index + 1, item })),
       },
-      {
-        '@type': 'ProfilePage',
-        '@id': `${pageUrl}#page`,
-        url: pageUrl,
-        name: copy.seo.title,
-        description: copy.seo.description,
-        inLanguage: lang,
-        isPartOf: { '@id': `${SITE}/#website` },
-        mainEntity: { '@id': `${SITE}/#person` },
-        hasPart: {
-          '@type': 'ItemList',
-          name: copy.works.title,
-          itemListElement: works.map((item, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            item,
-          })),
+    },
+  ];
+};
+
+const caseData = (lang, slug) => {
+  const study = caseStudies[slug];
+  const project = projectFor(slug);
+  const pageUrl = absolute(pathForLanguage(lang, casePath(slug)));
+  return [
+    personFor(lang),
+    website,
+    {
+      '@type': 'Article',
+      '@id': `${pageUrl}#article`,
+      url: pageUrl,
+      headline: `${project.title}: ${study.headline[lang]}`,
+      description: study.summary[lang],
+      inLanguage: lang,
+      image: absolute(project.image),
+      author: { '@id': `${SITE}/#person` },
+      isPartOf: { '@id': `${SITE}/#website` },
+      keywords: study.stack.concat(project.tags).join(', '),
+      about: {
+        '@type': 'CreativeWork',
+        name: project.title,
+        url: project.live,
+        creator: { '@id': `${SITE}/#person` },
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem', position: 1, name: translations[lang].works.title, item: absolute(pathForLanguage(lang)),
         },
-      },
-    ],
+        {
+          '@type': 'ListItem', position: 2, name: project.title, item: pageUrl,
+        },
+      ],
+    },
+  ];
+};
+
+// ---- <head> per page and language ----
+const metaFor = (lang, page) => {
+  if (page.kind === 'home') {
+    const { seo } = translations[lang];
+    return {
+      title: seo.title, description: seo.description, type: 'profile', graph: homeData(lang),
+    };
+  }
+  const study = caseStudies[page.slug];
+  const project = projectFor(page.slug);
+  return {
+    title: `${project.title}: ${study.headline[lang]} | ${profile.name}`,
+    description: study.summary[lang],
+    type: 'article',
+    graph: caseData(lang, page.slug),
   };
 };
 
-// ---- <head> per language ----
-const headFor = (lang) => {
-  const { seo } = translations[lang];
-  const pageUrl = absolute(pathForLanguage(lang));
+const headFor = (lang, page) => {
+  const meta = metaFor(lang, page);
+  const pageUrl = absolute(pathForLanguage(lang, page.subpath));
   const alternates = LANGUAGES
-    .map((code) => `<link rel="alternate" hreflang="${code}" href="${absolute(pathForLanguage(code))}">`)
-    .concat(`<link rel="alternate" hreflang="x-default" href="${absolute('/')}">`);
+    .map((code) => `<link rel="alternate" hreflang="${code}" href="${absolute(pathForLanguage(code, page.subpath))}">`)
+    .concat(`<link rel="alternate" hreflang="x-default" href="${absolute(pathForLanguage('en', page.subpath))}">`);
   const otherLocales = LANGUAGES
     .filter((code) => code !== lang)
     .map((code) => `<meta property="og:locale:alternate" content="${LOCALES[code]}">`);
+  const profileTags = page.kind === 'home' ? [
+    `<meta property="profile:first_name" content="${attr(profile.name.split(' ')[0])}">`,
+    `<meta property="profile:last_name" content="${attr(profile.name.split(' ').slice(1).join(' '))}">`,
+  ] : [];
 
   return [
-    `<title>${attr(seo.title)}</title>`,
-    `<meta name="description" content="${attr(seo.description)}">`,
+    `<title>${attr(meta.title)}</title>`,
+    `<meta name="description" content="${attr(meta.description)}">`,
     `<meta name="author" content="${attr(profile.name)}">`,
     '<meta name="robots" content="index, follow, max-image-preview:large">',
     `<link rel="canonical" href="${pageUrl}">`,
     ...alternates,
-    '<meta property="og:type" content="profile">',
+    `<meta property="og:type" content="${meta.type}">`,
     `<meta property="og:url" content="${pageUrl}">`,
     `<meta property="og:site_name" content="${attr(profile.name)}">`,
-    `<meta property="og:title" content="${attr(seo.title)}">`,
-    `<meta property="og:description" content="${attr(seo.description)}">`,
+    `<meta property="og:title" content="${attr(meta.title)}">`,
+    `<meta property="og:description" content="${attr(meta.description)}">`,
     `<meta property="og:image" content="${ogImage}">`,
     '<meta property="og:image:width" content="1200">',
     '<meta property="og:image:height" content="630">',
-    `<meta property="og:image:alt" content="${attr(seo.title)}">`,
+    `<meta property="og:image:alt" content="${attr(meta.title)}">`,
     `<meta property="og:locale" content="${LOCALES[lang]}">`,
     ...otherLocales,
-    `<meta property="profile:first_name" content="${attr(profile.name.split(' ')[0])}">`,
-    `<meta property="profile:last_name" content="${attr(profile.name.split(' ').slice(1).join(' '))}">`,
+    ...profileTags,
     '<meta name="twitter:card" content="summary_large_image">',
-    `<meta name="twitter:title" content="${attr(seo.title)}">`,
-    `<meta name="twitter:description" content="${attr(seo.description)}">`,
+    `<meta name="twitter:title" content="${attr(meta.title)}">`,
+    `<meta name="twitter:description" content="${attr(meta.description)}">`,
     `<meta name="twitter:image" content="${ogImage}">`,
     `<link rel="alternate" type="text/plain" title="LLM summary" href="${absolute('/llms.txt')}">`,
-    `<script type="application/ld+json">${jsonScript(structuredData(lang))}</script>`,
+    `<script type="application/ld+json">${jsonScript({ '@context': 'https://schema.org', '@graph': meta.graph })}</script>`,
   ].join('');
 };
 
@@ -206,32 +278,35 @@ if (!template.includes('<div id="root"></div>')) {
   throw new Error('build/index.html has no empty #root; was it already prerendered?');
 }
 
-LANGUAGES.forEach((lang) => {
-  const markup = renderToString(React.createElement(App, { language: lang }));
-  const html = template
-    .replace(/<html lang="[^"]*"/, `<html lang="${lang}"`)
-    .replace(/<title>[\s\S]*?<\/title>/, '')
-    .replace('</head>', `${headFor(lang)}</head>`)
-    .replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
-  const dir = path.join(BUILD, pathForLanguage(lang));
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), html);
-  console.log(`prerendered ${pathForLanguage(lang)} (${Math.round(html.length / 1024)} KB)`);
+pages.forEach((page) => {
+  LANGUAGES.forEach((lang) => {
+    const urlPath = pathForLanguage(lang, page.subpath);
+    const markup = renderToString(React.createElement(App, { language: lang, path: urlPath }));
+    const html = template
+      .replace(/<html lang="[^"]*"/, `<html lang="${lang}"`)
+      .replace(/<title>[\s\S]*?<\/title>/, '')
+      .replace('</head>', `${headFor(lang, page)}</head>`)
+      .replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
+    const dir = path.join(BUILD, urlPath);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), html);
+  });
 });
+console.log(`prerendered ${pages.length * LANGUAGES.length} pages (${pages.length} × ${LANGUAGES.length} languages)`);
 
 // ---- sitemap.xml ----
 const today = new Date().toISOString().slice(0, 10);
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
-  ...LANGUAGES.map((lang) => [
+  ...pages.flatMap((page) => LANGUAGES.map((lang) => [
     '  <url>',
-    `    <loc>${absolute(pathForLanguage(lang))}</loc>`,
+    `    <loc>${absolute(pathForLanguage(lang, page.subpath))}</loc>`,
     `    <lastmod>${today}</lastmod>`,
-    ...LANGUAGES.map((code) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${absolute(pathForLanguage(code))}"/>`),
-    `    <xhtml:link rel="alternate" hreflang="x-default" href="${absolute('/')}"/>`,
+    ...LANGUAGES.map((code) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${absolute(pathForLanguage(code, page.subpath))}"/>`),
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${absolute(pathForLanguage('en', page.subpath))}"/>`,
     '  </url>',
-  ].join('\n')),
+  ].join('\n'))),
   '</urlset>',
   '',
 ].join('\n');
@@ -259,7 +334,15 @@ const llms = [
   '',
   ...skillGroups.map((group) => `- ${en.about.skills[group.key]}: ${group.items.join(', ')}`),
   '',
-  '## Projects',
+  '## Case studies',
+  '',
+  ...caseOrder.map((slug) => {
+    const study = caseStudies[slug];
+    const results = study.results.en.map((result) => (result.value ? `${result.value} ${result.label}` : result.label)).join('; ');
+    return `- [${projectFor(slug).title}: ${study.headline.en}](${absolute(pathForLanguage('en', casePath(slug)))}): ${study.summary.en} Results: ${results}.`;
+  }),
+  '',
+  '## All projects',
   '',
   ...projects.map((project) => `- [${project.title}](${project.live}): ${project.description.en} (${project.tags.join(', ')})`),
   '',
@@ -271,7 +354,8 @@ const llms = [
   '',
   `- [Contact form](${absolute('/#contact')})`,
   ...profile.links.map((link) => `- [${link.label}](${link.href})`),
-  `- [Resume](${profile.resume})`,
+  `- [Resume (PDF, English)](${resumeFor('en')})`,
+  `- [Currículum (PDF, español)](${resumeFor('es')})`,
   '',
 ].join('\n');
 fs.writeFileSync(path.join(BUILD, 'llms.txt'), llms);

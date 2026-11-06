@@ -72,6 +72,9 @@
 
 .works_track > li {
   scroll-snap-align: center;
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
 }
 
 /* Card: the full screenshot in a light browser frame, meta underneath */
@@ -201,6 +204,25 @@
 
 .work_card:active .work_card_frame {
   scale: 0.985;
+}
+
+/* Link to the project's case study, under its card */
+.work_card_case {
+  justify-self: start;
+  margin-left: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--shadow);
+  text-decoration: underline;
+  text-decoration-color: rgba(42, 49, 50, 0.3);
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .work_card_case:hover {
+    text-decoration-color: var(--shadow);
+  }
 }
 
 /* Rail progress (shown only when the rail is scroll-driven) */

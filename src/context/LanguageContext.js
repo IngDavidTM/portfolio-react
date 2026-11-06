@@ -51,17 +51,28 @@ const detectLanguage = () => {
 };
 
 // Each language has its own URL so search engines can index all three:
-// / (English), /es/ and /fr/. The prerendered HTML is built per URL.
-export const pathForLanguage = (language) => (language === FALLBACK ? '/' : `/${language}/`);
+// / (English), /es/ and /fr/, and the same below them (/es/projects/asoma/).
+// The prerendered HTML is built per URL.
+export const pathForLanguage = (language, subpath = '') => (
+  `${language === FALLBACK ? '/' : `/${language}/`}${subpath}`
+);
 
 export const languageFromPath = (pathname = '/') => {
   const segment = pathname.split('/')[1];
   return LANGUAGES.includes(segment) ? segment : null;
 };
 
+// The part of the path below the language prefix: '' or 'projects/asoma/'
+export const subpathOf = (pathname = '/') => {
+  const parts = pathname.split('/').filter(Boolean);
+  if (LANGUAGES.includes(parts[0])) parts.shift();
+  return parts.length ? `${parts.join('/')}/` : '';
+};
+
 const syncUrl = (language) => {
-  const { hash, search } = window.location;
-  window.history.replaceState(null, '', `${pathForLanguage(language)}${search}${hash}`);
+  const { hash, search, pathname } = window.location;
+  const url = `${pathForLanguage(language, subpathOf(pathname))}${search}${hash}`;
+  window.history.replaceState(null, '', url);
 };
 
 export const LanguageProvider = ({ children, initial }) => {
@@ -86,7 +97,8 @@ export const LanguageProvider = ({ children, initial }) => {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = translations[language].seo.title;
+    // Inner pages (case studies) set their own title
+    if (!subpathOf(window.location.pathname)) document.title = translations[language].seo.title;
   }, [language]);
 
   // A manual pick wins over detection from then on

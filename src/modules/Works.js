@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import WorkCard from './WorkCard';
 import data from '../data/projects';
 import Popup from './Popup';
-import { useTranslation } from '../context/LanguageContext';
+import { pathForLanguage, useTranslation } from '../context/LanguageContext';
+import { slugForProject } from '../data/caseStudies';
+import { casePath } from '../utils/route';
 import { scrollToProject } from '../utils/scroll';
 
 // Vertical scroll spent travelling the rail, in viewport heights per project
@@ -15,6 +17,10 @@ const Works = () => {
   const worksCopy = t('works');
   const count = data.length;
   const open = openIndex === null ? null : data[openIndex];
+  const caseHref = (work) => {
+    const slug = slugForProject(work.id);
+    return slug ? pathForLanguage(language, casePath(slug)) : null;
+  };
 
   // Every sheet after Projects is timed off how long the rail stays pinned
   useEffect(() => {
@@ -45,6 +51,12 @@ const Works = () => {
                     onOpen={() => setOpenIndex(index)}
                     onFocus={() => scrollToProject(index, count)}
                   />
+                  {caseHref(work) && (
+                    <a className="work_card_case" href={caseHref(work)}>
+                      {t('case.read')}
+                      <span aria-hidden="true"> →</span>
+                    </a>
+                  )}
                 </li>
               ))}
             </ol>
@@ -56,6 +68,7 @@ const Works = () => {
         <Popup
           key="project-sheet"
           work={{ ...open, description: open.description[language] }}
+          caseHref={caseHref(open)}
           index={openIndex}
           count={count}
           onPrev={() => step(-1)}

@@ -18,7 +18,7 @@ const skillGroups = [
   {
     key: 'engineering',
     items: [
-      'TypeScript', 'Python', 'JavaScript', 'SQL', 'Next', 'React', 'Node',
+      'TypeScript', 'Python', 'JavaScript', 'C#/.NET', 'SQL', 'Next', 'React', 'Node',
       'Express', 'Vue', 'Angular', 'Ruby on Rails', 'Tailwind', 'WordPress',
     ],
   },
