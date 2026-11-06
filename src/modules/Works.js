@@ -47,6 +47,7 @@ const Works = () => {
                   <WorkCard
                     title={work.title}
                     image={work.image}
+                    srcSet={work.srcSet}
                     tags={work.tags}
                     onOpen={() => setOpenIndex(index)}
                     onFocus={() => scrollToProject(index, count)}

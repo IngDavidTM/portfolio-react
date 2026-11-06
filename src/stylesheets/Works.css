@@ -125,6 +125,7 @@
 .work_card img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 1840 / 968;
   object-fit: cover;
   object-position: top center;

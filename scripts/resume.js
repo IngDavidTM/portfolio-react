@@ -38,7 +38,7 @@ const findChrome = () => {
 const chrome = findChrome();
 fs.mkdirSync(OUT, { recursive: true });
 
-['en', 'es'].forEach((lang) => {
+['en', 'es', 'fr'].forEach((lang) => {
   const source = path.join(ROOT, 'resume', `resume.${lang}.html`);
   const target = path.join(OUT, `david-tamayo-cv-${lang}.pdf`);
   execFileSync(chrome, [

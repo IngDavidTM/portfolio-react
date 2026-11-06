@@ -1,14 +1,42 @@
 import Project1 from '../images/Project1.avif';
+import Project1Small from '../images/Project1-720.avif';
+import Project1Medium from '../images/Project1-1200.avif';
 import Project2 from '../images/Project2.avif';
+import Project2Small from '../images/Project2-720.avif';
+import Project2Medium from '../images/Project2-1200.avif';
 import Project3 from '../images/Project3.avif';
+import Project3Small from '../images/Project3-720.avif';
+import Project3Medium from '../images/Project3-1200.avif';
 import Project6 from '../images/Project6.avif';
+import Project6Small from '../images/Project6-720.avif';
+import Project6Medium from '../images/Project6-1200.avif';
 import Project7 from '../images/Project7.avif';
+import Project7Small from '../images/Project7-720.avif';
+import Project7Medium from '../images/Project7-1200.avif';
 import Project8 from '../images/Project8.avif';
+import Project8Small from '../images/Project8-720.avif';
+import Project8Medium from '../images/Project8-1200.avif';
 import Project9 from '../images/Project9.avif';
+import Project9Small from '../images/Project9-720.avif';
+import Project9Medium from '../images/Project9-1200.avif';
 import Project10 from '../images/Project10.avif';
+import Project10Small from '../images/Project10-720.avif';
+import Project10Medium from '../images/Project10-1200.avif';
 import Project11 from '../images/Project11.avif';
+import Project11Small from '../images/Project11-720.avif';
+import Project11Medium from '../images/Project11-1200.avif';
 import Project12 from '../images/Project12.avif';
+import Project12Small from '../images/Project12-720.avif';
+import Project12Medium from '../images/Project12-1200.avif';
 import Project13 from '../images/Project13.avif';
+import Project13Small from '../images/Project13-720.avif';
+import Project13Medium from '../images/Project13-1200.avif';
+
+// Each screenshot ships at 720, 1200 and full width; cards pick by srcset
+const shot = (full, small, medium) => ({
+  image: full,
+  srcSet: `${small} 720w, ${medium} 1200w, ${full} 1840w`,
+});
 
 // Ordered by weight: AI and solution-design work first, then product
 // engineering, then earlier web work.
@@ -16,7 +44,7 @@ const data = [
   {
     id: 13,
     title: 'Asoma',
-    image: Project13,
+    ...shot(Project13, Project13Small, Project13Medium),
     tags: ['LLMs', 'AI agents', 'AI engine', 'Next'],
     description: {
       en: 'SaaS that measures how ChatGPT, Gemini, Claude, Grok and Meta AI talk about a brand versus its competitors. At Prex Technologies I designed and built the whole AI engine: weekly multi-model measurement, a 0–100 visibility score, source intelligence and agents that turn findings into actions.',
@@ -28,7 +56,7 @@ const data = [
   {
     id: 10,
     title: 'SIGUE Network',
-    image: Project10,
+    ...shot(Project10, Project10Small, Project10Medium),
     tags: ['Next', 'Express', 'WordPress migration', 'Performance'],
     description: {
       en: 'Network that connects NGOs, social projects and companies across Latin America. I built and ran the WordPress site, then led the full migration to Next.js with an Express back end: 25+ bilingual routes with events, blog, donations and a member portal, far faster and fully responsive.',
@@ -40,7 +68,7 @@ const data = [
   {
     id: 11,
     title: 'CASA Ecuador',
-    image: Project11,
+    ...shot(Project11, Project11Small, Project11Medium),
     tags: ['Solution design', 'Evaluation engine', 'React', 'Admin panel'],
     description: {
       en: 'Ecuador\'s national sustainable-construction certification, run by the CEES under an agreement with the Ministry of Infrastructure and Technology (MIT). At Prex Technologies we built a configurable evaluation engine (criteria, credits and five levels that can change without code), the verifier workflow, QR-validated certificates and the admin panel.',
@@ -52,7 +80,7 @@ const data = [
   {
     id: 12,
     title: 'Concreto',
-    image: Project12,
+    ...shot(Project12, Project12Small, Project12Medium),
     tags: ['SEO', 'AI search', 'Angular', 'KPIs'],
     description: {
       en: 'Construction purchasing network in Ecuador. At Prex Technologies I made it findable by Google, Bing and AI agents (2,174 URLs in the sitemap, structured data on every page type, llms.txt and AI crawlers welcome), automated internal tasks and built the sales KPI dashboards.',
@@ -64,7 +92,7 @@ const data = [
   {
     id: 3,
     title: 'Stupendastic',
-    image: Project3,
+    ...shot(Project3, Project3Small, Project3Medium),
     tags: ['Automation', 'Python', 'Monday.com', 'Dashboards'],
     description: {
       en: 'Audiovisual production company for construction and architecture. I automated 10 to 15 internal processes in Python on Monday.com and Dropbox, saving the team 10+ hours a week, and built dashboards to follow every person\'s tasks.',
@@ -77,7 +105,7 @@ const data = [
   {
     id: 7,
     title: 'Torre',
-    image: Project7,
+    ...shot(Project7, Project7Small, Project7Medium),
     tags: ['AI recruiting', 'Scala', 'Vue'],
     description: {
       en: 'Global job network with an AI recruiter. I collaborated on several sections: candidate communication flows, fixes to legacy Scala and Vue code, and a Docker setup that sped up onboarding.',
@@ -90,7 +118,7 @@ const data = [
   {
     id: 1,
     title: 'AliceTrader',
-    image: Project2,
+    ...shot(Project2, Project2Small, Project2Medium),
     tags: ['Fintech', 'Real-time data', 'Nuxt', 'TypeScript'],
     description: {
       en: 'Invitation-only automated trading platform connected to tastytrade. We built the app from scratch with all its connections: live account data over server-sent events, dashboard, trades, statistics, 2FA and admin, with 30% faster data loading.',
@@ -103,7 +131,7 @@ const data = [
   {
     id: 6,
     title: 'Pelom',
-    image: Project6,
+    ...shot(Project6, Project6Small, Project6Medium),
     tags: ['SaaS', 'Next', 'TypeScript', 'Tailwind'],
     description: {
       en: 'App for restaurants and cafés: multilingual QR menus and instant waiter calls. I collaborated on several sections of the product and its site.',
@@ -115,7 +143,7 @@ const data = [
   {
     id: 8,
     title: 'Web Minds Studio',
-    image: Project8,
+    ...shot(Project8, Project8Small, Project8Medium),
     tags: ['Next', 'Tailwind', 'SEO'],
     description: {
       en: 'Web and software studio in Quito with a five-language site. I improved its Next.js and TypeScript front end, with server-side rendering for SEO and speed.',
@@ -128,7 +156,7 @@ const data = [
   {
     id: 2,
     title: 'CafExporto',
-    image: Project1,
+    ...shot(Project1, Project1Small, Project1Medium),
     tags: ['Astro', 'WordPress migration', 'CSS'],
     description: {
       en: 'Exporter of Ecuadorian specialty coffee. I built the original WordPress site, then migrated the whole design and CSS to Astro: 50 fast static pages, including one for each coffee lot.',
@@ -140,7 +168,7 @@ const data = [
   {
     id: 9,
     title: 'Portfolio Yanua',
-    image: Project9,
+    ...shot(Project9, Project9Small, Project9Medium),
     tags: ['React', 'Webpack', 'CSS'],
     description: {
       en: 'Biotechnology research portfolio: projects, publications and collaborations, with direct email contact.',

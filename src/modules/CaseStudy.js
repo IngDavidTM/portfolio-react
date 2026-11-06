@@ -74,7 +74,14 @@ const CaseStudy = ({ slug }) => {
             <i />
             <span>{host(project.live)}</span>
           </span>
-          <img src={project.image} alt={`${project.title}, ${host(project.live)}`} />
+          <img
+            src={project.image}
+            srcSet={project.srcSet}
+            sizes="(min-width: 1120px) 980px, 92vw"
+            width="1840"
+            height="968"
+            alt={`${project.title}, ${host(project.live)}`}
+          />
         </figure>
 
         {study.results[language].length > 0 && (

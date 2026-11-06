@@ -11,7 +11,7 @@
  * Also writes, from the same data the page uses:
  *   - per-language <title>, description, canonical, hreflang, Open Graph
  *   - JSON-LD (Person, WebSite, ProfilePage, projects)
- *   - sitemap.xml, robots.txt and llms.txt
+ *   - sitemap.xml, robots.txt, llms.txt and .well-known/security.txt
  *
  * No bundler: src files are compiled on the fly with the Babel presets
  * already in the project; styles are skipped and media imports resolve to
@@ -217,7 +217,7 @@ const metaFor = (lang, page) => {
   if (page.kind === 'home') {
     const { seo } = translations[lang];
     return {
-      title: seo.title, description: seo.description, type: 'profile', graph: homeData(lang),
+      title: seo.title, description: seo.description, type: 'profile', graph: homeData(lang), image: ogImage,
     };
   }
   const study = caseStudies[page.slug];
@@ -227,6 +227,9 @@ const metaFor = (lang, page) => {
     description: study.summary[lang],
     type: 'article',
     graph: caseData(lang, page.slug),
+    // Per-case social card from `npm run og`; falls back to the site card
+    image: fs.existsSync(path.join(ROOT, 'public', 'og', `${page.slug}-${lang}.jpg`))
+      ? absolute(`/og/${page.slug}-${lang}.jpg`) : ogImage,
   };
 };
 
@@ -256,7 +259,7 @@ const headFor = (lang, page) => {
     `<meta property="og:site_name" content="${attr(profile.name)}">`,
     `<meta property="og:title" content="${attr(meta.title)}">`,
     `<meta property="og:description" content="${attr(meta.description)}">`,
-    `<meta property="og:image" content="${ogImage}">`,
+    `<meta property="og:image" content="${meta.image}">`,
     '<meta property="og:image:width" content="1200">',
     '<meta property="og:image:height" content="630">',
     `<meta property="og:image:alt" content="${attr(meta.title)}">`,
@@ -266,7 +269,7 @@ const headFor = (lang, page) => {
     '<meta name="twitter:card" content="summary_large_image">',
     `<meta name="twitter:title" content="${attr(meta.title)}">`,
     `<meta name="twitter:description" content="${attr(meta.description)}">`,
-    `<meta name="twitter:image" content="${ogImage}">`,
+    `<meta name="twitter:image" content="${meta.image}">`,
     `<link rel="alternate" type="text/plain" title="LLM summary" href="${absolute('/llms.txt')}">`,
     `<script type="application/ld+json">${jsonScript({ '@context': 'https://schema.org', '@graph': meta.graph })}</script>`,
   ].join('');
@@ -378,8 +381,21 @@ const llms = [
   ...profile.links.map((link) => `- [${link.label}](${link.href})`),
   `- [Resume (PDF, English)](${resumeFor('en')})`,
   `- [Currículum (PDF, español)](${resumeFor('es')})`,
+  `- [CV (PDF, français)](${resumeFor('fr')})`,
   '',
 ].join('\n');
 fs.writeFileSync(path.join(BUILD, 'llms.txt'), llms);
 
-console.log(`sitemap.xml, robots.txt and llms.txt written for ${SITE}`);
+// ---- security.txt (RFC 9116): where to report a vulnerability ----
+const expires = new Date();
+expires.setFullYear(expires.getFullYear() + 1);
+fs.mkdirSync(path.join(BUILD, '.well-known'), { recursive: true });
+fs.writeFileSync(path.join(BUILD, '.well-known', 'security.txt'), [
+  `Contact: mailto:${profile.email}`,
+  `Expires: ${expires.toISOString().replace(/\.\d{3}Z$/, 'Z')}`,
+  'Preferred-Languages: en, es, fr',
+  `Canonical: ${absolute('/.well-known/security.txt')}`,
+  '',
+].join('\n'));
+
+console.log(`sitemap.xml, robots.txt, llms.txt and security.txt written for ${SITE}`);

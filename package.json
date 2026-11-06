@@ -24,7 +24,8 @@
     "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build && node scripts/prerender.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "resume": "node scripts/resume.js"
+    "resume": "node scripts/resume.js",
+    "og": "node scripts/og.js"
   },
   "proxy": "https://mail-api-73ss.onrender.com",
   "eslintConfig": {

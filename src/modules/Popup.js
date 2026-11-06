@@ -17,7 +17,7 @@ const Popup = ({
   work, index, count, onPrev, onNext, onClose, caseHref,
 }) => {
   const {
-    image, title, tags, description, github, live,
+    image, srcSet, title, tags, description, github, live,
   } = work;
   const { t } = useTranslation();
   const popupCopy = t('popup');
@@ -133,7 +133,14 @@ const Popup = ({
               <i />
               <span>{live.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
             </span>
-            <img src={image} alt={title} />
+            <img
+              src={image}
+              srcSet={srcSet}
+              sizes="(min-width: 900px) 860px, 100vw"
+              width="1840"
+              height="968"
+              alt={title}
+            />
           </figure>
 
           <div className="sheet_info">
@@ -173,6 +180,7 @@ const Popup = ({
 Popup.propTypes = {
   work: PropTypes.shape({
     image: PropTypes.string.isRequired,
+    srcSet: PropTypes.string,
     title: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     description: PropTypes.string.isRequired,

@@ -3,7 +3,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const WorkCard = (work) => {
   const {
-    image, title, tags, onOpen, onFocus,
+    image, srcSet, title, tags, onOpen, onFocus,
   } = work;
   return (
     <button
@@ -21,7 +21,16 @@ const WorkCard = (work) => {
           <i />
           <i />
         </span>
-        <img src={image} alt="" loading="lazy" />
+        <img
+          src={image}
+          srcSet={srcSet}
+          sizes="(min-width: 1124px) 560px, (min-width: 768px) 600px, 80vw"
+          width="1840"
+          height="968"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
       </span>
       <span className="work_card_meta">
         <span className="work_card_title">{title}</span>
