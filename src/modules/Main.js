@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBurger, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
-import { useLanguage, useTranslation } from '../context/LanguageContext';
+import { LANGUAGES, useLanguage, useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Main.css';
 import Menu from './Menu';
 import { scrollToSection } from '../utils/scroll';
@@ -12,16 +12,17 @@ const links = [
   { label: 'Twitter', href: 'https://twitter.com/David5TM' },
 ];
 
+// Each language is named in itself, so a visitor finds theirs whatever the page is in
+const languageNames = { en: 'English', es: 'Español', fr: 'Français' };
+
 const resumeHref = 'https://docs.google.com/document/d/1jNK2rITeP2TEhDsLCzs6wJRNnnId4pD7/edit?usp=sharing&ouid=115820516505556240890&rtpof=true&sd=true';
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
-  const { toggleLanguage } = useLanguage();
+  const { language, chooseLanguage } = useLanguage();
   const { t } = useTranslation();
   const navCopy = t('nav');
   const mainCopy = t('main');
-  const toggleShort = t('language.toggleShort');
-  const toggleLabel = t('language.toggleLabel');
 
   // On phones the floating controls sit over each sheet's title, so they
   // slip away while scrolling down and come back on any scroll up
@@ -61,14 +62,20 @@ const Main = () => {
           >
             <FontAwesomeIcon icon={faBurger} className="nav_icon" />
           </button>
-          <button
-            type="button"
-            className="language_chip"
-            onClick={toggleLanguage}
-            aria-label={toggleLabel}
-          >
-            {toggleShort}
-          </button>
+          <div className="language_switch" role="group" aria-label={t('language.label')}>
+            {LANGUAGES.map((code) => (
+              <button
+                key={code}
+                type="button"
+                lang={code}
+                aria-label={languageNames[code]}
+                aria-pressed={language === code}
+                onClick={() => chooseLanguage(code)}
+              >
+                {code.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
         <ul className="nav_list">
           <li><button type="button" className="nav_works" onClick={() => goTo('works')}>{navCopy.works}</button></li>

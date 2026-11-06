@@ -1,8 +1,7 @@
 const translations = {
   en: {
     language: {
-      toggleShort: 'ES',
-      toggleLabel: 'Switch to Spanish',
+      label: 'Language',
     },
     nav: {
       works: 'Works',
@@ -83,8 +82,7 @@ const translations = {
   },
   es: {
     language: {
-      toggleShort: 'EN',
-      toggleLabel: 'Cambiar a inglés',
+      label: 'Idioma',
     },
     nav: {
       works: 'Proyectos',
@@ -161,6 +159,87 @@ const translations = {
       closeAria: 'Cerrar detalles del proyecto',
       prev: 'Proyecto anterior',
       next: 'Proyecto siguiente',
+    },
+  },
+  fr: {
+    language: {
+      label: 'Langue',
+    },
+    nav: {
+      works: 'Projets',
+      about: 'À propos',
+      contact: 'Contact',
+      openMenu: 'Ouvrir le menu de navigation',
+    },
+    main: {
+      headline: {
+        line1: 'Bonjour, je suis David.',
+        line2: 'Je conçois et développe des logiciels et des systèmes d\'IA.',
+      },
+      description: 'Ingénieur solutions IA. LLM, architecture et sécurité, de l\'idée à la production.',
+      cta: 'Collaborons',
+      social: {
+        intro: 'Retrouvez-moi sur',
+        and: 'et',
+        resumePrefix: 'Téléchargez mon',
+        resumeLink: 'CV',
+      },
+    },
+    menu: {
+      title: 'Navigation',
+      subtitle: 'Explorez mon portfolio',
+      closeAria: 'Fermer le menu',
+      ctaLabel: 'Construisons quelque chose',
+      ready: 'Prêt à collaborer\u00a0?',
+    },
+    works: {
+      title: 'Projets',
+      subtitle: 'Continuez à défiler pour les parcourir. Ouvrez-en un pour les détails.',
+      prev: 'Voir le projet précédent',
+      next: 'Voir le projet suivant',
+    },
+    about: {
+      title: 'À propos',
+      paragraph: 'Je transforme des problèmes métier en logiciels qui fonctionnent\u00a0: l\'architecture, les pipelines LLM et le produit autour, sécurisés dès le premier jour.',
+      skills: {
+        ai: 'IA et LLM',
+        design: 'Conception de solutions',
+        engineering: 'Ingénierie',
+        platform: 'Cloud et données',
+        security: 'Sécurité',
+      },
+    },
+    contact: {
+      title: 'Contactez-moi',
+      subtitle: 'Un projet en tête ? Parlez-m\'en.',
+      labels: {
+        name: 'Nom',
+        email: 'E-mail',
+        message: 'Message',
+      },
+      placeholders: {
+        name: 'Votre nom',
+        email: 'Votre e-mail',
+        message: 'Votre message',
+      },
+      submit: 'Envoyer le message',
+      sending: 'Envoi...',
+      success: 'Message envoyé !',
+      error: 'L\'envoi a échoué. Réessayez plus tard.',
+      validation: {
+        nameRequired: 'Dites-moi à qui je m\'adresse.',
+        emailRequired: 'J\'ai besoin de votre e-mail pour vous répondre.',
+        emailInvalid: 'Vérifiez le format de l\'e-mail (ex. nom@domaine.com).',
+        messageRequired: 'Donnez quelques détails sur votre idée ou votre question.',
+      },
+    },
+    popup: {
+      dialogLabel: 'Détails du projet',
+      visit: 'Voir le projet',
+      code: 'Voir le code',
+      closeAria: 'Fermer les détails du projet',
+      prev: 'Projet précédent',
+      next: 'Projet suivant',
     },
   },
 };

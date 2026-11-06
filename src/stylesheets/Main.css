@@ -211,34 +211,50 @@ nav .button:active {
   transform: scale(0.94);
 }
 
-.language_chip {
-  border: 1px solid transparent;
+.language_switch {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
   border-radius: 999px;
   background: rgb(var(--mist));
-  color: var(--shadow);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  padding: 0.4rem 0.9rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s var(--ease-out), border-color 0.25s ease;
 }
 
-.language_chip:focus-visible {
-  background: var(--primary-color);
-  transform: translateY(-2px);
+.language_switch button {
+  min-width: 2.5rem;
+  min-height: 2.25rem;
+  padding: 0 0.6rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--shadow);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), scale 0.15s ease;
+}
+
+.language_switch button[aria-pressed="true"] {
+  background: var(--shadow);
+  color: var(--primary-color);
+  cursor: default;
+}
+
+.language_switch button:focus-visible {
+  outline: 2px solid var(--shadow);
+  outline-offset: 1px;
 }
 
 @media (hover: hover) {
-  .language_chip:hover {
-    background: var(--primary-color);
-    transform: translateY(-2px);
+  .language_switch button[aria-pressed="false"]:hover {
+    background: rgba(255, 255, 255, 0.45);
   }
 }
 
-.language_chip:active {
-  transform: scale(0.94);
+.language_switch button:active {
+  scale: 0.94;
 }
 
 .nav_list {
