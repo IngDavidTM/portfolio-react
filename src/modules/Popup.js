@@ -23,6 +23,7 @@ const Popup = ({
   const popupCopy = t('popup');
   const [closing, setClosing] = useState(false);
   const closeRef = useRef(null);
+  const layerRef = useRef(null);
 
   const close = useCallback(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -46,6 +47,34 @@ const Popup = ({
     };
   }, []);
 
+  // Touch scroll lock without touching <html>: swipes only move the sheet's
+  // own body, and only when it has something to scroll
+  useEffect(() => {
+    const layer = layerRef.current;
+    if (!layer) return undefined;
+    let startY = 0;
+    const onStart = (event) => {
+      startY = event.touches[0].clientY;
+    };
+    const onMove = (event) => {
+      const body = event.target.closest && event.target.closest('.sheet_body');
+      if (!body || body.scrollHeight <= body.clientHeight) {
+        event.preventDefault();
+        return;
+      }
+      const dy = event.touches[0].clientY - startY;
+      const atTop = body.scrollTop <= 0;
+      const atEnd = body.scrollTop + body.clientHeight >= body.scrollHeight - 1;
+      if ((atTop && dy > 0) || (atEnd && dy < 0)) event.preventDefault();
+    };
+    layer.addEventListener('touchstart', onStart, { passive: true });
+    layer.addEventListener('touchmove', onMove, { passive: false });
+    return () => {
+      layer.removeEventListener('touchstart', onStart);
+      layer.removeEventListener('touchmove', onMove);
+    };
+  }, []);
+
   useEffect(() => {
     const onKey = (event) => {
       if (event.key === 'Escape') close();
@@ -57,7 +86,7 @@ const Popup = ({
   }, [close, onNext, onPrev]);
 
   return createPortal(
-    <div className={`sheet_layer${closing ? ' is-closing' : ''}`}>
+    <div ref={layerRef} className={`sheet_layer${closing ? ' is-closing' : ''}`}>
       <button
         type="button"
         className="sheet_backdrop"

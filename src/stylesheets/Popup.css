@@ -6,14 +6,27 @@
  * between projects without closing.
  */
 
-html.has-sheet {
-  overflow: hidden;
+/*
+ * Only lock the root on mouse devices. On iOS, toggling overflow on <html>
+ * resizes the viewport and leaves the sticky stack misplaced after closing;
+ * touch scrolling is held inside the sheet from Popup.js instead.
+ */
+@media (hover: hover) and (pointer: fine) {
+  html.has-sheet {
+    overflow: hidden;
+  }
 }
 
+/* Sized to the visible viewport so the sheet never sits under Safari's toolbar */
 .sheet_layer {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
   z-index: 300;
+  overscroll-behavior: contain;
 }
 
 .sheet_backdrop {
@@ -32,9 +45,10 @@ html.has-sheet {
   left: 50%;
   bottom: 0;
   width: min(1200px, 100vw - 1.5rem);
-  max-height: calc(100dvh - 2rem);
+  max-height: calc(100% - 1.5rem);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   background: var(--paper);
   color: var(--shadow);
   border-radius: 28px 28px 0 0;
@@ -147,11 +161,15 @@ html.has-sheet {
 
 /* ---- Body ---- */
 .sheet_body {
+  flex: 1 1 auto;
+  min-height: 0;
   display: grid;
+  grid-auto-rows: max-content; /* rows keep their height; the body scrolls instead */
   gap: 1.75rem;
   padding: 0.75rem 1.25rem calc(2rem + env(safe-area-inset-bottom));
   overflow-y: auto;
   overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   animation: body_swap 0.5s var(--ease-out) both;
 }
 

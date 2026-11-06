@@ -103,20 +103,29 @@
 
     /* ---- Hero (mobile only) ---- */
     .main {
-      animation: sheet_recede linear both;
+      animation-name: sheet_recede;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: 0% 100svh;
     }
 
     .main::after {
-      animation: sheet_veil linear both;
+      animation-name: sheet_veil;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: 0% 100svh;
     }
 
     /* ---- Photo ---- */
     .photo {
-      animation: sheet_land linear both, sheet_recede linear both;
+      animation-name: sheet_land, sheet_recede;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block), scroll(root block);
       animation-range:
         calc((var(--o) - 1) * 100svh) calc(var(--o) * 100svh),
@@ -124,14 +133,20 @@
     }
 
     .photo::after {
-      animation: sheet_veil linear both;
+      animation-name: sheet_veil;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: calc(var(--o) * 100svh) calc((var(--o) + 1) * 100svh);
     }
 
     /* ---- Projects ---- */
     .works_stage {
-      animation: sheet_land linear both, sheet_recede linear both;
+      animation-name: sheet_land, sheet_recede;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block), scroll(root block);
       animation-range:
         calc(var(--o) * 100svh) calc((var(--o) + 1) * 100svh),
@@ -139,33 +154,48 @@
     }
 
     .works_stage::after {
-      animation: sheet_veil linear both;
+      animation-name: sheet_veil;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: calc((var(--o) + 1 + var(--k)) * 100svh) calc((var(--o) + 2 + var(--k)) * 100svh);
     }
 
     .works_header,
     .works_viewport {
-      animation: content_trail linear both;
+      animation-name: content_trail;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: calc(var(--o) * 100svh) calc((var(--o) + 1) * 100svh);
     }
 
     .works_track {
-      animation: rail linear both;
+      animation-name: rail;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: calc((var(--o) + 1) * 100svh) calc((var(--o) + 1 + var(--k)) * 100svh);
     }
 
     .works_progress span {
-      animation: grow linear both;
+      animation-name: grow;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: calc((var(--o) + 1) * 100svh) calc((var(--o) + 1 + var(--k)) * 100svh);
     }
 
     /* ---- About ---- */
     .about {
-      animation: sheet_land linear both, sheet_recede linear both;
+      animation-name: sheet_land, sheet_recede;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block), scroll(root block);
       animation-range:
         calc((var(--o) + 1 + var(--k)) * 100svh) calc((var(--o) + 2 + var(--k)) * 100svh),
@@ -173,26 +203,38 @@
     }
 
     .about::after {
-      animation: sheet_veil linear both;
+      animation-name: sheet_veil;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: calc((var(--o) + 2 + var(--k)) * 100svh) calc((var(--o) + 3 + var(--k)) * 100svh);
     }
 
     .about > * {
-      animation: content_trail linear both;
+      animation-name: content_trail;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: calc((var(--o) + 1 + var(--k)) * 100svh) calc((var(--o) + 2 + var(--k)) * 100svh);
     }
 
     /* ---- Contact ---- */
     .contact {
-      animation: sheet_land linear both;
+      animation-name: sheet_land;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: calc((var(--o) + 2 + var(--k)) * 100svh) calc((var(--o) + 3 + var(--k)) * 100svh);
     }
 
     .contact > * {
-      animation: content_trail linear both;
+      animation-name: content_trail;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root block);
       animation-range: calc((var(--o) + 2 + var(--k)) * 100svh) calc((var(--o) + 3 + var(--k)) * 100svh);
     }
@@ -201,19 +243,25 @@
       /* The hero is the fixed left half on desktop, and the photo is already in place */
       .main,
       .main::after {
-        animation: none;
+        animation-name: none;
       }
 
       .photo {
         border-radius: 0;
-        animation: sheet_recede linear both;
+        animation-name: sheet_recede;
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
         animation-timeline: scroll(root block);
         animation-range: 0% 100svh;
       }
 
       /* Nav underline fills as its sheet lands and drains as the next one covers it */
       .nav_list button::after {
-        animation: nav_fill linear both, nav_drain linear forwards;
+        animation-name: nav_fill, nav_drain;
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both, forwards;
         animation-timeline: scroll(root block), scroll(root block);
       }
 
@@ -230,7 +278,10 @@
       }
 
       .nav_list .nav_contact::after {
-        animation: nav_fill linear both;
+        animation-name: nav_fill;
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
         animation-timeline: scroll(root block);
         animation-range: calc((2 + var(--k)) * 100svh) calc((3 + var(--k)) * 100svh);
       }
