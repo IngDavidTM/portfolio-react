@@ -22,6 +22,7 @@ html.has-sheet {
   border: none;
   cursor: default;
   background: rgba(42, 49, 50, 0.42);
+  -webkit-backdrop-filter: blur(6px) saturate(0.9);
   backdrop-filter: blur(6px) saturate(0.9);
   animation: veil_in 0.4s ease-out both;
 }
@@ -130,9 +131,14 @@ html.has-sheet {
   transition: background-color 0.25s ease, scale 0.15s ease;
 }
 
-.sheet_icon:hover,
 .sheet_icon:focus-visible {
   background: rgba(var(--mist), 0.4);
+}
+
+@media (hover: hover) {
+  .sheet_icon:hover {
+    background: rgba(var(--mist), 0.4);
+  }
 }
 
 .sheet_icon:active {
@@ -143,7 +149,7 @@ html.has-sheet {
 .sheet_body {
   display: grid;
   gap: 1.75rem;
-  padding: 0.75rem 1.25rem 2rem;
+  padding: 0.75rem 1.25rem calc(2rem + env(safe-area-inset-bottom));
   overflow-y: auto;
   overscroll-behavior: contain;
   animation: body_swap 0.5s var(--ease-out) both;

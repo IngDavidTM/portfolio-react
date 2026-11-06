@@ -2,7 +2,7 @@
 
 /*
  * Projects: a sheet in the stack whose content is a horizontal rail.
- * Default (no scroll timelines / reduced motion): a 100vh sheet with a
+ * Default (no scroll timelines / reduced motion): a 100svh sheet with a
  * natively scrollable, snapping rail. Motion.css upgrades it to a pinned
  * rail that travels sideways as the page scrolls down.
  */
@@ -17,7 +17,7 @@
 .works_stage {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   background-color: var(--primary-color);
   display: flex;
@@ -223,6 +223,13 @@
 @media only screen and (min-width: 650px) {
   .work_card {
     --card-w: clamp(320px, 34vw, 560px);
+  }
+}
+
+/* Portrait tablets have height to spare: give the screenshots room */
+@media only screen and (min-width: 650px) and (max-width: 1123px) and (orientation: portrait) {
+  .work_card {
+    --card-w: min(64vw, 600px);
   }
 }
 

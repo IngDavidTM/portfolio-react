@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBurger, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage, useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Main.css';
 import Menu from './Menu';
@@ -23,13 +23,35 @@ const Main = () => {
   const toggleShort = t('language.toggleShort');
   const toggleLabel = t('language.toggleLabel');
 
+  // On phones the floating controls sit over each sheet's title, so they
+  // slip away while scrolling down and come back on any scroll up
+  const [navHidden, setNavHidden] = useState(false);
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (Math.abs(y - lastY) < 6) return;
+        setNavHidden(y > lastY && y > 80);
+        lastY = y;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
   const goTo = (id) => {
     scrollToSection(id);
     setMenu(false);
   };
   return (
     <>
-      <nav>
+      <nav className={navHidden && !menu ? 'is-hidden' : undefined}>
         <div className="nav_controls">
           <button
             type="button"

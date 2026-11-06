@@ -32,10 +32,13 @@ export const scrollToSection = (id) => {
 // scrolling a share of the extra height the rail adds.
 export const scrollToProject = (index, count) => {
   const works = document.getElementById('works');
+  const stage = works && works.querySelector('.works_stage');
   const top = sectionTop('works');
-  if (!works || top === null || count < 2) return;
+  if (!stage || top === null || count < 2) return;
 
-  const extra = works.offsetHeight - window.innerHeight;
+  // Measured against the stage, not innerHeight, which grows and shrinks
+  // with the iOS Safari toolbars
+  const extra = works.offsetHeight - stage.offsetHeight;
   if (extra <= 0) return;
   window.scrollTo({ top: top + (extra * index) / (count - 1), behavior: 'smooth' });
 };

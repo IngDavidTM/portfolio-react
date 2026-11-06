@@ -74,13 +74,13 @@ textarea {
   top: 0;
   position: sticky;
   width: 100%;
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
 }
 
 .color_photo {
   width: 100%;
-  height: 100vh;
+  height: 100svh;
   background:
     linear-gradient(rgba(var(--mist), 0.3), rgba(var(--mist), 0.3)),
     url(./images/me.avif) no-repeat left center/cover;
@@ -146,14 +146,23 @@ textarea {
   pointer-events: none;
 }
 
-.btn_liquid:hover,
 .btn_liquid:focus-visible {
   color: var(--fill-ink, var(--primary-color));
 }
 
-.btn_liquid:hover::after,
 .btn_liquid:focus-visible::after {
   transform: translate(-50%, 0) scale(1.5);
+}
+
+/* Touch screens keep :hover after a tap, so only real pointers get it */
+@media (hover: hover) {
+  .btn_liquid:hover {
+    color: var(--fill-ink, var(--primary-color));
+  }
+
+  .btn_liquid:hover::after {
+    transform: translate(-50%, 0) scale(1.5);
+  }
 }
 
 .btn_liquid:active {

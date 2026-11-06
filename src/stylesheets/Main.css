@@ -3,7 +3,7 @@
   top: 0;
   position: sticky;
   background-color: var(--shadow);
-  height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   color: rgb(var(--mist));
@@ -157,6 +157,19 @@ nav {
   align-items: center;
   justify-content: space-between;
   z-index: 120;
+  transition: transform 0.45s var(--ease-out), opacity 0.3s ease;
+}
+
+@media only screen and (max-width: 1123px) {
+  nav.is-hidden {
+    transform: translateY(-110%);
+    opacity: 0;
+  }
+
+  nav.is-hidden:focus-within {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 .nav_controls {
@@ -184,9 +197,14 @@ nav .button svg {
   font-size: 1rem;
 }
 
-nav .button:hover,
 nav .button:focus-visible {
   transform: translateY(-2px);
+}
+
+@media (hover: hover) {
+  nav .button:hover {
+    transform: translateY(-2px);
+  }
 }
 
 nav .button:active {
@@ -207,10 +225,16 @@ nav .button:active {
   transition: background 0.25s ease, transform 0.25s var(--ease-out), border-color 0.25s ease;
 }
 
-.language_chip:hover,
 .language_chip:focus-visible {
   background: var(--primary-color);
   transform: translateY(-2px);
+}
+
+@media (hover: hover) {
+  .language_chip:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+  }
 }
 
 .language_chip:active {

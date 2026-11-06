@@ -3,7 +3,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  height: 100vh;
+  height: 100svh;
   background-color: rgb(var(--mist));
   display: flex;
   flex-direction: column;
@@ -56,9 +56,11 @@
   transition: background-color 0.25s ease, transform 0.25s var(--ease-out);
 }
 
-.skills li:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .skills li:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
+  }
 }
 
 /* Chips arrive as a list each time their group becomes active */
