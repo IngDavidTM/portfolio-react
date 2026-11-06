@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- "D." monogram: the full stop of the headline "Hi, I'm David." -->
+  <style>
+    .tile { fill: #2a3132; }
+    .letter { fill: #f5f5f5; }
+    .dot { fill: #90afc5; }
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #90afc5; }
+      .letter { fill: #1b2122; }
+      .dot { fill: #f5f5f5; }
+    }
+  </style>
+  <rect class="tile" width="64" height="64" rx="15"/>
+  <path class="letter" fill-rule="evenodd" d="M12 12H26C40 12 47 21 47 32S40 52 26 52H12ZM21 21V43H26C34 43 37.5 38.6 37.5 32S34 21 26 21Z"/>
+  <circle class="dot" cx="52.5" cy="47" r="5"/>
+</svg>
