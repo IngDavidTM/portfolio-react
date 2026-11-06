@@ -9,49 +9,45 @@ import { useTranslation } from '../context/LanguageContext';
 import '../stylesheets/About.css';
 import Skills from './Skills';
 
-const skillSets = {
-  languages: [
-    'JavaScript',
-    'Python',
-    'Ruby',
-    'TypeScript',
-    'SQL',
-    'Shell',
-    'R',
-    'HTML',
-    'CSS',
-  ],
-  frameworks: [
-    'React',
-    'Next',
-    'Vue',
-    'Nuxt',
-    'Vuex',
-    'Redux',
-    'Ruby on Rails',
-    'Scala',
-    'Jest',
-    'Mocha',
-    'Capybara',
-    'Rspec',
-    'Bootstrap',
-    'Tailwind',
-    'Sass',
-    'Express',
-  ],
-  skills: [
-    'GitHub',
-    'Linux',
-    'GitLab',
-    'Docker',
-    'PostgreSQL',
-    'MySQL',
-    'MongoDB',
-    'SQLite',
-    'Twilio',
-    'Postman',
-  ],
-};
+// Grouped the way the work is done: AI first, then how solutions are
+// shaped, built, run and kept safe.
+const skillGroups = [
+  {
+    key: 'ai',
+    items: [
+      'LLM apps', 'AI agents', 'RAG', 'Prompt engineering', 'LLM evaluation',
+      'OpenAI API', 'Claude API', 'Gemini API', 'Embeddings', 'AI-assisted dev',
+    ],
+  },
+  {
+    key: 'design',
+    items: [
+      'System architecture', 'API design', 'Data modeling', 'Product scoping',
+      'Platform migrations', 'Performance', 'Technical leadership',
+    ],
+  },
+  {
+    key: 'engineering',
+    items: [
+      'TypeScript', 'Python', 'JavaScript', 'SQL', 'Next', 'React', 'Node',
+      'Express', 'Vue', 'Angular', 'Ruby on Rails', 'Tailwind', 'WordPress',
+    ],
+  },
+  {
+    key: 'platform',
+    items: [
+      'PostgreSQL', 'Supabase', 'MongoDB', 'Docker', 'Linux', 'CI/CD',
+      'Vercel', 'GitHub Actions', 'Automation',
+    ],
+  },
+  {
+    key: 'security',
+    items: [
+      'OWASP Top 10', 'Secure code review', 'Auth & access control',
+      'Threat modeling', 'Linux hardening',
+    ],
+  },
+];
 
 const About = () => {
   const { t } = useTranslation();
@@ -87,27 +83,15 @@ const About = () => {
           speed={450}
           onSlideChange={handleSlideChange}
         >
-          <SwiperSlide>
-            <Skills
-              direction={direction}
-              title={aboutCopy.skills.languages}
-              items={skillSets.languages}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Skills
-              direction={direction}
-              title={aboutCopy.skills.frameworks}
-              items={skillSets.frameworks}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Skills
-              direction={direction}
-              title={aboutCopy.skills.skills}
-              items={skillSets.skills}
-            />
-          </SwiperSlide>
+          {skillGroups.map((group) => (
+            <SwiperSlide key={group.key}>
+              <Skills
+                direction={direction}
+                title={aboutCopy.skills[group.key]}
+                items={group.items}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </section>

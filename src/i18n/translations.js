@@ -13,9 +13,9 @@ const translations = {
     main: {
       headline: {
         line1: "Hi, I'm David.",
-        line2: 'I build web products, dashboards and AI engines.',
+        line2: 'I design and build software and AI systems.',
       },
-      description: 'Full-stack developer. From the interface to the engine behind it.',
+      description: 'AI Solutions Engineer. LLMs, architecture and security, from idea to production.',
       cta: "Let's collaborate",
       social: {
         intro: 'Find me on',
@@ -39,11 +39,13 @@ const translations = {
     },
     about: {
       title: 'About me',
-      paragraph: 'I work across front-end and back-end, and I enjoy turning a design team\'s ideas into products that feel right.',
+      paragraph: 'I turn business problems into working software: the architecture, the LLM pipelines and the product around them, secure from day one.',
       skills: {
-        languages: 'Languages',
-        frameworks: 'Frameworks',
-        skills: 'Skills',
+        ai: 'AI & LLMs',
+        design: 'Solution design',
+        engineering: 'Engineering',
+        platform: 'Cloud & data',
+        security: 'Security',
       },
     },
     contact: {
@@ -93,9 +95,9 @@ const translations = {
     main: {
       headline: {
         line1: 'Hola, soy David.',
-        line2: 'Construyo productos web, dashboards y motores de IA.',
+        line2: 'Diseño y construyo software y sistemas de IA.',
       },
-      description: 'Desarrollador full-stack. De la interfaz al motor que la hace funcionar.',
+      description: 'Ingeniero de soluciones de IA. LLMs, arquitectura y seguridad, de la idea a producción.',
       cta: 'Colaboremos',
       social: {
         intro: 'Encuéntrame en',
@@ -119,11 +121,13 @@ const translations = {
     },
     about: {
       title: 'Sobre mí',
-      paragraph: 'Trabajo en front-end y back-end, y disfruto convertir las ideas de un equipo de diseño en productos que se sienten bien.',
+      paragraph: 'Convierto problemas de negocio en software que funciona: la arquitectura, los flujos con LLMs y el producto a su alrededor, seguro desde el primer día.',
       skills: {
-        languages: 'Lenguajes',
-        frameworks: 'Frameworks',
-        skills: 'Habilidades',
+        ai: 'IA y LLMs',
+        design: 'Diseño de soluciones',
+        engineering: 'Ingeniería',
+        platform: 'Cloud y datos',
+        security: 'Seguridad',
       },
     },
     contact: {
