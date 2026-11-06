@@ -3,6 +3,11 @@ const translations = {
     language: {
       label: 'Language',
     },
+    seo: {
+      title: 'David Tamayo — AI Solutions Engineer & Software Developer',
+      description: 'David Tamayo is an AI Solutions Engineer and software developer. He designs and builds LLM systems, AI engines and secure web platforms with Next.js, React, Python and Node, from idea to production.',
+      role: 'AI Solutions Engineer',
+    },
     nav: {
       works: 'Works',
       about: 'About',
@@ -84,6 +89,11 @@ const translations = {
     language: {
       label: 'Idioma',
     },
+    seo: {
+      title: 'David Tamayo — Ingeniero de Soluciones de IA y Desarrollador de Software',
+      description: 'David Tamayo es ingeniero de soluciones de IA y desarrollador de software. Diseña y construye sistemas con LLMs, motores de IA y plataformas web seguras con Next.js, React, Python y Node, de la idea a producción.',
+      role: 'Ingeniero de Soluciones de IA',
+    },
     nav: {
       works: 'Proyectos',
       about: 'Sobre mí',
@@ -164,6 +174,11 @@ const translations = {
   fr: {
     language: {
       label: 'Langue',
+    },
+    seo: {
+      title: 'David Tamayo — Ingénieur solutions IA et développeur logiciel',
+      description: 'David Tamayo est ingénieur solutions IA et développeur logiciel. Il conçoit et développe des systèmes LLM, des moteurs d\'IA et des plateformes web sécurisées avec Next.js, React, Python et Node, de l\'idée à la production.',
+      role: 'Ingénieur solutions IA',
     },
     nav: {
       works: 'Projets',

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Main from './modules/Main';
 import Works from './modules/Works';
 import Photo from './modules/Photo';
@@ -6,8 +7,8 @@ import Contact from './modules/Contact';
 import { LanguageProvider } from './context/LanguageContext';
 import './stylesheets/Motion.css';
 
-const App = () => (
-  <LanguageProvider>
+const App = ({ language }) => (
+  <LanguageProvider initial={language}>
     <div className="App">
       <Main />
       <div className="container_info">
@@ -19,5 +20,13 @@ const App = () => (
     </div>
   </LanguageProvider>
 );
+
+App.propTypes = {
+  language: PropTypes.string,
+};
+
+App.defaultProps = {
+  language: undefined,
+};
 
 export default App;

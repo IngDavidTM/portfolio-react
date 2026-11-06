@@ -5,17 +5,12 @@ import { LANGUAGES, useLanguage, useTranslation } from '../context/LanguageConte
 import '../stylesheets/Main.css';
 import Menu from './Menu';
 import { scrollToSection } from '../utils/scroll';
+import profile from '../data/profile';
 
-const links = [
-  { label: 'GitHub', href: 'https://github.com/IngDavidTM' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ing-david-tamayo/' },
-  { label: 'Twitter', href: 'https://twitter.com/David5TM' },
-];
+const { links, resume: resumeHref } = profile;
 
 // Each language is named in itself, so a visitor finds theirs whatever the page is in
 const languageNames = { en: 'English', es: 'Español', fr: 'Français' };
-
-const resumeHref = 'https://docs.google.com/document/d/1jNK2rITeP2TEhDsLCzs6wJRNnnId4pD7/edit?usp=sharing&ouid=115820516505556240890&rtpof=true&sd=true';
 
 const Main = () => {
   const [menu, setMenu] = useState(false);

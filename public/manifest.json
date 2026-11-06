@@ -1,6 +1,6 @@
 {
   "short_name": "David Tamayo",
-  "name": "Portfolio of a Full Stack Developer",
+  "name": "David Tamayo — AI Solutions Engineer",
   "icons": [
     {
       "src": "website.png",
@@ -18,8 +18,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#2a3132",
+  "background_color": "#2a3132"
 }

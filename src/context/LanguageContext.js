@@ -50,19 +50,50 @@ const detectLanguage = () => {
   return match || FALLBACK;
 };
 
-const initialLanguage = () => readStored() || detectLanguage();
+// Each language has its own URL so search engines can index all three:
+// / (English), /es/ and /fr/. The prerendered HTML is built per URL.
+export const pathForLanguage = (language) => (language === FALLBACK ? '/' : `/${language}/`);
 
-export const LanguageProvider = ({ children }) => {
-  const [language, setLanguageState] = useState(initialLanguage);
+export const languageFromPath = (pathname = '/') => {
+  const segment = pathname.split('/')[1];
+  return LANGUAGES.includes(segment) ? segment : null;
+};
+
+const syncUrl = (language) => {
+  const { hash, search } = window.location;
+  window.history.replaceState(null, '', `${pathForLanguage(language)}${search}${hash}`);
+};
+
+export const LanguageProvider = ({ children, initial }) => {
+  // Start from the URL (what the prerendered HTML was built with) so
+  // hydration matches; personal preferences apply right after
+  const [language, setLanguageState] = useState(() => {
+    if (initial) return initial;
+    if (typeof window === 'undefined') return FALLBACK;
+    return languageFromPath(window.location.pathname) || FALLBACK;
+  });
+
+  // On the bare root, honour a saved choice, else the browser's languages.
+  // A language URL (/es/, /fr/) is an explicit request and is kept.
+  useEffect(() => {
+    if (languageFromPath(window.location.pathname)) return;
+    const preferred = readStored() || detectLanguage();
+    if (preferred !== FALLBACK) {
+      setLanguageState(preferred);
+      syncUrl(preferred);
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;
+    document.title = translations[language].seo.title;
   }, [language]);
 
   // A manual pick wins over detection from then on
   const chooseLanguage = useCallback((next) => {
     if (!LANGUAGES.includes(next) || next === language) return;
     store(next);
+    syncUrl(next);
     const swap = () => setLanguageState(next);
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -85,6 +116,11 @@ export const LanguageProvider = ({ children }) => {
 
 LanguageProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  initial: PropTypes.oneOf(LANGUAGES),
+};
+
+LanguageProvider.defaultProps = {
+  initial: undefined,
 };
 
 export const useLanguage = () => useContext(LanguageContext);
