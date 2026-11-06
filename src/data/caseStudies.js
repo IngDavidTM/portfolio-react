@@ -142,14 +142,14 @@ const caseStudies = {
       fr: 'Un moteur d\'évaluation configurable pour une certification nationale de construction durable',
     },
     summary: {
-      en: 'CASA is Ecuador\'s national sustainable-construction certification, run by the CEES under a ministerial agreement. We built the platform that takes each project from registration through evaluation to a verifiable certificate.',
-      es: 'CASA es la certificación nacional de construcción sostenible del Ecuador, operada por el CEES bajo un acuerdo ministerial. Construimos la plataforma que lleva cada proyecto del registro a la evaluación y a un certificado verificable.',
-      fr: 'CASA est la certification nationale de construction durable de l\'Équateur, gérée par le CEES dans le cadre d\'un accord ministériel. Nous avons construit la plateforme qui mène chaque projet de l\'inscription à l\'évaluation puis à un certificat vérifiable.',
+      en: 'CASA is Ecuador\'s national sustainable-construction certification, run by the CEES under an agreement with the Ministry of Infrastructure and Technology (MIT). We built the platform that takes each project from registration through evaluation to a verifiable certificate.',
+      es: 'CASA es la certificación nacional de construcción sostenible del Ecuador, operada por el CEES bajo un acuerdo con el Ministerio de Infraestructura y Tecnología (MIT). Construimos la plataforma que lleva cada proyecto del registro a la evaluación y a un certificado verificable.',
+      fr: 'CASA est la certification nationale de construction durable de l\'Équateur, gérée par le CEES dans le cadre d\'un accord avec le ministère des Infrastructures et de la Technologie (MIT). Nous avons construit la plateforme qui mène chaque projet de l\'inscription à l\'évaluation puis à un certificat vérifiable.',
     },
     role: {
-      en: 'Evaluation engine, admin panel and internal modules',
-      es: 'Motor de evaluación, administrador y módulos internos',
-      fr: 'Moteur d\'évaluation, administration et modules internes',
+      en: 'Evaluation engine, admin panel and internal modules, at Prex Technologies',
+      es: 'Motor de evaluación, administrador y módulos internos, en Prex Technologies',
+      fr: 'Moteur d\'évaluation, administration et modules internes, chez Prex Technologies',
     },
     stack: ['React', 'Vite', 'MUI', 'REST API', 'JWT auth'],
     results: {
@@ -212,9 +212,9 @@ const caseStudies = {
       fr: 'Concreto est un réseau d\'achats pour le BTP en Équateur : l\'acheteur demande une fois et reçoit des offres comparées de fournisseurs vérifiés. J\'ai travaillé sur sa visibilité en recherche, l\'automatisation interne et l\'analyse des ventes.',
     },
     role: {
-      en: 'SEO and AI-search optimization, automation, KPI dashboards',
-      es: 'SEO y optimización para buscadores de IA, automatización y paneles de KPIs',
-      fr: 'SEO et optimisation pour la recherche IA, automatisation, tableaux de KPI',
+      en: 'SEO and AI-search optimization, automation and KPI dashboards, at Prex Technologies',
+      es: 'SEO y optimización para buscadores de IA, automatización y paneles de KPIs, en Prex Technologies',
+      fr: 'SEO et optimisation pour la recherche IA, automatisation et tableaux de KPI, chez Prex Technologies',
     },
     stack: ['Angular SSR', 'TypeScript', 'Structured data', 'llms.txt'],
     results: {

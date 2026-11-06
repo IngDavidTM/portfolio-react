@@ -98,6 +98,19 @@ const translations = {
       next: 'Next case study',
       read: 'Case study',
     },
+    status: {
+      home: 'Back to the portfolio',
+      cases: 'Maybe you were looking for one of these',
+      notFound: {
+        title: 'This page does not exist',
+        text: 'The link may be old or mistyped. Everything else is still here.',
+      },
+      error: {
+        title: 'Something went wrong',
+        text: 'The page hit an unexpected error. Reloading usually fixes it.',
+        retry: 'Reload the page',
+      },
+    },
   },
   es: {
     language: {
@@ -198,6 +211,19 @@ const translations = {
       next: 'Siguiente caso',
       read: 'Caso de estudio',
     },
+    status: {
+      home: 'Volver al portafolio',
+      cases: 'Quizá buscabas alguno de estos',
+      notFound: {
+        title: 'Esta página no existe',
+        text: 'Puede que el enlace sea antiguo o tenga un error. Todo lo demás sigue aquí.',
+      },
+      error: {
+        title: 'Algo salió mal',
+        text: 'La página tuvo un error inesperado. Recargar suele solucionarlo.',
+        retry: 'Recargar la página',
+      },
+    },
   },
   fr: {
     language: {
@@ -297,6 +323,19 @@ const translations = {
       ctaButton: 'Parlons-en',
       next: 'Étude suivante',
       read: 'Étude de cas',
+    },
+    status: {
+      home: 'Retour au portfolio',
+      cases: 'Vous cherchiez peut-être l\'un de ceux-ci',
+      notFound: {
+        title: 'Cette page n\'existe pas',
+        text: 'Le lien est peut-être ancien ou mal saisi. Tout le reste est toujours là.',
+      },
+      error: {
+        title: 'Une erreur est survenue',
+        text: 'La page a rencontré une erreur inattendue. Recharger suffit en général.',
+        retry: 'Recharger la page',
+      },
     },
   },
 };

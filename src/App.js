@@ -5,6 +5,8 @@ import Photo from './modules/Photo';
 import About from './modules/About';
 import Contact from './modules/Contact';
 import CaseStudy from './modules/CaseStudy';
+import StatusPage from './modules/StatusPage';
+import ErrorBoundary from './modules/ErrorBoundary';
 import { LanguageProvider } from './context/LanguageContext';
 import { routeFor } from './utils/route';
 import './stylesheets/Motion.css';
@@ -29,7 +31,11 @@ const App = ({ language, path }) => {
 
   return (
     <LanguageProvider initial={language}>
-      {route.page === 'case' ? <CaseStudy slug={route.slug} /> : <Portfolio />}
+      <ErrorBoundary>
+        {route.page === 'home' && <Portfolio />}
+        {route.page === 'case' && <CaseStudy slug={route.slug} />}
+        {route.page === 'notfound' && <StatusPage kind="notfound" />}
+      </ErrorBoundary>
     </LanguageProvider>
   );
 };

@@ -1,10 +1,14 @@
 import { subpathOf } from '../context/LanguageContext';
+import caseStudies from '../data/caseStudies';
 
-// Two kinds of page: the portfolio itself, and one case study per project
-// at projects/<slug>/ under any language prefix.
+// Three kinds of page: the portfolio, one case study per project at
+// projects/<slug>/ under any language prefix, and "not found" for the rest.
 export const casePath = (slug) => `projects/${slug}/`;
 
 export const routeFor = (pathname = '/') => {
-  const match = subpathOf(pathname).match(/^projects\/([a-z0-9-]+)\/$/);
-  return match ? { page: 'case', slug: match[1] } : { page: 'home' };
+  const subpath = subpathOf(pathname);
+  if (!subpath) return { page: 'home' };
+  const match = subpath.match(/^projects\/([a-z0-9-]+)\/$/);
+  if (match && caseStudies[match[1]]) return { page: 'case', slug: match[1] };
+  return { page: 'notfound' };
 };

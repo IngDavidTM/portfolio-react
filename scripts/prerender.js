@@ -294,6 +294,28 @@ pages.forEach((page) => {
 });
 console.log(`prerendered ${pages.length * LANGUAGES.length} pages (${pages.length} × ${LANGUAGES.length} languages)`);
 
+// ---- 404 pages: one per language, served by Netlify with a 404 status ----
+// (root 404.html automatically; /es/ and /fr/ through public/_redirects)
+LANGUAGES.forEach((lang) => {
+  const { notFound } = translations[lang].status;
+  const markup = renderToString(React.createElement(App, {
+    language: lang,
+    path: pathForLanguage(lang, 'not-found/'),
+  }));
+  const head = [
+    `<title>${attr(`${notFound.title} | ${profile.name}`)}</title>`,
+    `<meta name="description" content="${attr(notFound.text)}">`,
+    '<meta name="robots" content="noindex, follow">',
+  ].join('');
+  const html = template
+    .replace(/<html lang="[^"]*"/, `<html lang="${lang}"`)
+    .replace(/<title>[\s\S]*?<\/title>/, '')
+    .replace('</head>', `${head}</head>`)
+    .replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
+  fs.writeFileSync(path.join(BUILD, pathForLanguage(lang), '404.html'), html);
+});
+console.log('404 pages written');
+
 // ---- sitemap.xml ----
 const today = new Date().toISOString().slice(0, 10);
 const sitemap = [

@@ -64,7 +64,7 @@ export const languageFromPath = (pathname = '/') => {
 
 // The part of the path below the language prefix: '' or 'projects/asoma/'
 export const subpathOf = (pathname = '/') => {
-  const parts = pathname.split('/').filter(Boolean);
+  const parts = pathname.split('/').filter((part) => part && part !== 'index.html');
   if (LANGUAGES.includes(parts[0])) parts.shift();
   return parts.length ? `${parts.join('/')}/` : '';
 };

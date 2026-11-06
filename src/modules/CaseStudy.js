@@ -9,6 +9,7 @@ import projects from '../data/projects';
 import caseStudies, { caseOrder } from '../data/caseStudies';
 import { casePath } from '../utils/route';
 import LanguageSwitch from './LanguageSwitch';
+import StatusPage from './StatusPage';
 import '../stylesheets/CaseStudy.css';
 
 const host = (url) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
@@ -24,13 +25,7 @@ const CaseStudy = ({ slug }) => {
     if (project) document.title = `${project.title}: ${study.headline[language]} | David Tamayo`;
   }, [project, study, language]);
 
-  if (!project) {
-    return (
-      <main className="case case_missing">
-        <a className="case_back" href={home}>{copy.back}</a>
-      </main>
-    );
-  }
+  if (!project) return <StatusPage kind="notfound" />;
 
   const position = caseOrder.indexOf(slug);
   const nextSlug = caseOrder[(position + 1) % caseOrder.length];

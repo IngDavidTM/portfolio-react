@@ -1,0 +1,20 @@
+# Netlify redirects. Rules only apply when no file exists at the path.
+
+# English lives at the root
+/en          /                              301
+/en/*        /:splat                        301
+
+# Short links to the resume
+/cv          /cv/david-tamayo-cv-en.pdf     302
+/resume      /cv/david-tamayo-cv-en.pdf     302
+/es/cv       /cv/david-tamayo-cv-es.pdf     302
+/curriculum  /cv/david-tamayo-cv-es.pdf     302
+
+# The project list lives on the home page
+/projects    /#works                        301
+/es/projects /es/#works                     301
+/fr/projects /fr/#works                     301
+
+# Not found, in the visitor's language (the root uses /404.html)
+/es/*        /es/404.html                   404
+/fr/*        /fr/404.html                   404
