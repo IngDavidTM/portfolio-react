@@ -14,20 +14,18 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0",
     "react-scripts": "5.0.1",
-    "swiper": "^9.1.1",
+    "swiper": "^12.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build && node scripts/prerender.js",
+    "build": "DISABLE_ESLINT_PLUGIN=true GENERATE_SOURCEMAP=false react-scripts build && node scripts/prerender.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "resume": "node scripts/resume.js",
     "og": "node scripts/og.js"
   },
-  "proxy": "https://mail-api-73ss.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",

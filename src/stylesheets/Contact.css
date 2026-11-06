@@ -186,3 +186,12 @@
     min-height: 5rem;
   }
 }
+
+/* Honeypot field: off-screen, never shown to people or read by screen readers */
+.contact_trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

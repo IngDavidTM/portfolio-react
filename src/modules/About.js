@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   Pagination, A11y,
-} from 'swiper';
+} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { useTranslation } from '../context/LanguageContext';

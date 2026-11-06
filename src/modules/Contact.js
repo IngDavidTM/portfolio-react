@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useTranslation } from '../context/LanguageContext';
 import '../stylesheets/Contact.css';
 
+// Same limits the mail API enforces
+const LIMITS = { name: 100, email: 254, message: 5000 };
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -9,6 +12,8 @@ const Contact = () => {
     message: '',
   });
 
+  // Honeypot: hidden from people, filled in by naive bots; the API drops those
+  const [website, setWebsite] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -94,7 +99,7 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, website }),
       });
 
       if (response.ok) {
@@ -130,6 +135,8 @@ const Contact = () => {
             id="name"
             name="name"
             required
+            maxLength={LIMITS.name}
+            autoComplete="name"
             placeholder={contactCopy.placeholders.name}
             value={formData.name}
             onChange={handleChange}
@@ -148,6 +155,8 @@ const Contact = () => {
             id="email"
             name="email"
             required
+            maxLength={LIMITS.email}
+            autoComplete="email"
             placeholder={contactCopy.placeholders.email}
             value={formData.email}
             onChange={handleChange}
@@ -165,6 +174,7 @@ const Contact = () => {
             id="message"
             name="message"
             required
+            maxLength={LIMITS.message}
             placeholder={contactCopy.placeholders.message}
             value={formData.message}
             onChange={handleChange}
@@ -176,6 +186,20 @@ const Contact = () => {
             <span className="field_message" id="message-error">{errors.message}</span>
           )}
         </label>
+        <div className="contact_trap" aria-hidden="true">
+          <label htmlFor="website">
+            Website
+            <input
+              type="text"
+              id="website"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+            />
+          </label>
+        </div>
         {isSending ? (
           <button type="submit" className="btn_liquid" disabled>
             {contactCopy.sending}
